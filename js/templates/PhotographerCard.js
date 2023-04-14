@@ -7,8 +7,10 @@ class PhotographerCard {
         const $wrapper = document.createElement('article');
         $wrapper.classList.add('photographer-card')
 
+        //photographer.html/id=${this._photographer.id} --> quel lien mettre pour accéder à la page du photographe ??
+
         const photographerCard = `
-            <a href="#">
+            <a href="#"> 
                 <img class="photographer-card__pp" 
                     src="${this._photographer.portrait}" 
                     alt="">
