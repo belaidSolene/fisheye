@@ -98,6 +98,32 @@ form input {
   border-radius: 5px;
 }
 
+.photographer-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 70px;
+  margin-top: 100px;
+}
+.photographer-section .photographer-card {
+  width: 12em;
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.photographer-section .photographer-card__pp {
+  object-fit: cover;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow-clip-margin: unset;
+}
+.photographer-section .photographer-card h2 {
+  color: #D3573C;
+  font-size: 36px;
+}
+
 .photographer_section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
