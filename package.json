@@ -1,0 +1,19 @@
+{
+  "name": "fisheye",
+  "version": "1.0.0",
+  "description": "Rien à installer ici, il suffit d'ouvrir le fichier `index.html`.",
+  "main": "index.js",
+  "scripts": {
+    "sass" : "sass --watch ./sass/main.scss:./public/css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/belaidSolene/fisheye.git"
+  },
+  "author": "solene belaid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/belaidSolene/fisheye/issues"
+  },
+  "homepage": "https://github.com/belaidSolene/fisheye#readme"
+}
