@@ -1,27 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Fisheye - photographe </title>
-    <link rel="icon" type="image/png" href="/public/assets/icons/favicon.png">
-    <link href="/public/css/style.css" rel="stylesheet" type="text/css" />
 
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8">
+  <title>Lab - photographe </title>
+  <link rel="icon" type="image/png" href="/public/assets/icons/favicon.png">
+  <link href="/public/css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+  <div class="container">
     <header>
-      <img src="/public/assets/icons/logo.png" class="logo" />
+      <a href="/lab/index-lab.html">
+        <img src="/public/assets/icons/logo.png" class="logo" />
+      </a>
     </header>
 
     <main id="main">
-      <section class="photograph-header">
-        <div class="photograph">
-          <h1>Mimi Keel</h1>
-          <p>London, UK</p>
-          <p>Voir le beau dans le quotidien</p>
-        </div>
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-        <img src="/public/assets/photographers/MimiKeel.jpg" alt="" class="photograph-header__pp">
-      </section>
+      <section class="photographer-header"></section>
 
       <div class="info">
         <span class="likes">297 081 keur</span>
@@ -37,28 +34,49 @@
         </select>
       </div>
 
-      <section class="media-section"></section>
+      
+      <section class="medias-section"></section>
     </main>
 
     <div id="contact_modal">
-			<div class="modal">
-				
+      <div class="modal">
+
         <header>
           <h2>Contactez-moi</h2>
           <img src="/public/assets/icons/close.svg" onclick="closeModal()" />
         </header>
-				
-        <form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
 
-    <script src="/js/pages/photographer.js"></script>
-    <script src="/js/utils/contactForm.js"></script>
-  </body>
+        <form>
+          <div>
+            <label>Prénom</label>
+            <input />
+          </div>
+          <button class="btn">Envoyer</button>
+        </form>
+      </div>
+    </div>
+
+      <!-- Api -->
+      <script src="/js/api/api.js"></script>
+
+      <!-- Factory -->
+      <script src="/js/factories/MediaFactory.js"></script>
+  
+      <!-- Models -->
+      <script src="/js/models/Photographer.js"></script>
+      <script src="/js/models/Image.js"></script>
+      <script src="/js/models/Video.js"></script>
+  
+      <!-- Templates -->
+      <script src="/js/templates/PhotographerCard.js"></script>
+  
+      <!-- Entry point -->
+      <script src="lab.js"></script>
+
+      <!-- Fournis au départ -->
+      <!-- <script src="/js/pages/photographer.js"></script> -->
+      <script src="/js/utils/contactForm.js"></script>
+  </div>
+</body>
+
 </html>

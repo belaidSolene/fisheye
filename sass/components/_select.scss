@@ -12,4 +12,9 @@
         // créer object spécifique et mettre border-top 
         // border-bottom sur Date avec class middle
     }
+
+    option {
+        border-bottom: 5px solid $white;
+        padding: 0.5em;
+    }
 }
