@@ -28,10 +28,6 @@
     }
 
     &__pp {
-        object-fit: cover;
         height: 80%;
-        aspect-ratio: 1;
-        border-radius: 50%;
-        overflow-clip-margin: unset;
     }
 }

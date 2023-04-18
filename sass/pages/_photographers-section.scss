@@ -15,11 +15,7 @@
         text-align: center;
 
         &__pp {
-            object-fit: cover;
             width: 60%;
-            aspect-ratio: 1;
-            border-radius: 50%;
-            overflow-clip-margin: unset;
         }
 
         & h2 {

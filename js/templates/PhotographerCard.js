@@ -9,7 +9,7 @@ class PhotographerCard {
 
         const photographerCard = `
             <a href="/lab/photographer-lab.html?id=${this._photographer.id}"> 
-                <img class="photographer-card__pp" 
+                <img class="photographer-card__pp round" 
                     src="${this._photographer.portrait}" 
                     alt="">
                 <h2>${this._photographer.name}</h2>
@@ -34,7 +34,7 @@ class PhotographerCard {
 
             <button class="btn" onclick="displayModal()">Contactez-moi</button>
             
-            <img src="${this._photographer.portrait}" alt="" class="photographer-header__pp">
+            <img src="${this._photographer.portrait}" alt="" class="photographer-header__pp round">
         `
 
         $wrapper.innerHTML = photographerHeader;
