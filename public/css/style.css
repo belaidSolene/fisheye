@@ -79,10 +79,10 @@ body {
   font-weight: 700;
 }
 
-.sort-medias {
+.order-medias {
   margin: 20px 100px;
 }
-.sort-medias select {
+.order-medias select {
   appearance: none;
   background-color: #901C1C;
   color: #FFFFFF;
@@ -92,7 +92,7 @@ body {
   cursor: inherit;
   line-height: inherit;
 }
-.sort-medias option {
+.order-medias option {
   border-bottom: 5px solid #FFFFFF;
   padding: 0.5em;
 }
