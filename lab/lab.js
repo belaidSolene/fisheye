@@ -11,8 +11,8 @@ class PhotographerPage {
 
     async main() {
         try {
+            // récupération données du photographe en fonction de l'id de
             const id = await this.params.get("id")
-
             const photographerData = await this.photographersApi.getPhotographerById(id)
 
             // création de l'en-tête de la page

@@ -32,7 +32,7 @@ class PhotographerCard {
                 <p class="photographer-header__tagline">${this._photographer.tagline}</p>
             </div>
 
-            <button class="btn btn--contact" onclick="displayModal()">Contactez-moi</button>
+            <button class="btn btn--contact" onclick="toggleModal()">Contactez-moi</button>
             
             <img src="${this._photographer.portrait}" alt="" class="photographer-header__pp round">
         `

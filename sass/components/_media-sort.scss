@@ -1,5 +1,6 @@
 .sort-medias {
     margin: 20px 100px;
+
     select {
         appearance: none;
 
@@ -18,4 +19,32 @@
         border-bottom: 5px solid $white;
         padding: 0.5em;
     }
+}
+
+// Définition de la classe parente
+.dropdown {
+  position: relative;
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    z-index: 1;
+    padding: 8px;
+
+    &.show {
+      display: block;
+    }
+
+    .dropdown-item {
+      display: block;
+      margin: 8px 0;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }

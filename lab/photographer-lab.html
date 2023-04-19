@@ -20,12 +20,10 @@
 
     <main id="main">
       <section class="photographer-header"></section>
-      
-      <div class="insertLikesAndPrice">
-        
-      </div>
 
-      <div class="sort-medias">
+      <div class="insertLikesAndPrice"></div>
+
+      <div class="sort-medias sort-medias--select">
         <label for="sort-medias">Trier par</label>
         <select name="media" id="sort-medias">
           <option value="likes">Popularité</option>
@@ -33,6 +31,19 @@
           <option value="name">Titre</option>
         </select>
       </div>
+
+      <!-- 
+      <div class="dropdown">
+        Trier par
+        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Popularité
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li><a class="dropdown-item" href="#" data-sort-by="likes">Popularité</a></li>
+          <li><a class="dropdown-item" href="#" data-sort-by="date">Date</a></li>
+          <li><a class="dropdown-item" href="#" data-sort-by="title">Titre</a></li>
+        </ul>
+      </div> -->
 
       <section class="medias-section"></section>
 
@@ -43,21 +54,21 @@
 
         <header class="modal-section__contact__header">
           <h2 class="contact-name-photographer"></h2>
-          <img src="/public/assets/icons/close.svg" onclick="closeModal()" />
+          <img src="/public/assets/icons/close.svg" onclick="toggleModal()" />
         </header>
 
-        <form>
-            <label for="firstName">Prénom</label>
-            <input type="text" id="firstName" name="firstName"/>
+        <form id="toContactPhotographer">
+          <label for="firstName">Prénom</label>
+          <input type="text" id="firstName" name="firstName" />
 
-            <label for="lastName">Nom</label>
-            <input type="text" id="lastName" name="lastName"/>
+          <label for="lastName">Nom</label>
+          <input type="text" id="lastName" name="lastName" />
 
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email"/>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" />
 
-            <label for="msg">Votre message</label>
-            <textarea name="msg" id="msg"></textarea>
+          <label for="msg">Votre message</label>
+          <textarea name="msg" id="msg"></textarea>
 
           <button class="btn btn--submit">Envoyer</button>
         </form>
@@ -65,27 +76,28 @@
       </div>
     </section>
 
-      <!-- Api -->
-      <script src="/js/api/api.js"></script>
+    <!-- Api -->
+    <script src="/js/api/api.js"></script>
 
-      <!-- Factory -->
-      <script src="/js/factories/MediaFactory.js"></script>
-  
-      <!-- Models -->
-      <script src="/js/models/Photographer.js"></script>
-      <script src="/js/models/Media.js"></script>
-  
-      <!-- Templates -->
-      <script src="/js/templates/PhotographerCard.js"></script>
-      <script src="/js/templates/MediaCard.js"></script>
-      <script src="/js/templates/DisplayData.js"></script>
-  
-      <!-- Entry point -->
-      <script src="lab.js"></script>
+    <!-- Factory -->
+    <script src="/js/factories/MediaFactory.js"></script>
 
-      <!-- Fournis au départ -->
-      <!-- <script src="/js/pages/photographer.js"></script> -->
-      <script src="/js/utils/contactForm.js"></script>
+    <!-- Models -->
+    <script src="/js/models/Photographer.js"></script>
+    <script src="/js/models/Media.js"></script>
+
+    <!-- Templates -->
+    <script src="/js/templates/PhotographerCard.js"></script>
+    <script src="/js/templates/MediaCard.js"></script>
+    <script src="/js/templates/DisplayData.js"></script>
+
+    <!-- Utils -->
+    <!-- <script src="/js/pages/photographer.js"></script> -->
+    <script src="/js/utils/contactForm.js"></script>
+    <script src="/js/utils/sortMedia.js"></script>
+
+    <!-- Entry point -->
+    <script src="lab.js"></script>
   </div>
 </body>
 
