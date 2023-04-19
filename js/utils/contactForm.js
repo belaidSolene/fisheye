@@ -1,9 +1,7 @@
 function displayModal() {
-    const modal = document.getElementById("contact_modal");
-	modal.style.display = "block";
+    document.querySelector("#modal-section").className += " show";
 }
 
 function closeModal() {
-    const modal = document.getElementById("contact_modal");
-    modal.style.display = "none";
+    document.querySelector("#modal-section").classList.remove("show");
 }

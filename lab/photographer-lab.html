@@ -21,9 +21,8 @@
     <main id="main">
       <section class="photographer-header"></section>
       
-      <div class="info">
-        <span class="likes">297 081 <i class="fa-solid fa-heart"></i></span>
-        <span class="forfait">300€/jour</span>
+      <div class="insertLikesAndPrice">
+        
       </div>
 
       <div class="sort-medias">
@@ -39,23 +38,32 @@
 
     </main>
 
-    <div id="contact_modal">
-      <div class="modal">
+    <section id="modal-section" class="modal-section">
+      <div class="modal-section__contact">
 
-        <header>
-          <h2>Contactez-moi</h2>
+        <header class="modal-section__contact__header">
+          <h2 class="contact-name-photographer"></h2>
           <img src="/public/assets/icons/close.svg" onclick="closeModal()" />
         </header>
 
         <form>
-          <div>
-            <label>Prénom</label>
-            <input />
-          </div>
-          <button class="btn">Envoyer</button>
+            <label for="firstName">Prénom</label>
+            <input type="text" id="firstName" name="firstName"/>
+
+            <label for="lastName">Nom</label>
+            <input type="text" id="lastName" name="lastName"/>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email"/>
+
+            <label for="msg">Votre message</label>
+            <textarea name="msg" id="msg"></textarea>
+
+          <button class="btn btn--submit">Envoyer</button>
         </form>
+
       </div>
-    </div>
+    </section>
 
       <!-- Api -->
       <script src="/js/api/api.js"></script>
@@ -65,12 +73,12 @@
   
       <!-- Models -->
       <script src="/js/models/Photographer.js"></script>
-      <script src="/js/models/Image.js"></script>
-      <script src="/js/models/Video.js"></script>
+      <script src="/js/models/Media.js"></script>
   
       <!-- Templates -->
       <script src="/js/templates/PhotographerCard.js"></script>
       <script src="/js/templates/MediaCard.js"></script>
+      <script src="/js/templates/DisplayData.js"></script>
   
       <!-- Entry point -->
       <script src="lab.js"></script>

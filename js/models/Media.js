@@ -1,9 +1,8 @@
-class Video {
+class Media {
     constructor(data) {
         this._id = data.id
         this._photographerId = data.photographerId
         this._title = data.title
-        this._video = data.video
         this._likes = data.likes
         this._date = data.date
         this._price = data.price
@@ -21,10 +20,6 @@ class Video {
         return this._title
     }
 
-    get video() {
-        return `/public/assets/portfolio/${this._photographerId}/${this._video}`
-    }
-
     get likes() {
         return this._likes
     }
@@ -35,6 +30,32 @@ class Video {
 
     get price() {
         return this._price
+    }
+}
+
+class Image extends Media {
+    constructor(data) {
+        super(data)
+        this._image = data.image
+    }
+    
+    get image() {
+        return `/public/assets/portfolio/${this._photographerId}/${this._image}`
+    }
+
+    get type() {
+        return 'image'
+    }
+}
+
+class Video extends Media {
+    constructor(data) {
+        super(data)
+        this._video = data.video
+    }
+
+    get video() {
+        return `/public/assets/portfolio/${this._photographerId}/${this._video}`
     }
 
     get type() {
