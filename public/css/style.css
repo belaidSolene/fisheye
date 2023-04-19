@@ -264,13 +264,14 @@ header h1 {
 }
 .modal-section__contact form label {
   color: #312E2E;
-  font-size: 36px;
+  font-size: 2.25em;
 }
 .modal-section__contact form input,
 .modal-section__contact form textarea {
   width: 100%;
   border: none;
   border-radius: 5px;
+  font-size: 2.25em;
 }
 .modal-section__contact form input {
   height: 68px;
