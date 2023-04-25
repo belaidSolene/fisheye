@@ -1,3 +1,44 @@
+// Fonction de tri des médias en fonction du bouton cliqué
+function sortByButton(button, medias) {
+  switch (button.dataset.sortBy) {
+    case 'likes':
+      medias.sort((a, b) => b.likes - a.likes);
+      break;
+    case 'date':
+      medias.sort((a, b) => new Date(b.date) - new Date(a.date));
+      break;
+    case 'title':
+      medias.sort((a, b) => a.title.localeCompare(b.title));
+      break;
+    default:
+      break;
+  }
+
+  return medias;
+}
+
+
+class SortMedia {
+  sort(mediaList, sortBy) {
+    switch (sortBy) {
+      case 'likes':
+        default:
+        mediaList.sort((a, b) => b.likes - a.likes);
+        break;
+
+      case 'date':
+        mediaList.sort((a, b) => new Date(b.date) - new Date(a.date));
+        break;
+
+      case 'title':
+        mediaList.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+    }
+
+    return mediaList;
+  }
+}
+/*
 const dropdownButton = document.querySelector('.dropdown-toggle');
 const dropdownList = document.querySelector('.dropdown-menu');
 
@@ -29,4 +70,8 @@ dropdownLinks.forEach(link => {
     // Utilisez la valeur de sortBy pour trier votre liste
     console.log(sortBy);
   });
-});
+}); 
+
+*/
+
+

@@ -5,23 +5,46 @@
     color: $white;
     background-color: $color-primary;
 
-    
+
     width: 175px;
     height: 70px;
 
     padding: 18px;
-    
+
     border: none;
-    border-radius: 5px;
+    border-radius: $border-radius-btn;
 
     cursor: pointer;
 
-    &--contact:hover {
-        color: $black;
-        background-color: $color-tertiary;
+    &--contact {
+        position: relative;
+        z-index: 1;
+
+        &:hover {
+            color: $black;
+
+            &::after {
+            opacity: 1;
+            }
+        }
+
+        &::after {
+            @include hoverEffect;
+            background-color: $color-tertiary;
+            border: none;
+            border-radius: $border-radius-btn;
+        }
     }
 
     &--submit {
         margin-top: 26px;
     }
+}
+
+.btns {
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
 }

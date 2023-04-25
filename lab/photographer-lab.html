@@ -23,27 +23,22 @@
 
       <div class="insertLikesAndPrice"></div>
 
-      <div class="order-medias order-medias--select">
-        <label for="order-medias">Trier par</label>
-        <select name="media" id="order-medias">
-          <option value="likes">Popularité</option>
-          <option value="date">Date</option>
-          <option value="name">Titre</option>
-        </select>
-      </div>
-
-      <!-- 
-      <div class="dropdown">
+      <div class="mediaListbox" aria-label="Trier les médias">
         Trier par
-        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Popularité
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li><a class="dropdown-item" href="#" data-sort-by="likes">Popularité</a></li>
-          <li><a class="dropdown-item" href="#" data-sort-by="date">Date</a></li>
-          <li><a class="dropdown-item" href="#" data-sort-by="title">Titre</a></li>
-        </ul>
-      </div> -->
+        <div class="listbox">
+          <button class="btn listbox__btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="sort-options">
+            <span class="listbox__label">Popularité</span>
+            <span class="listbox__icon" aria-hidden="true"></span>
+          </button>
+
+          <ul id="sort-options" class="listbox__list" role="listbox">
+            <li class="listbox__item" role="option" tabindex="0" aria-selected="true" data-sort-by="likes">Popularité
+            </li>
+            <li class="listbox__item" role="option" tabindex="0" aria-selected="false" data-sort-by="date">Date</li>
+            <li class="listbox__item" role="option" tabindex="0" aria-selected="false" data-sort-by="title">Titre</li>
+          </ul>
+        </div>
+      </div>
 
       <section class="medias-section"></section>
 
@@ -92,6 +87,11 @@
     <script src="/js/templates/DisplayData.js"></script>
 
     <!-- Utils -->
+    <script src="/js/utils/MediaListbox.js"></script>
+    <script src="/js/utils/sortMedia.js"></script>
+    <script src="/js/utils/DisplayMedia.js"></script>
+
+
     <!-- <script src="/js/pages/photographer.js"></script> -->
     <script src="/js/utils/contactForm.js"></script>
     <!-- <script src="/js/utils/orderMedia.js"></script> -->
