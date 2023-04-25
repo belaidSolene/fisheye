@@ -18,7 +18,7 @@ class MediaCard {
 
             <div class="media-card__description">
             <p class="media-card__description__title">${this._media.title}</p>
-            <p class="media-card__description__likes">${this._media.likes} <i class="fa-solid fa-heart"></i></p>
+            <button class="btn-likes">${this._media.likes} <i class="fa-solid fa-heart"></i></button>
           </div>            
         `
 

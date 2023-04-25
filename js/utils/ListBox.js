@@ -1,4 +1,4 @@
-class MediaListBox {
+class ListBox {
   constructor(listbox) {
     this._listbox = listbox;
     this._listboxButton = this._listbox.querySelector('.listbox__btn');
@@ -14,9 +14,7 @@ class MediaListBox {
     });
 
     this._listboxItems.forEach(item => {
-
       item.addEventListener('click', () => {
-
         this._currentItem.setAttribute('aria-selected', 'false');
         this._currentItem = item;
         this._currentItem.setAttribute('aria-selected', 'true');

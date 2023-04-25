@@ -41,10 +41,25 @@
     }
 }
 
-.btns {
-    padding: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
+.btn-likes {
+    font-family: $police;
+    font-weight: 500;
+    font-size: 1em;
+    background-color: $white;
+    color: $color-primary;
+    border: none;
+
+    position: relative;
+    z-index: 1;
+
+    &.liked {
+        &::after {
+            opacity: 1;
+        }
+    }
+
+    &::after  {
+        @include hoverEffect;
+        color: $color-secondary;
+    }
 }

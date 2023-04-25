@@ -1,52 +1,41 @@
-class PhotographerApp {
+/* Update hearts : get the "media-card__description__likes" --> .innerText --> parseInt --> can add 1 */
+class UpdateLike {
     constructor() {
-        this.URLparams = new URLSearchParams(window.location.search);
-        this.photographersApi = new PhotographersApi('/data/photographers-data.json')
-
-        this.mediaListbox = document.querySelector('.mediaListbox')
-
-        this.$photographerWrapper = document.querySelector('.photographer-header')
-        this.$mediaWrapper = document.querySelector('.medias-section')
-        this.$wrapperInsertLikesAndPrice = document.querySelector('.insertLikesAndPrice')
-        this.$wrapperModalNamePhotographer = document.querySelector('.contact-name-photographer')
+        this._btnsLike = this.btnsLike = document.querySelectorAll('.btn-likes');
+        this._$wrapperTotalLikes = document.querySelector('.total-likes');
+        this.init();
     }
 
-    async main() {
-        try {
-            // récupération données du photographe en fonction de l'id de
-            const id = await this.URLparams.get("id")
-            const photographerData = await this.photographersApi.getPhotographerById(id)
+    init() {
+        this._btnsLike.forEach((btn) => {
+            btn.addEventListener('click', () => {
 
-            // création de l'en-tête de la page
-            const photographer = new Photographer(photographerData.photographer)
+                console.log(this._$wrapperTotalLikes.innerHTML);
 
-            const templatePhotographer = new PhotographerCard(photographer)
-            templatePhotographer.createPhotographerHeader(this.$photographerWrapper)
+                if (btn.classList.contains('liked')) {
+                    btn.innerHTML = this._subLike(btn)
+                    this._$wrapperTotalLikes.innerHTML = this._subLike(this._$wrapperTotalLikes)
 
-            // insertion des médias dans la page
-            // tri des médias en fonction du bouton cliqué
-            const medias = photographerData.medias.map(media => new MediasFactory(media))
+                    btn.classList.remove('liked')
 
-            const displayMedia = new DisplayMedia(medias, this.$mediaWrapper, this.mediaListbox);
-            displayMedia.render();
-           
+                } else {
+                    btn.innerHTML = this._addLike(btn)
+                    this._$wrapperTotalLikes.innerHTML = this._addLike(this._$wrapperTotalLikes)
 
-            // création encart totalLikes + prix du photographe
-            const totalLikes = await this.photographersApi.getTotalLikes(photographerData)
+                    btn.classList.add('liked')
 
-            const templateDisplayData = new DisplayData(photographer)
-            templateDisplayData.insertLikesAndPrice(this.$wrapperInsertLikesAndPrice, totalLikes)
+                }
+            })
+        })
+    }
 
+    _addLike(nodeElement) {
+        const up = parseInt(nodeElement.innerText) + 1;
+        return `${up} <i class="fa-solid fa-heart"></i>`
+    }
 
-            //ajout nom photographe dans le formulaire
-            templateDisplayData.insertNamePhotographer(this.$wrapperModalNamePhotographer)
-
-        } catch (error) {
-            console.log(error);
-        }
+    _subLike(nodeElement) {
+        const lower = parseInt(nodeElement.innerText) - 1;
+        return `${lower} <i class="fa-solid fa-heart"></i>`
     }
 }
-
-const app = new PhotographerApp();
-
-app.main()

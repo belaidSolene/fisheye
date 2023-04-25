@@ -1,16 +1,15 @@
 class DisplayMedia {
-    constructor(mediaList, mediaContainer, mediaListBox) {
+    constructor(mediaList, mediaContainer, mediaListbox) {
         this._mediaList = mediaList;
         this._mediaContainer = mediaContainer;
-        this._mediaListBox = new MediaListBox(mediaListBox);
+        this._mediaListbox = new ListBox(mediaListbox);
         this._sortedList = this._sortMediaList()
 
         this._addSortEventListener();
     }
 
     _addSortEventListener() {
-        this._mediaListBox.options.forEach(item => {
-
+        this._mediaListbox.options.forEach(item => {
             item.addEventListener('click', () => {
                 this._sortedList = this._sortMediaList();
                 this.render();
@@ -19,9 +18,9 @@ class DisplayMedia {
       }
 
     _sortMediaList() {
-        const sortBy = this._mediaListBox.getSelectedOption();
+        const sortBy = this._mediaListbox.getSelectedOption();
 
-       return new SortMedia().sort(this._mediaList, sortBy);
+       return new Sort().sortMedias(this._mediaList, sortBy);
     }
 
     render() {
