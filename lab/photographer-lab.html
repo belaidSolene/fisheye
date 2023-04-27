@@ -26,7 +26,7 @@
       <div class="mediaListbox" aria-label="Trier les médias">
         Trier par
         <div class="listbox">
-          <button class="btn listbox__btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="sort-options">
+          <button class="btn btn--hover listbox__btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="sort-options">
             <span class="listbox__label">Popularité</span>
             <span class="listbox__icon" aria-hidden="true"></span>
           </button>
@@ -45,11 +45,11 @@
     </main>
 
     <section id="modal-section" class="modal-section">
-      <div class="modal-section__contact">
+      <div id="contact-form" class="contact">
 
-        <header class="modal-section__contact__header">
-          <h2 class="contact-name-photographer"></h2>
-          <img src="/public/assets/icons/close.svg" onclick="toggleModal()" />
+        <header class="contact__header">
+          <h2 id="contact-name-photographer" class="contact__header__photographer"></h2>
+          <img src="/public/assets/icons/close.svg" onclick="toggleForm()" />
         </header>
 
         <form id="toContactPhotographer">
@@ -69,6 +69,17 @@
         </form>
 
       </div>
+
+      <div id="lightbox" class="lightbox">
+        <button class="lightbox__close">Close</button>
+        <article class="lightbox__media-container">            
+            <!-- <video class="lightbox__media-container__content" src="..."></video> -->
+            </article>
+        <div class="lightbox__nav">
+            <button class="lightbox__nav__prev">Prev</button>
+            <button class="lightbox__nav__next">Next</button>
+        </div>
+    </div>
     </section>
 
     <!-- Api -->
@@ -81,14 +92,18 @@
     <script src="/js/models/Photographer.js"></script>
     <script src="/js/models/Media.js"></script>
 
+        <!-- Utils -->
+        <script src="/js/utils/ListBox.js"></script>
+        <script src="/js/utils/Sort.js"></script>
+        <script src="/js/utils/Lightbox.js"></script>
+        <script src="/js/utils/UpdateLike.js"></script>
+    
+
     <!-- Templates -->
     <script src="/js/templates/PhotographerCard.js"></script>
     <script src="/js/templates/MediaCard.js"></script>
     <script src="/js/templates/DisplayData.js"></script>
 
-    <!-- Utils -->
-    <script src="/js/utils/ListBox.js"></script>
-    <script src="/js/utils/Sort.js"></script>
 
 
     <script src="/js/utils/DisplayMedia.js"></script>

@@ -9,7 +9,7 @@ class PhotographerApp {
         this.$photographerWrapper = document.querySelector('.photographer-header')
         this.$mediaWrapper = document.querySelector('.medias-section')
         this.$wrapperInsertLikesAndPrice = document.querySelector('.insertLikesAndPrice')
-        this.$wrapperModalNamePhotographer = document.querySelector('.contact-name-photographer')
+        this.$wrapperModalNamePhotographer = document.querySelector('#contact-name-photographer')
     }
 
     async main() {
@@ -23,6 +23,13 @@ class PhotographerApp {
 
             const templatePhotographer = new PhotographerCard(photographer)
             templatePhotographer.createPhotographerHeader(this.$photographerWrapper)
+            
+
+             // création encart totalLikes + prix du photographe
+             const totalLikes = await this.photographersApi.getTotalLikes(photographerData)
+
+             const templateDisplayData = new DisplayData(photographer)
+             templateDisplayData.insertLikesAndPrice(this.$wrapperInsertLikesAndPrice, totalLikes)
 
 
             // insertion des médias dans la page
@@ -32,13 +39,13 @@ class PhotographerApp {
             const displayMedia = new DisplayMedia(medias, this.$mediaWrapper, this.mediaListbox);
             displayMedia.render();
 
+            console.log(displayMedia.sortedList);
 
-            // création encart totalLikes + prix du photographe
-            const totalLikes = await this.photographersApi.getTotalLikes(photographerData)
+           // const lightbox = new MediaLightbox(displayMedia.sortedList, 92352352 , 'lightbox')
 
-            const templateDisplayData = new DisplayData(photographer)
-            templateDisplayData.insertLikesAndPrice(this.$wrapperInsertLikesAndPrice, totalLikes)
-
+          //  console.log(`lightbox = ${lightbox._mediaList}`);
+          //  lightbox.showMedia();
+    
 
             //ajout nom photographe dans le formulaire
             templateDisplayData.insertNamePhotographer(this.$wrapperModalNamePhotographer)

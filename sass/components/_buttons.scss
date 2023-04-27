@@ -16,7 +16,7 @@
 
     cursor: pointer;
 
-    &--contact {
+    &--hover {
         position: relative;
         z-index: 1;
 
@@ -49,17 +49,7 @@
     color: $color-primary;
     border: none;
 
-    position: relative;
-    z-index: 1;
-
     &.liked {
-        &::after {
-            opacity: 1;
-        }
-    }
-
-    &::after  {
-        @include hoverEffect;
         color: $color-secondary;
     }
 }

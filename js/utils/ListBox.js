@@ -4,13 +4,15 @@ class ListBox {
     this._listboxButton = this._listbox.querySelector('.listbox__btn');
     this._listboxItems = this._listbox.querySelectorAll('.listbox__item');
     this._currentItem = this._listbox.querySelector('[aria-selected="true"]');
+    this._isOpen = false;
     
     this._init();
   }
 
   _init() {
-    this._listboxButton.addEventListener('click', () => {
-      this._listbox.classList.toggle('show');
+    this._listboxButton.addEventListener('click', (event) => {
+      event.stopPropagation();
+      this._toggleListBox();
     });
 
     this._listboxItems.forEach(item => {
@@ -22,6 +24,12 @@ class ListBox {
         this._listbox.classList.remove('show');
       });
     });
+
+    document.addEventListener('click', (event) => {
+      if (this._isOpen && !this._listbox.contains(event.target)) {
+        this._closeListBox();
+      }
+    });
   }
 
   getSelectedOption() {
@@ -30,5 +38,21 @@ class ListBox {
 
   get options() {
     return this._listboxItems;
+  }
+
+  _toggleListBox() {
+    this._isOpen ? this._closeListBox() : this._openListBox();
+  }
+
+  _openListBox() {
+    this._isOpen = true;
+    this._listbox.classList.add('show');
+    this._listboxButton.classList.remove('btn--hover')
+  }
+
+  _closeListBox() {
+    this._isOpen = false;
+    this._listbox.classList.remove('show');
+    this._listboxButton.classList.add('btn--hover')
   }
 }

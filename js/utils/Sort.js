@@ -2,7 +2,7 @@ class Sort {
   sortMedias(mediaList, sortBy) {
     switch (sortBy) {
       case 'likes':
-        default:
+      default:
         mediaList.sort((a, b) => b.likes - a.likes);
         break;
 
@@ -15,7 +15,7 @@ class Sort {
         break;
     }
 
-    return mediaList;
+    return new Map(mediaList.map(media => [media.id, media]));
   }
 }
 

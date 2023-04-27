@@ -16,8 +16,8 @@ class Form {
 
 
             fieldsForm.forEach((fcts, key) => {
-            const field = document.getElementsByName(key)
-                
+                const field = document.getElementsByName(key)
+
                 fcts.forEach(fct => {
                     fct(field)
                 })
@@ -37,8 +37,9 @@ class Form {
 
 
 
-function toggleModal() {
+function toggleForm() {
     document.querySelector("#modal-section").classList.toggle("show");
-  }
+    document.querySelector("#contact-form").classList.toggle("show");
+}
 
 
