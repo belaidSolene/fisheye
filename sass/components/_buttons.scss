@@ -24,7 +24,7 @@
             color: $black;
 
             &::after {
-            opacity: 1;
+                opacity: 1;
             }
         }
 
@@ -52,4 +52,10 @@
     &.liked {
         color: $color-secondary;
     }
+}
+
+.btn-close {
+    border: none;
+    background-color: transparent;
+    align-self: flex-start;
 }

@@ -26,8 +26,10 @@
       <div class="mediaListbox" aria-label="Trier les médias">
         Trier par
         <div class="listbox">
-          <button class="btn btn--hover listbox__btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="sort-options">
+          <button class="btn btn--hover listbox__btn" aria-haspopup="listbox" aria-expanded="false"
+            aria-controls="sort-options">
             <span class="listbox__label">Popularité</span>
+            <i class="fa-solid fa-chevron-down"></i>
             <span class="listbox__icon" aria-hidden="true"></span>
           </button>
 
@@ -46,40 +48,31 @@
 
     <section id="modal-section" class="modal-section">
       <div id="contact-form" class="contact">
-
         <header class="contact__header">
           <h2 id="contact-name-photographer" class="contact__header__photographer"></h2>
-          <img src="/public/assets/icons/close.svg" onclick="toggleForm()" />
+          <button class="btn-close">
+            <img src="/public/assets/icons/close.svg" onclick="toggleForm()" />
+          </button>
         </header>
-
-        <form id="toContactPhotographer">
-          <label for="firstName">Prénom</label>
-          <input type="text" id="firstName" name="firstName" />
-
-          <label for="lastName">Nom</label>
-          <input type="text" id="lastName" name="lastName" />
-
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" />
-
-          <label for="msg">Votre message</label>
-          <textarea name="msg" id="msg"></textarea>
-
-          <button class="btn btn--submit">Envoyer</button>
-        </form>
 
       </div>
 
       <div id="lightbox" class="lightbox">
-        <button class="lightbox__close">Close</button>
-        <article class="lightbox__media-container">            
-            <!-- <video class="lightbox__media-container__content" src="..."></video> -->
-            </article>
+        <button class="lightbox__close">
+          <img src="/public/assets/icons/close.svg" />
+        </button>
+
+        <article class="lightbox__media-container"></article>
+
         <div class="lightbox__nav">
-            <button class="lightbox__nav__prev">Prev</button>
-            <button class="lightbox__nav__next">Next</button>
+          <button class="lightbox__nav__prev">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button class="lightbox__nav__next">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
         </div>
-    </div>
+      </div>
     </section>
 
     <!-- Api -->
@@ -92,12 +85,13 @@
     <script src="/js/models/Photographer.js"></script>
     <script src="/js/models/Media.js"></script>
 
-        <!-- Utils -->
-        <script src="/js/utils/ListBox.js"></script>
-        <script src="/js/utils/Sort.js"></script>
-        <script src="/js/utils/Lightbox.js"></script>
-        <script src="/js/utils/UpdateLike.js"></script>
-    
+    <!-- Utils -->
+    <script src="/js/utils/ListBox.js"></script>
+    <script src="/js/utils/Sort.js"></script>
+    <script src="/js/utils/Lightbox.js"></script>
+    <script src="/js/utils/UpdateLike.js"></script>
+    <script src="/js/utils/Form.js"></script>
+
 
     <!-- Templates -->
     <script src="/js/templates/PhotographerCard.js"></script>
@@ -105,9 +99,7 @@
     <script src="/js/templates/DisplayData.js"></script>
 
 
-
     <script src="/js/utils/DisplayMedia.js"></script>
-    <script src="/js/utils/contactForm.js"></script>
 
     <!-- Entry point -->
     <script src="/js/pages/photographerApp.js"></script>

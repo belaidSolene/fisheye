@@ -1,8 +1,9 @@
 class DisplayMedia {
     constructor(medias, mediaContainer, mediaListbox) {
         this._mediaListbox = new ListBox(mediaListbox);
+        this._medias = medias;
 
-        this._sortedList = this._sortMediaList(medias)
+        this._sortedList = this._sortMediaList()
 
         this._mediaContainer = mediaContainer;
 
@@ -18,9 +19,9 @@ class DisplayMedia {
         })
     }
 
-    _sortMediaList(medias) {
+    _sortMediaList() {
         const sortBy = this._mediaListbox.getSelectedOption();
-        return new Sort().sortMedias(medias, sortBy);
+        return new Sort().sortMedias(this._medias, sortBy);
     }
 
     render() {

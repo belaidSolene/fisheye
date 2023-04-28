@@ -10,6 +10,7 @@ class PhotographerApp {
         this.$mediaWrapper = document.querySelector('.medias-section')
         this.$wrapperInsertLikesAndPrice = document.querySelector('.insertLikesAndPrice')
         this.$wrapperModalNamePhotographer = document.querySelector('#contact-name-photographer')
+        this.$wrapperContactForm = document.querySelector('#contact-form')
     }
 
     async main() {
@@ -23,7 +24,7 @@ class PhotographerApp {
 
             const templatePhotographer = new PhotographerCard(photographer)
             templatePhotographer.createPhotographerHeader(this.$photographerWrapper)
-            
+
 
              // création encart totalLikes + prix du photographe
              const totalLikes = await this.photographersApi.getTotalLikes(photographerData)
@@ -39,18 +40,14 @@ class PhotographerApp {
             const displayMedia = new DisplayMedia(medias, this.$mediaWrapper, this.mediaListbox);
             displayMedia.render();
 
-            console.log(displayMedia.sortedList);
 
-           // const lightbox = new MediaLightbox(displayMedia.sortedList, 92352352 , 'lightbox')
-
-          //  console.log(`lightbox = ${lightbox._mediaList}`);
-          //  lightbox.showMedia();
-    
-
-            //ajout nom photographe dans le formulaire
+            //formulaire
             templateDisplayData.insertNamePhotographer(this.$wrapperModalNamePhotographer)
+            const contactForm = new ContactForm("contact-photographer", this.$wrapperContactForm);
+            contactForm.generate();
 
-            new UpdateLike();
+            const response =contactForm.response();
+            console.log(`depuis photographerApp : ${response}`);
 
         } catch (error) {
             console.log(error);
