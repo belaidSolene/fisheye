@@ -1,7 +1,6 @@
 /* Update hearts : get the "media-card__description__likes" --> .innerText --> parseInt --> can add 1 */
 class UpdateLike {
     constructor() {
-       // this._btnsLike = this.btnsLike = document.querySelectorAll('.btn-likes');
         this._$wrapperTotalLikes = document.querySelector('.total-likes');
     }
 
@@ -11,13 +10,11 @@ class UpdateLike {
                     this._$wrapperTotalLikes.innerHTML = this._subLike(this._$wrapperTotalLikes)
 
                     btn.classList.remove('liked')
-
                 } else {
                     btn.innerHTML = this._addLike(btn)
                     this._$wrapperTotalLikes.innerHTML = this._addLike(this._$wrapperTotalLikes)
 
                     btn.classList.add('liked')
-
                 }
     }
 

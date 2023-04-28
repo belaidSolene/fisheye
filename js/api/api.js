@@ -44,7 +44,7 @@ class PhotographersApi extends Api {
         return { photographer, medias };
     }
 
-    async getTotalLikes(photographerData) {
+    async getTotalLikes(photographerData) { //Fonction privée dans PhotographerApp 
         return photographerData.medias.reduce((sum, media) => sum + media.likes, 0);
     }
 }
