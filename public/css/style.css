@@ -102,10 +102,43 @@ body {
   color: #D3573C;
 }
 
-.btn-close {
+.contact__btn-close {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  font-size: 1em;
+  background-color: #FFFFFF;
+  color: #901C1C;
   border: none;
   background-color: transparent;
   align-self: flex-start;
+}
+
+.lightbox__btn {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  font-size: 1em;
+  background-color: #FFFFFF;
+  color: #901C1C;
+  border: none;
+  color: #901C1C;
+  font-size: 3em;
+}
+.lightbox__btn--close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 15px;
+}
+.lightbox__btn__nav {
+  padding: 3em;
+}
+.lightbox__btn__nav--prev {
+  padding-right: 5em;
+  padding-left: 1em;
+}
+.lightbox__btn__nav--next {
+  padding-right: 1em;
+  padding-left: 5em;
 }
 
 .insertLikesAndPrice {
@@ -234,11 +267,16 @@ header h1 {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
+  height: 800px;
   background-color: white;
   padding: 20px;
   overflow: hidden;
 }
-.lightbox__media-container {
+.lightbox__content {
+  display: flex;
+  justify-content: space-between;
+}
+.lightbox__content .lightbox__media-container {
   max-width: 100%;
   max-height: 100%;
   margin-bottom: 20px;
@@ -246,29 +284,24 @@ header h1 {
   flex-direction: column;
   align-items: left;
 }
-.lightbox__media-container__content {
+.lightbox__content .lightbox__media-container__content {
   max-width: 80%;
   max-height: 900px;
   object-fit: contain;
   align-self: center;
 }
-.lightbox__media-container h3 {
+.lightbox__content .lightbox__media-container h3 {
   color: #901C1C;
   font-size: 1.5em;
   align-self: flex-start;
   margin-left: 10%;
   margin-top: 15px;
 }
-.lightbox__close {
+.lightbox--close {
   position: absolute;
+  float: left;
   top: 10px;
   right: 10px;
-}
-.lightbox__nav {
-  text-align: center;
-}
-.lightbox__nav__prev, .lightbox__nav__next {
-  margin-right: 20px;
 }
 
 .photographer-section {

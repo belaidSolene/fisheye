@@ -42,20 +42,43 @@
 }
 
 .btn-likes {
-    font-family: $police;
-    font-weight: 500;
-    font-size: 1em;
-    background-color: $white;
-    color: $color-primary;
-    border: none;
+   @include doNotLookLikeABtn;
 
     &.liked {
         color: $color-secondary;
     }
 }
 
-.btn-close {
-    border: none;
+.contact__btn-close {
+    @include doNotLookLikeABtn;
+
     background-color: transparent;
     align-self: flex-start;
+}
+
+.lightbox__btn {
+    @include doNotLookLikeABtn;
+    color: $color-primary;
+    font-size: 3em;
+
+    &--close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-right: 15px;
+    }
+
+    &__nav {
+        padding: 3em;
+
+        &--prev {
+            padding-right: 5em;
+            padding-left: 1em;
+        }
+
+        &--next {
+            padding-right: 1em;
+            padding-left: 5em;
+        }
+    }
 }

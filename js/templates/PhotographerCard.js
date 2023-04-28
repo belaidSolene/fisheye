@@ -8,7 +8,7 @@ class PhotographerCard {
         $wrapper.classList.add('photographer-card')
 
         const photographerCard = `
-            <a href="/lab/photographer-lab.html?id=${this._photographer.id}"> 
+            <a href="photographer.html?id=${this._photographer.id}"> 
                 <img class="photographer-card__pp round" 
                     src="${this._photographer.portrait}" 
                     alt="">

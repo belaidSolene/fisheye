@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Lab - photographe </title>
+  <title>Fisheye - photographe</title>
   <link rel="icon" type="image/png" href="/public/assets/icons/favicon.png">
   <link href="/public/css/style.css" rel="stylesheet" type="text/css" />
   <script src="https://kit.fontawesome.com/6dd50c170f.js" crossorigin="anonymous"></script>
@@ -47,32 +47,36 @@
     </main>
 
     <section id="modal-section" class="modal-section">
+
       <div id="contact-form" class="contact">
         <header class="contact__header">
           <h2 id="contact-name-photographer" class="contact__header__photographer"></h2>
-          <button class="btn-close">
+          <button class="contact__btn-close">
             <img src="/public/assets/icons/close.svg" onclick="toggleForm()" />
           </button>
         </header>
 
+        <!-- Form add with JS -->
       </div>
 
       <div id="lightbox" class="lightbox">
-        <button class="lightbox__close">
-          <img src="/public/assets/icons/close.svg" />
+        <button class="lightbox__btn lightbox__btn--close">
+          <i class="fa-solid fa-xmark"></i>
         </button>
 
-        <article class="lightbox__media-container"></article>
-
-        <div class="lightbox__nav">
-          <button class="lightbox__nav__prev">
+        <div class="lightbox__content">
+          <button class="lightbox__btn lightbox__btn__nav lightbox__btn__nav--prev">
             <i class="fa-solid fa-chevron-left"></i>
           </button>
-          <button class="lightbox__nav__next">
+
+          <article class="lightbox__media-container"></article>
+
+          <button class="lightbox__btn lightbox__btn__nav lightbox__btn__nav--next">
             <i class="fa-solid fa-chevron-right"></i>
           </button>
         </div>
       </div>
+
     </section>
 
     <!-- Api -->

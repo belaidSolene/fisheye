@@ -3,9 +3,9 @@ class Lightbox {
         this._modalSection = document.querySelector('#modal-section');
 
         this._lightbox = document.querySelector(`#${lightboxId}`);
-        this._lightboxCloseBtn = this._lightbox.querySelector('.lightbox__close');
-        this._lightboxPrevBtn = this._lightbox.querySelector('.lightbox__nav__prev');
-        this._lightboxNextBtn = this._lightbox.querySelector('.lightbox__nav__next');
+        this._lightboxCloseBtn = this._lightbox.querySelector('.lightbox__btn--close');
+        this._lightboxPrevBtn = this._lightbox.querySelector('.lightbox__btn__nav--prev');
+        this._lightboxNextBtn = this._lightbox.querySelector('.lightbox__btn__nav--next');
         this._lightboxContent = this._lightbox.querySelector('.lightbox__media-container');
 
         this._lightboxCloseBtn.addEventListener('click', () => {
