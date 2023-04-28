@@ -9,7 +9,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
-    height: 800px;
+    max-height: 800px;
     background-color: white;
     padding: 20px;
     overflow: hidden;
@@ -17,6 +17,7 @@
     &__content {
         display: flex;
         justify-content: space-between;
+        height: 100%;
 
         .lightbox__media-container {
             max-width: 100%;

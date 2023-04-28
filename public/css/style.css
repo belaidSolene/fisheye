@@ -133,12 +133,10 @@ body {
   padding: 3em;
 }
 .lightbox__btn__nav--prev {
-  padding-right: 5em;
   padding-left: 1em;
 }
 .lightbox__btn__nav--next {
   padding-right: 1em;
-  padding-left: 5em;
 }
 
 .insertLikesAndPrice {
@@ -168,6 +166,14 @@ body {
 }
 .mediaListbox .listbox__btn {
   height: 61px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+.mediaListbox .listbox__btn i {
+  position: absolute;
+  right: 0;
+  margin-right: 10px;
 }
 .mediaListbox .listbox__list {
   display: none;
@@ -267,7 +273,7 @@ header h1 {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
-  height: 800px;
+  max-height: 800px;
   background-color: white;
   padding: 20px;
   overflow: hidden;
@@ -275,6 +281,7 @@ header h1 {
 .lightbox__content {
   display: flex;
   justify-content: space-between;
+  height: 100%;
 }
 .lightbox__content .lightbox__media-container {
   max-width: 100%;

@@ -11,6 +11,15 @@
   .listbox {
     &__btn {
       height: 61px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+
+      i {
+        position: absolute;
+        right: 0;
+        margin-right: 10px;
+      }
     }
 
     &__list {
