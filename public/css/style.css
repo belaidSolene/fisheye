@@ -393,6 +393,7 @@ header h1 {
   font-size: 1.5em;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
 }
 .medias-section .media-card__description__title {
   width: 70%;

@@ -214,8 +214,6 @@ class ContactForm extends Form {
     }
 
     validation() {
-        console.log(`validation lancée`);
-
         if (this._validationFields(this._validators) === 0) {
 
             const response = this.response();
