@@ -41,14 +41,25 @@ class PhotographerCard {
     createPhotographerHeader($wrapper) {
         const content = `
             <div class="photographer-header__description">
-                <h1>${this._photographer.name}</h1>
-                <p class="photographer-header__localisation" lang="en">${this._photographer.localisation}</p>
-                <p class="photographer-header__tagline">${this._photographer.tagline}</p>
+                <h1 tabindex="0">${this._photographer.name}</h1>
+
+                <div tabindex="0">
+                    <h2  class="sr-only">Détails photographe,</h2>
+                    <p class="photographer-header__description__localisation" lang="en">
+                        <span class="sr-only"> Localisation :</span>
+                        ${this._photographer.localisation}
+                        <span class="sr-only">,</span>
+                    </p>
+                    <p class="photographer-header__description__tagline">
+                        <span class="sr-only">Citation :</span>
+                        ${this._photographer.tagline}
+                    </p>
+                </div>
             </div>
 
             <button class="btn btn--hover" onclick="toggleForm()">Contactez-moi</button>
             
-            <img src="${this._photographer.portrait}" alt="" class="photographer-header__pp round">
+            <img tabindex="0" src="${this._photographer.portrait}" alt="${this._photographer.name}" class="photographer-header__pp round">
         `
 
         $wrapper.innerHTML = content;
@@ -56,8 +67,8 @@ class PhotographerCard {
 
     insertLikesAndPrice($wrapper, likes) {
         const content = `
-        <span class="total-likes">${likes} <i class="fa-solid fa-heart"></i></span>
-        <span class="price">${this._photographer.price}</span>
+            <p class="total-likes">${likes} <i  aria-hidden="true" class="fa-solid fa-heart"></i> <span class="sr-only">j'aime, </span></p>
+            <p class="price">${this._photographer.price}</p>
         `
 
         $wrapper.innerHTML = content;

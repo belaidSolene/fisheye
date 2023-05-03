@@ -23,7 +23,7 @@
                 <div class="photographer-header__description">
                     <h1 tabindex="0">Mimi Keel</h1>
 
-                    <div class="photographer-header__details" tabindex="0">
+                    <div tabindex="0">
                         <h2  class="sr-only">Détails photographe,</h2>
                         <p class="photographer-header__description__localisation" lang="en">
                             <span class="sr-only"> Localisation :</span>
@@ -44,19 +44,17 @@
             </header>
 
             <div tabindex="0" class="insertLikesAndPrice">
-                <p class="total-likes">680 <i  aria-hidden="true" class="fa-solid fa-heart"></i> <span class="sr-only">j'aime. </span></p>
+                <p class="total-likes">680 <i  aria-hidden="true" class="fa-solid fa-heart"></i> <span class="sr-only">j'aime, </span></p>
                 <p class="price">400€<span aria-hidden="true">/</span><span class="sr-only">par</span>jour</p>
             </div>
 
-            <div class="mediaListbox" aria-label="Trier les médias">
+            <div tabindex="0" class="mediaListbox" aria-label="Trier les médias">
                 Trier par
                 <div class="listbox">
-                    <button class="btn btn--hover listbox__btn" aria-haspopup="listbox" aria-expanded="false"
-                        aria-controls="sort-options">
+                    <button class="btn btn--hover listbox__btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="sort-options">
                         <span class="listbox__label">Popularité</span>
-                        <i class="fa-solid fa-chevron-down"></i>
-                        <span class="listbox__icon" aria-hidden="true"></span>
-                    </button>
+                        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                      </button>
 
                     <ul id="sort-options" class="listbox__list" role="listbox">
                         <li class="listbox__item" role="option" tabindex="0" aria-selected="true" data-sort-by="likes">
@@ -71,8 +69,9 @@
 
             <section class="medias-section">
                 <article class="media-card">
-                    <video src="/public/assets/portfolio/243/Animals_Wild_Horses_in_the_mountains.mp4"
-                        class="media-card__media"></video>
+                    <button class="media-card__button"><video class="media-card__media" src="/public/assets/portfolio/243/Animals_Wild_Horses_in_the_mountains.mp4"></video>
+                    </button>
+                    
                     <div class="media-card__description">
                         <p class="media-card__description__title">Wild horses in the mountains</p>
                         <button class="btn-likes">142 <i class="fa-solid fa-heart"></i></button>

@@ -21,7 +21,7 @@ class ListBox {
         this._currentItem = item;
         this._currentItem.setAttribute('aria-selected', 'true');
         this._listboxButton.querySelector('.listbox__label').textContent =  this._currentItem.textContent;
-        this._listbox.classList.remove('show');
+        this._closeListBox();
       });
     });
 
@@ -47,12 +47,14 @@ class ListBox {
   _openListBox() {
     this._isOpen = true;
     this._listbox.classList.add('show');
-    this._listboxButton.classList.remove('btn--hover')
+    this._listboxButton.setAttribute("aria-expanded", "true");
+    this._listboxButton.querySelector('.fa-chevron-down').classList.add('rotated');
   }
 
   _closeListBox() {
     this._isOpen = false;
     this._listbox.classList.remove('show');
-    this._listboxButton.classList.add('btn--hover')
+    this._listboxButton.setAttribute("aria-expanded", "false");
+    this._listboxButton.querySelector('.fa-chevron-down').classList.remove('rotated')
   }
 }

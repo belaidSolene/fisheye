@@ -19,6 +19,11 @@
         position: absolute;
         right: 0;
         margin-right: 10px;
+        transition: transform 250ms;
+
+        &.rotated {
+          transform: rotate(180deg);
+        }
       }
     }
 

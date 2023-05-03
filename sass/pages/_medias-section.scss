@@ -16,6 +16,11 @@
             cursor: pointer;
         }
 
+        &__button {
+            border: none;
+            background: transparent;
+        }
+
         &__description {
             color: $color-primary;
             font-size: 1.5em;

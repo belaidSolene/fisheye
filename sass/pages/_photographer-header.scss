@@ -1,30 +1,33 @@
 .photographer-header {
     background-color: $color-photographer-header;
-    height: 300px;
-    margin: 0 100px;
-    padding: 0 50px;
+        height: 300px;
+        margin: 0 100px;
+        padding: 0 50px;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
-    h1 {
-        color: $color-secondary;
-        font-size: 4em;
-    }
+    &__description {
 
-    p {
-        padding: 0.45em 0;
-    }
+        h1 {
+            color: $color-secondary;
+            font-size: 4em;
+        }
 
-    &__localisation {
-        color: $color-primary;
-        font-size: 1.5em;
-    }
+        div>p {
+            padding: 0.45em 0;
+        }
 
-    &__tagline {
-        color: $color-quaternary;
-        font-size: 1.13em;
+        &__localisation {
+            color: $color-primary;
+            font-size: 1.5em;
+        }
+
+        &__tagline {
+            color: $color-quaternary;
+            font-size: 1.13em;
+        }
     }
 
     &__pp {
