@@ -16,7 +16,7 @@ class PhotographerApp {
     async main() {
         try {
             // récupération données du photographe en fonction de l'id
-            const id = await this.URLparams.get("id")
+            const id = this.URLparams.get("id")
             const photographerData = await this.photographersApi.getPhotographerById(id)
 
             const photographer = new Photographer(photographerData.photographer)
@@ -28,8 +28,8 @@ class PhotographerApp {
             templatePhotographer.createPhotographerHeader(this.$photographerWrapper)
 
 
-             // création encart totalLikes + prix du photographe
-             const totalLikes = this._getTotalLikes(medias)
+            // création encart totalLikes + prix du photographe
+            const totalLikes = this._getTotalLikes(medias)
             templatePhotographer.insertLikesAndPrice(this.$wrapperInsertLikesAndPrice, totalLikes)
 
             templatePhotographer.insertNamePhotographer(this.$wrapperModalNamePhotographer)
@@ -45,7 +45,7 @@ class PhotographerApp {
             const contactForm = new ContactForm("contact-photographer", this.$wrapperContactForm);
             contactForm.generate();
 
-            const response =contactForm.response();
+            const response = contactForm.response();
             console.log(`depuis photographerApp : ${response}`);
 
         } catch (error) {

@@ -26,7 +26,7 @@ class Photographer {
     }
 
     get price() {
-        return `${this._price}€/jour`
+        return `${this._price}€<span aria-hidden="true">/</span><span class="sr-only">par</span>jour`
     }
 
     get portrait() {

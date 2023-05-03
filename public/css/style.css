@@ -1,4 +1,25 @@
 @import url("https://fonts.googleapis.com/css?family=DM+Sans&display=swap");
+.sr-only {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
 *,
 *::before,
 *::after {
@@ -151,7 +172,7 @@ body {
   display: flex;
   justify-content: space-between;
 }
-.insertLikesAndPrice span {
+.insertLikesAndPrice p {
   font-size: 1.4em;
   font-weight: 700;
 }

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>ref - photographe</title>
+    <link rel="icon" type="image/png" href="/public/assets/icons/favicon.png">
+    <link href="/public/css/style.css" rel="stylesheet" type="text/css" />
+    <script src="https://kit.fontawesome.com/6dd50c170f.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="/index.html" tabindex="0">
+                <img src="/public/assets/icons/logo.png" class="logo" alt="Fishey Home Page" />
+            </a>
+        </header>
+
+        <main>
+            <header class="photographer-header">
+                <div class="photographer-header__description">
+                    <h1 tabindex="0">Mimi Keel</h1>
+
+                    <div class="photographer-header__details" tabindex="0">
+                        <h2  class="sr-only">Détails photographe,</h2>
+                        <p class="photographer-header__description__localisation" lang="en">
+                            <span class="sr-only"> Localisation :</span>
+                            London, UK
+                            <span class="sr-only">,</span>
+                        </p>
+                        <p class="photographer-header__description__tagline">
+                            <span class="sr-only">Citation :</span>
+                            Voir le beau dans le quotidien
+                            <span class="sr-only">,</span>
+                        </p>
+                    </div>
+                </div>
+
+                <button class="btn btn--hover" onclick="toggleForm()">Contactez-moi</button>
+
+                <img tabindex="0" src="/public/assets/photographers/MimiKeel.jpg" alt="Mimi Keel" class="photographer-header__pp round">
+            </header>
+
+            <div tabindex="0" class="insertLikesAndPrice">
+                <p class="total-likes">680 <i  aria-hidden="true" class="fa-solid fa-heart"></i> <span class="sr-only">j'aime. </span></p>
+                <p class="price">400€<span aria-hidden="true">/</span><span class="sr-only">par</span>jour</p>
+            </div>
+
+            <div class="mediaListbox" aria-label="Trier les médias">
+                Trier par
+                <div class="listbox">
+                    <button class="btn btn--hover listbox__btn" aria-haspopup="listbox" aria-expanded="false"
+                        aria-controls="sort-options">
+                        <span class="listbox__label">Popularité</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                        <span class="listbox__icon" aria-hidden="true"></span>
+                    </button>
+
+                    <ul id="sort-options" class="listbox__list" role="listbox">
+                        <li class="listbox__item" role="option" tabindex="0" aria-selected="true" data-sort-by="likes">
+                            Popularité</li>
+                        <li class="listbox__item" role="option" tabindex="0" aria-selected="false" data-sort-by="date">
+                            Date</li>
+                        <li class="listbox__item" role="option" tabindex="0" aria-selected="false" data-sort-by="title">
+                            Titre</li>
+                    </ul>
+                </div>
+            </div>
+
+            <section class="medias-section">
+                <article class="media-card">
+                    <video src="/public/assets/portfolio/243/Animals_Wild_Horses_in_the_mountains.mp4"
+                        class="media-card__media"></video>
+                    <div class="media-card__description">
+                        <p class="media-card__description__title">Wild horses in the mountains</p>
+                        <button class="btn-likes">142 <i class="fa-solid fa-heart"></i></button>
+                    </div>
+                </article>
+
+                <article class="media-card">
+                    <img src="/public/assets/portfolio/243/Travel_Lonesome.jpg" alt="" class="media-card__media">
+                    <div class="media-card__description">
+                        <p class="media-card__description__title">Lonesome</p>
+                        <button class="btn-likes">88 <i class="fa-solid fa-heart"></i></button>
+                    </div>
+                </article>
+
+                <article class="media-card">
+                    <img src="/public/assets/portfolio/243/Travel_HillsideColor.jpg" alt="" class="media-card__media">
+                    <div class="media-card__description">
+                        <p class="media-card__description__title">Hillside Color</p>
+                        <button class="btn-likes">85 <i class="fa-solid fa-heart"></i></button>
+                    </div>
+                </article>
+
+                <article class="media-card">
+                    <img src="/public/assets/portfolio/243/Event_BenevidesWedding.jpg" alt="" class="media-card__media">
+                    <div class="media-card__description">
+                        <p class="media-card__description__title">Benevides Wedding</p>
+                        <button class="btn-likes">77 <i class="fa-solid fa-heart"></i></button>
+                    </div>
+                </article>
+
+
+                <article class="media-card">
+                    <img src="/public/assets/portfolio/243/Portrait_Nora.jpg" alt="" class="media-card__media">
+                    <div class="media-card__description">
+                        <p class="media-card__description__title">Nora Portrait</p>
+                        <button class="btn-likes">63 <i class="fa-solid fa-heart"></i></button>
+                    </div>
+                </article>
+
+                <article class="media-card">
+                    <img src="/public/assets/portfolio/243/Animals_Rainbow.jpg" alt="" class="media-card__media">
+                    <div class="media-card__description">
+                        <p class="media-card__description__title">Rainbow Birds</p>
+                        <button class="btn-likes">59 <i class="fa-solid fa-heart"></i></button>
+                    </div>
+                </article>
+
+                <article class="media-card">
+                    <img src="/public/assets/portfolio/243/Portrait_Background.jpg" alt="" class="media-card__media">
+                    <div class="media-card__description">
+                        <p class="media-card__description__title">Raw Black Portrait</p>
+                        <button class="btn-likes">55 <i class="fa-solid fa-heart"></i></button>
+                    </div>
+                </article>
+
+                <article class="media-card">
+                    <img src="/public/assets/portfolio/243/Event_PintoWedding.jpg" alt="" class="media-card__media">
+                    <div class="media-card__description">
+                        <p class="media-card__description__title">Boulder Wedding</p>
+                        <button class="btn-likes">52 <i class="fa-solid fa-heart"></i></button>
+                    </div>
+                </article>
+
+                <article class="media-card">
+                    <img src="/public/assets/portfolio/243/Portrait_Wednesday.jpg" alt="" class="media-card__media">
+                    <div class="media-card__description">
+                        <p class="media-card__description__title">Wednesday Portrait</p>
+                        <button class="btn-likes">34 <i class="fa-solid fa-heart"></i></button>
+                    </div>
+                </article>
+
+                <article class="media-card">
+                    <img src="/public/assets/portfolio/243/Event_SeasideWedding.jpg" alt="" class="media-card__media">
+                    <div class="media-card__description">
+                        <p class="media-card__description__title">Seaside Wedding</p>
+                        <button class="btn-likes">25 <i class="fa-solid fa-heart"></i></button>
+                    </div>
+                </article>
+            </section>
+
+        </main>
+
+        <section id="modal-section" class="modal-section">
+
+            <div id="contact-form" class="contact">
+                <header class="contact__header">
+                    <h2 id="contact-name-photographer" class="contact__header__photographer">Contactez-moi <br>Mimi Keel
+                    </h2>
+                    <button class="contact__btn-close">
+                        <img src="/public/assets/icons/close.svg" onclick="toggleForm()" />
+                    </button>
+                </header>
+                <form class="contact-photograper" novalidate>
+                    <div class="formData">
+                        <label for="firstName">Prénom</label>
+                        <input type="text" id="firstName" name="firstName" required="true" minlength="2">
+                    </div>
+
+                    <div class="formData">
+                        <label for="lastName">Nom</label>
+                        <input type="text" id="lastName" name="lastName" required="true" minlength="2">
+                    </div>
+
+                    <div class="formData">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required="true">
+                    </div>
+
+                    <div class="formData">
+                        <label for="message">Message</label>
+                        <textarea name="message" id="message"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn--submit">Envoyer</button>
+                </form>
+            </div>
+
+            <div id="lightbox" class="lightbox">
+                <button class="lightbox__btn lightbox__btn--close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <div class="lightbox__content">
+                    <button class="lightbox__btn lightbox__btn__nav lightbox__btn__nav--prev">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+
+                    <article class="lightbox__media-container">
+                        <img src="/public/assets/portfolio/243/Animals_Rainbow.jpg" alt=""
+                            class="lightbox__media-container__content">
+                        <h3>Rainbow Bird</h3>
+                    </article>
+
+                    <button class="lightbox__btn lightbox__btn__nav lightbox__btn__nav--next">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</body>
+
+</html>

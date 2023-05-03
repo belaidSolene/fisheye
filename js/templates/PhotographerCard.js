@@ -8,16 +8,30 @@ class PhotographerCard {
         $wrapper.classList.add('photographer-card')
 
         const photographerCard = `
-            <a href="photographer.html?id=${this._photographer.id}"> 
+            <a href="photographer.html?id=${this._photographer.id}""> 
                 <img class="photographer-card__pp round" 
                     src="${this._photographer.portrait}" 
                     alt="">
                 <h2 lang="en">${this._photographer.name}</h2>
             </a>
 
-            <p class="photographer-card__localisation" lang="en">${this._photographer.localisation}</p>
-            <p class="photographer-card__tagline">${this._photographer.tagline}</p>
-            <p class="photographer-card__price">${this._photographer.price}</p>
+            <div class="photographer-card__details" tabindex="0">
+                <h3  class="sr-only">Détails photographe,</h3>
+                <p class="photographer-card__localisation" lang="en">
+                    <span class="sr-only"> Localisation :</span>
+                    ${this._photographer.localisation}
+                    <span class="sr-only">,</span>
+                </p>
+                <p class="photographer-card__tagline">
+                    <span class="sr-only">Citation :</span>
+                    ${this._photographer.tagline}
+                    <span class="sr-only">,</span>
+                </p>
+                <p class="photographer-card__price">
+                    <span class="sr-only">Prix :</span>
+                    ${this._photographer.price}
+                </p>
+            </div>
         `
 
         $wrapper.innerHTML = photographerCard;
@@ -28,7 +42,7 @@ class PhotographerCard {
         const content = `
             <div class="photographer-header__description">
                 <h1>${this._photographer.name}</h1>
-                <p class="photographer-header__localisation">${this._photographer.localisation}</p>
+                <p class="photographer-header__localisation" lang="en">${this._photographer.localisation}</p>
                 <p class="photographer-header__tagline">${this._photographer.tagline}</p>
             </div>
 
