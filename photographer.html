@@ -11,7 +11,39 @@
 </head>
 
 <body>
-  <div class="container">
+  <section id="modal-section" class="modal-section">
+
+    <div id="contact-form" class="contact" role="dialog" aria-labelledby="contact-title">
+      <header class="contact__header">
+        <h2 id="contact-title" class="contact__header__photographer"></h2>
+        <button class="contact__btn-close" onclick="closeForm()" >
+          <img src="/public/assets/icons/close.svg"/>
+        </button>
+      </header>
+
+      <!-- Form add with JS -->
+    </div>
+
+    <div id="lightbox" class="lightbox" role="dialog">
+      <button class="lightbox__btn lightbox__btn--close">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="lightbox__content">
+        <button class="lightbox__btn lightbox__btn__nav lightbox__btn__nav--prev">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <article class="lightbox__media-container"></article>
+
+        <button class="lightbox__btn lightbox__btn__nav lightbox__btn__nav--next">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"> 
     <header>
       <a href="/index.html">
         <img src="/public/assets/icons/logo.png" class="logo" />
@@ -19,22 +51,23 @@
     </header>
 
     <main id="main">
-      <header class="photographer-header"></header>
+      <section class="photographer-header"></section>
 
       <div tabindex="0" class="insertLikesAndPrice"></div>
 
-      <div class="mediaListbox" aria-label="Trier les médias">
-        Trier par
+      <div class="mediaListbox" aria-describedby="listbox-label listbox-choice" tabindex="0" >
+        <label id="listbox-label"><span class="sr-only">Galerie </span> Trier par</label>
+       
         <div class="listbox">
           <button class="btn btn--hover listbox__btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="sort-options">
-            <span class="listbox__label">Popularité</span>
+            <span id="listbox-choice" class="listbox__label">Popularité</span>
             <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
           </button>
 
-          <ul id="sort-options" class="listbox__list" role="listbox">
-            <li class="listbox__item" role="option" tabindex="0" aria-selected="true" data-sort-by="likes">Popularité</li>
-            <li class="listbox__item" role="option" tabindex="0" aria-selected="false" data-sort-by="date">Date</li>
-            <li class="listbox__item" role="option" tabindex="0" aria-selected="false" data-sort-by="title">Titre</li>
+          <ul id="sort-options" class="listbox__list"  role="listbox">
+            <li class="listbox__item" tabindex="-1" role="option" aria-selected="true" data-sort-by="likes">Popularité</li>
+            <li class="listbox__item" tabindex="-1" role="option" aria-selected="false" data-sort-by="date">Date</li>
+            <li class="listbox__item" tabindex="-1" role="option" aria-selected="false" data-sort-by="title">Titre</li>
           </ul>
         </div>
       </div>
@@ -42,39 +75,6 @@
       <section class="medias-section"></section>
 
     </main>
-
-    <section id="modal-section" class="modal-section">
-
-      <div id="contact-form" class="contact">
-        <header class="contact__header">
-          <h2 id="contact-name-photographer" class="contact__header__photographer"></h2>
-          <button class="contact__btn-close">
-            <img src="/public/assets/icons/close.svg" onclick="toggleForm()" />
-          </button>
-        </header>
-
-        <!-- Form add with JS -->
-      </div>
-
-      <div id="lightbox" class="lightbox">
-        <button class="lightbox__btn lightbox__btn--close">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-
-        <div class="lightbox__content">
-          <button class="lightbox__btn lightbox__btn__nav lightbox__btn__nav--prev">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-
-          <article class="lightbox__media-container"></article>
-
-          <button class="lightbox__btn lightbox__btn__nav lightbox__btn__nav--next">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-        </div>
-      </div>
-
-    </section>
   </div>
 
   <!-- Api -->

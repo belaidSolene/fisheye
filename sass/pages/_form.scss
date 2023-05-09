@@ -4,7 +4,11 @@
     background-color: $color-tertiary;
     width: 45%;
     padding: 35px;
-    margin: 5% auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 101;
 
     &__header {
         padding: 0;

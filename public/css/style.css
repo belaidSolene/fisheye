@@ -1,25 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=DM+Sans&display=swap");
-.sr-only {
-  position: absolute !important;
-  clip: rect(1px, 1px, 1px, 1px);
-  padding: 0 !important;
-  border: 0 !important;
-  height: 1px !important;
-  width: 1px !important;
-  overflow: hidden;
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-  clip: rect(0 0 0 0);
-  overflow: hidden;
-}
-
 *,
 *::before,
 *::after {
@@ -224,10 +203,10 @@ body {
   position: relative;
   z-index: 1;
 }
-.mediaListbox .listbox__item:hover {
+.mediaListbox .listbox__item:hover, .mediaListbox .listbox__item:focus {
   color: #000000;
 }
-.mediaListbox .listbox__item:hover::after {
+.mediaListbox .listbox__item:hover::after, .mediaListbox .listbox__item:focus::after {
   opacity: 1;
 }
 .mediaListbox .listbox__item::after {
@@ -278,7 +257,7 @@ header h1 {
 .modal-section {
   display: none;
   position: fixed;
-  z-index: 999;
+  z-index: 100;
   left: 0;
   top: 0;
   height: 100%;
@@ -287,13 +266,9 @@ header h1 {
   background-color: rgba(117, 117, 117, 0.3);
 }
 
-#lightbox-btn {
-  margin: 0 auto;
-}
-
 .lightbox {
   display: none;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -302,6 +277,7 @@ header h1 {
   background-color: white;
   padding: 20px;
   overflow: hidden;
+  z-index: 101;
 }
 .lightbox__content {
   display: flex;
@@ -434,7 +410,11 @@ header h1 {
   background-color: #DB8876;
   width: 45%;
   padding: 35px;
-  margin: 5% auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 101;
 }
 .contact__header {
   padding: 0;
@@ -494,6 +474,27 @@ header h1 {
 
 .active {
   display: block;
+}
+
+.sr-only {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
 
 /*# sourceMappingURL=style.css.map */

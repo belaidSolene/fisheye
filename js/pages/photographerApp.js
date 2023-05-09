@@ -9,7 +9,7 @@ class PhotographerApp {
         this.$photographerWrapper = document.querySelector('.photographer-header')
         this.$mediaWrapper = document.querySelector('.medias-section')
         this.$wrapperInsertLikesAndPrice = document.querySelector('.insertLikesAndPrice')
-        this.$wrapperModalNamePhotographer = document.querySelector('#contact-name-photographer')
+        this.$wrapperContactTitle = document.querySelector('#contact-title')
         this.$wrapperContactForm = document.querySelector('#contact-form')
     }
 
@@ -32,7 +32,7 @@ class PhotographerApp {
             const totalLikes = this._getTotalLikes(medias)
             templatePhotographer.insertLikesAndPrice(this.$wrapperInsertLikesAndPrice, totalLikes)
 
-            templatePhotographer.insertNamePhotographer(this.$wrapperModalNamePhotographer)
+            templatePhotographer.titleContactForm(this.$wrapperContactTitle)
 
 
             // insertion des médias dans la page
@@ -46,7 +46,7 @@ class PhotographerApp {
             contactForm.generate();
 
             const response = contactForm.response();
-            console.log(`depuis photographerApp : ${response}`);
+          //  console.log(`depuis photographerApp : ${response}`);
 
         } catch (error) {
             console.log(error);

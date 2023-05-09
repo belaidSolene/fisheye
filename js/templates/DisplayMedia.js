@@ -16,6 +16,15 @@ class DisplayMedia {
                 this._sortedList = this._sortMediaList();
                 this.render();
             })
+
+            item.addEventListener('keydown', (event) => {
+                const key = event.code;
+
+                if (key === 'Enter' || key === 'Space' || key === 'Tab') {
+                    this._sortedList = this._sortMediaList();
+                    this.render();
+                }
+            })
         })
     }
 

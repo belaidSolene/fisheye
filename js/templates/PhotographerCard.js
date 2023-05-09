@@ -15,8 +15,7 @@ class PhotographerCard {
                 <h2 lang="en">${this._photographer.name}</h2>
             </a>
 
-            <div class="photographer-card__details" tabindex="0">
-                <h3  class="sr-only">Détails photographe,</h3>
+            <div class="photographer-card__details" tabindex="0" aria-label="Détails photographe,">
                 <p class="photographer-card__localisation" lang="en">
                     <span class="sr-only"> Localisation :</span>
                     ${this._photographer.localisation}
@@ -57,7 +56,7 @@ class PhotographerCard {
                 </div>
             </div>
 
-            <button class="btn btn--hover" onclick="toggleForm()">Contactez-moi</button>
+            <button class="btn btn--hover" onclick="openForm()">Contactez-moi</button>
             
             <img tabindex="0" src="${this._photographer.portrait}" alt="${this._photographer.name}" class="photographer-header__pp round">
         `
@@ -74,7 +73,7 @@ class PhotographerCard {
         $wrapper.innerHTML = content;
     }
 
-    insertNamePhotographer($wrapper) { //Passer dans PhotographerCard
+    titleContactForm($wrapper) { //Passer dans PhotographerCard
         $wrapper.innerHTML = `Contactez-moi <br> ${this._photographer.name}`
     }
 }

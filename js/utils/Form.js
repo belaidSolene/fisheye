@@ -240,9 +240,17 @@ class ContactForm extends Form {
     }
 }
 
-function toggleForm() {
-    document.querySelector("#modal-section").classList.toggle("active");
-    document.querySelector("#contact-form").classList.toggle("active");
+//ajouter variable isOpen
+function closeForm() {
+    document.querySelector(".container").inert = false;
+    document.querySelector("#modal-section").classList.remove("active");
+    document.querySelector("#contact-form").classList.remove("active");
+}
+
+function openForm() {
+    document.querySelector("#modal-section").classList.add("active");
+    document.querySelector("#contact-form").classList.add("active");
+    document.querySelector(".container").inert = true;
 }
 
 

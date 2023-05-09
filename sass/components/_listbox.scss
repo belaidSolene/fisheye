@@ -57,7 +57,8 @@
       position: relative;
       z-index: 1;
 
-      &:hover {
+      &:hover,
+      &:focus {
         color: $black;
 
         &::after {
@@ -70,7 +71,7 @@
       }
 
       &[aria-selected="true"] {
-        display: none;
+        display: none;  
       }
     }
   }
