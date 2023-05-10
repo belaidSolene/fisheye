@@ -40,3 +40,9 @@ video {
 button {
   cursor: pointer;
 }
+
+:focus {
+  outline: 3px solid yellowgreen;
+  box-shadow: 0 0 8px #54800D;
+  padding: 3px;
+}

@@ -28,7 +28,7 @@ class ListBox {
           this._listboxItems[indexFocus].focus();
           break;
 
-        case 'ArrowDown':
+        case 'ArrowDown': 
           event.preventDefault();
           if (this._isOpen) {
             const indexFocus = this._currentIndex > 0 ? 0 : 1;

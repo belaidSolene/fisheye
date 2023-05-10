@@ -42,6 +42,12 @@ button {
   cursor: pointer;
 }
 
+:focus {
+  outline: 3px solid yellowgreen;
+  box-shadow: 0 0 8px #54800D;
+  padding: 3px;
+}
+
 body {
   font-family: "DM Sans", sans-serif;
 }
@@ -288,7 +294,7 @@ header h1 {
   position: absolute;
   top: 0;
   right: 0;
-  padding: 15px;
+  margin: 15px;
 }
 .lightbox__btn__nav {
   padding: 3em;
