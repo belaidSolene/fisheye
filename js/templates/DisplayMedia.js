@@ -1,11 +1,11 @@
 class DisplayMedia {
     constructor(medias, mediaContainer, mediaListbox) {
-        this._mediaListbox = new ListBox(mediaListbox);
         this._medias = medias;
+        this._mediaContainer = mediaContainer;
+        this._mediaListbox = new ListBox(mediaListbox);
 
         this._sortedList = this._sortMediaList()
 
-        this._mediaContainer = mediaContainer;
 
         this._addSortEventListener();
     }

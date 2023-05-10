@@ -7,18 +7,20 @@ class Lightbox {
         this._lightboxPrevBtn = this._lightbox.querySelector('.lightbox__btn__nav--prev');
         this._lightboxNextBtn = this._lightbox.querySelector('.lightbox__btn__nav--next');
         this._lightboxContent = this._lightbox.querySelector('.lightbox__media-container');
+        this._isOpen = false;
 
         this._addEventListener();
     }
 
     _addEventListener() {
+        // use keyboard
         this._lightbox.addEventListener('keydown', (event) => {
             const key = event.key;
 
             switch (key) {
                 case 'Escape':
                     event.preventDefault();
-                    this.hideLightbox();
+                    this.closeLightbox();
                     break;
 
                 case 'ArrowLeft':
@@ -37,7 +39,7 @@ class Lightbox {
 
         // close button
         this._lightboxCloseBtn.addEventListener('click', () => {
-            this.hideLightbox();
+            this.closeLightbox();
         });
 
         // left arrow
@@ -45,28 +47,34 @@ class Lightbox {
             this.showPrev();
         });
 
-
-
         // right arrow
         this._lightboxNextBtn.addEventListener('click', () => {
             this.showNext();
         });
 
-
+        document.addEventListener('click', (event) => {
+            if (this._isOpen && !this._lightbox.contains(event.target)) {
+                this.closeLightbox();
+            }
+        })
     }
 
     showLightbox() {
         this._lightbox.classList.add('active');
         this._modalSection.classList.add('active');
         document.querySelector(".container").inert = true;
-        this._lightbox.focus();     
+        this._lightbox.focus();  
+        
         this.showMedia();
+        this._isOpen = true;
     }
 
-    hideLightbox() {
+    closeLightbox() {
         this._lightbox.classList.remove('active');
         this._modalSection.classList.remove('active');
+        this._isOpen = false;
         document.querySelector(".container").inert = false;
+        this._lastMedia().focus();
     }
 
     showMedia() {
@@ -78,6 +86,10 @@ class Lightbox {
     }
 
     showNext() {
+        // À implémenter dans la classe enfant
+    }
+
+    _lastMedia() {
         // À implémenter dans la classe enfant
     }
 }
@@ -110,5 +122,9 @@ class MediaLightbox extends Lightbox {
     showNext() {
         this._currentIndex = (this._currentIndex === this._medias.length - 1) ? 0 : this._currentIndex + 1;
         this.showMedia();
+    }
+
+    _lastMedia() {
+        return document.getElementById(this._medias[this._currentIndex].id)
     }
 }

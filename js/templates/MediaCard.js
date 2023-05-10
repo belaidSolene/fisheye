@@ -2,14 +2,14 @@ class MediaCard {
     constructor(media) {
         this._media = media;
     }
-    
+
     createMediaCard(sortedList) {
         const $wrapper = document.createElement('article')
         $wrapper.classList.add('media-card')
 
         const media = this._media.type === 'image' ?
-            `<img tabindex="0" class="media-card__media" src="${this._media.image}" alt="">` :
-            `<video tabindex="0" class="media-card__media" src="${this._media.video}" alt=""></video>`;
+            `<img tabindex="0" id="${this._media.id}" class="media-card__media" src="${this._media.image}" alt="">` :
+            `<video tabindex="0" id="${this._media.id}" class="media-card__media" src="${this._media.video}" alt=""></video>`;
 
         const mediaCard = `
             ${media}
@@ -48,22 +48,24 @@ class MediaCard {
 
     // Méthode privée qui se charge d'ajouter les écouteurs d'événements
     _addEventListeners(sortedList) {
-        const opentLightbox = () => {
+        const openLightbox = () => {
             const lightbox = new MediaLightbox(sortedList, this._media.id, 'lightbox');
             lightbox.showLightbox();
         }
 
         // Ajouter l'écouteur pour l'ouverture de la lightbox
         const media = this._template.querySelector('.media-card__media');
-        media.addEventListener('click', () => {
-           opentLightbox();
+
+        media.addEventListener('click', (event) => {
+            event.stopPropagation();
+            openLightbox();
         });
 
         media.addEventListener('keydown', (event) => {
             const key = event.key;
 
             if (key === 'Enter' || key === 'Space') {
-               opentLightbox();
+                openLightbox();
             }
         })
 
