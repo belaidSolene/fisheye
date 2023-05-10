@@ -8,28 +8,65 @@ class Lightbox {
         this._lightboxNextBtn = this._lightbox.querySelector('.lightbox__btn__nav--next');
         this._lightboxContent = this._lightbox.querySelector('.lightbox__media-container');
 
+        this._addEventListener();
+    }
+
+    _addEventListener() {
+        this._lightbox.addEventListener('keydown', (event) => {
+            const key = event.key;
+
+            switch (key) {
+                case 'Escape':
+                    event.preventDefault();
+                    this.hideLightbox();
+                    break;
+
+                case 'ArrowLeft':
+                case 'ArrowDown':
+                    event.preventDefault();
+                    this.showPrev();
+                    break;
+
+                case 'ArrowRight':
+                case 'ArrowUp':
+                    event.preventDefault();
+                    this.showNext();
+                    break;
+            }
+        })
+
+        // close button
         this._lightboxCloseBtn.addEventListener('click', () => {
             this.hideLightbox();
         });
 
+        // left arrow
         this._lightboxPrevBtn.addEventListener('click', () => {
             this.showPrev();
         });
 
+
+
+        // right arrow
         this._lightboxNextBtn.addEventListener('click', () => {
             this.showNext();
         });
+
+
     }
 
     showLightbox() {
         this._lightbox.classList.add('active');
         this._modalSection.classList.add('active');
+        document.querySelector(".container").inert = true;
+        this._lightbox.focus();     
         this.showMedia();
     }
 
     hideLightbox() {
         this._lightbox.classList.remove('active');
         this._modalSection.classList.remove('active');
+        document.querySelector(".container").inert = false;
     }
 
     showMedia() {
@@ -57,7 +94,7 @@ class MediaLightbox extends Lightbox {
         const media = this._medias[this._currentIndex];
         const template = new MediaCard(media);
 
-        this._lightboxContent.innerHTML =  template.createLightBoxMedia();
+        this._lightboxContent.innerHTML = template.createLightBoxMedia();
 
         if (media.type === 'video') {
             const video = this._lightboxContent.querySelector('.video');

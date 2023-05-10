@@ -113,32 +113,6 @@ body {
   align-self: flex-start;
 }
 
-.lightbox__btn {
-  font-family: "DM Sans", sans-serif;
-  font-weight: 500;
-  font-size: 1em;
-  background-color: #FFFFFF;
-  color: #901C1C;
-  border: none;
-  color: #901C1C;
-  font-size: 3em;
-}
-.lightbox__btn--close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin-right: 15px;
-}
-.lightbox__btn__nav {
-  padding: 3em;
-}
-.lightbox__btn__nav--prev {
-  padding-left: 1em;
-}
-.lightbox__btn__nav--next {
-  padding-right: 1em;
-}
-
 .insertLikesAndPrice {
   position: fixed;
   z-index: 2;
@@ -273,43 +247,62 @@ header h1 {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
-  max-height: 800px;
+  height: 100%;
+  max-height: 900px;
   background-color: white;
   padding: 20px;
   overflow: hidden;
   z-index: 101;
 }
-.lightbox__content {
-  display: flex;
-  justify-content: space-between;
-  height: 100%;
-}
-.lightbox__content .lightbox__media-container {
+.lightbox .lightbox__media-container {
   max-width: 100%;
-  max-height: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: left;
 }
-.lightbox__content .lightbox__media-container__content {
-  max-width: 80%;
-  max-height: 900px;
+.lightbox .lightbox__media-container__content {
+  width: 100%;
+  max-height: 800px;
   object-fit: contain;
   align-self: center;
 }
-.lightbox__content .lightbox__media-container h3 {
+.lightbox .lightbox__media-container h3 {
   color: #901C1C;
   font-size: 1.5em;
   align-self: flex-start;
-  margin-left: 10%;
   margin-top: 15px;
 }
-.lightbox--close {
+.lightbox__btn {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  font-size: 1em;
+  background-color: #FFFFFF;
+  color: #901C1C;
+  border: none;
+  color: #901C1C;
+  font-size: 3em;
+}
+.lightbox__btn--close {
   position: absolute;
-  float: left;
-  top: 10px;
-  right: 10px;
+  top: 0;
+  right: 0;
+  padding: 15px;
+}
+.lightbox__btn__nav {
+  padding: 3em;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.lightbox__btn__nav--prev {
+  left: 0;
+  padding-left: 1em;
+}
+.lightbox__btn__nav--next {
+  right: 0;
+  padding-right: 1em;
 }
 
 .photographer-section {

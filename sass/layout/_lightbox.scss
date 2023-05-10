@@ -5,46 +5,64 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
-    max-height: 800px;
+    height: 100%;
+    max-height: 900px;
     background-color: white;
     padding: 20px;
     overflow: hidden;
     z-index: 101;
 
-    &__content {
-        display: flex;
-        justify-content: space-between;
-        height: 100%;
+    .lightbox__media-container {
+        max-width: 100%;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin-bottom: 20px;
 
-        .lightbox__media-container {
-            max-width: 100%;
-            max-height: 100%;
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: left;
-    
-            &__content {
-                max-width: 80%;
-                max-height: 900px;
-                object-fit: contain;
-                align-self: center;
-            }
-    
-            h3 {
-                color: $color-primary;
-                font-size: 1.5em;
-                align-self: flex-start;
-                margin-left: 10%;
-                margin-top: 15px;
-            }
+        &__content {
+            width: 100%;
+            max-height: 800px;
+            object-fit: contain;
+            align-self: center;
+        }
+
+        h3 {
+            color: $color-primary;
+            font-size: 1.5em;
+            align-self: flex-start;
+            margin-top: 15px;
         }
     }
 
-    &--close {
-        position: absolute;
-        float: left;
-        top: 10px;
-        right: 10px;
+
+    &__btn {
+        @include doNotLookLikeABtn;
+        color: $color-primary;
+        font-size: 3em;
+
+        &--close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 15px;
+        }
+
+        &__nav {
+            padding: 3em;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+
+            &--prev {
+                left: 0;
+                padding-left: 1em;
+            }
+
+            &--next {
+                right: 0;
+                padding-right: 1em;
+            }
+        }
     }
 }
