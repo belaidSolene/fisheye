@@ -52,7 +52,7 @@ class PhotographerApp {
         })
 
         document.addEventListener('mousedown', () => {
-            document.body.classList.remove('key-navigaton');
+            document.body.classList.remove('key-navigation');
         })
     }
 

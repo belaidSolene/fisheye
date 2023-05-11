@@ -15,7 +15,7 @@ class MediaCard {
             ${media}
     
             <div class="media-card__description">
-            <p tabindex="0" class="media-card__description__title">${this._media.title}</p>
+            <p tabindex="0" class="media-card__description__title" lang="en">${this._media.title}</p>
             <button class="btn-likes">${this._media.likes} <i class="fa-solid fa-heart"></i></button>
           </div>            
         `;
@@ -40,7 +40,7 @@ class MediaCard {
         const lightboxMedia = `
         ${media}
 
-        <h3 tabindex="0">${this._media.title}</h3>
+        <h3 tabindex="0" lang="en">${this._media.title}</h3>
         `;
 
         return lightboxMedia;

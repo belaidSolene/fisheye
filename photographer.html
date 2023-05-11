@@ -53,21 +53,29 @@
 
       <div tabindex="0" class="insertLikesAndPrice"></div>
 
-      <div class="mediaListbox" aria-describedby="listbox-label listbox-choice" tabindex="0">
+      <div class="mediaListbox">
         <label id="listbox-label"><span class="sr-only">Galerie </span> Trier par</label>
 
         <div class="listbox">
           <button class="btn btn--hover listbox__btn" aria-haspopup="listbox" aria-expanded="false"
-            aria-controls="sort-options">
+            aria-controls="sort-options" aria-describedby="listbox-label listbox-choice">
             <span id="listbox-choice" class="listbox__label">Popularité</span>
             <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
           </button>
 
           <ul id="sort-options" class="listbox__list" role="listbox">
-            <li class="listbox__item" tabindex="-1" role="option" aria-selected="true" data-sort-by="likes">Popularité
+            <li class="listbox__item" tabindex="-1" role="option" aria-selected="true" data-sort-by="likes">
+              <div class="separator"></div>
+              <span class="txt">Popularité</span>
             </li>
-            <li class="listbox__item" tabindex="-1" role="option" aria-selected="false" data-sort-by="date">Date</li>
-            <li class="listbox__item" tabindex="-1" role="option" aria-selected="false" data-sort-by="title">Titre</li>
+            <li class="listbox__item" tabindex="-1" role="option" aria-selected="false" data-sort-by="date">
+              <div class="separator"></div>
+              <span class="txt">Date</span>
+            </li>
+            <li class="listbox__item" tabindex="-1" role="option" aria-selected="false" data-sort-by="title">
+              <div class="separator"></div>
+              <span class="txt">Titre</span>
+            </li>
           </ul>
         </div>
       </div>

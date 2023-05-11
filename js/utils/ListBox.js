@@ -7,10 +7,11 @@ class ListBox {
     this._currentIndex = Array.from(this._listboxItems).indexOf(this._currentItem);
     this._isOpen = false;
 
-    this._init();
+    this._addEventListenersListboxButton();
+    this._addEventListenersListboxItems();
   }
 
-  _init() {
+  _addEventListenersListboxButton() {
     this._listboxButton.addEventListener('click', (event) => {
       event.stopPropagation();
       this._toggleListBox();
@@ -25,14 +26,14 @@ class ListBox {
           event.preventDefault();
           this._toggleListBox();
           const indexFocus = this._currentIndex > 0 ? 0 : 1;
-          this._listboxItems[indexFocus].focus();
+          this._focusItem(indexFocus);
           break;
 
-        case 'ArrowDown': 
+        case 'ArrowDown':
           event.preventDefault();
           if (this._isOpen) {
             const indexFocus = this._currentIndex > 0 ? 0 : 1;
-            this._listboxItems[indexFocus].focus();
+            this._focusItem(indexFocus);
           } else {
             this._openListBox();
           }
@@ -48,8 +49,6 @@ class ListBox {
           break;
       }
     });
-
-    this._addEventListenersListboxItems();
   }
 
   _addEventListenersListboxItems() {
@@ -62,13 +61,9 @@ class ListBox {
         this._currentItem = item;
         this._currentItem.setAttribute('aria-selected', 'true');
         this._listboxButton.querySelector('.listbox__label').textContent = this._currentItem.textContent;
+        this._currentIndex = Array.from(this._listboxItems).indexOf(this._currentItem);
         this._closeListBox();
       };
-
-      const focusItem = (index) => {
-        this._listboxItems[index].focus();
-      };
-
 
       item.addEventListener('keydown', (event) => {
         const key = event.code;
@@ -84,13 +79,13 @@ class ListBox {
           case 'ArrowUp':
             event.preventDefault();
             this._currentIndex = this._currentIndex > 0 ? this._currentIndex - 1 : this._listboxItems.length - 1;
-            focusItem(this._currentIndex);
+            this._focusItem(this._currentIndex);
             break;
 
           case 'ArrowDown':
             event.preventDefault();
             this._currentIndex = this._currentIndex < this._listboxItems.length - 1 ? this._currentIndex + 1 : 0;
-            focusItem(this._currentIndex);
+            this._focusItem(this._currentIndex);
             break;
 
           case 'Escape':
@@ -109,8 +104,11 @@ class ListBox {
 
       item.addEventListener('click', selectItem);
     });
-
   }
+
+  _focusItem(index) {
+    this._listboxItems[index].focus();
+  };
 
   getSelectedOption() {
     return this._currentItem.dataset.sortBy;

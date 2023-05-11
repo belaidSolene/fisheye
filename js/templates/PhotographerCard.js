@@ -89,6 +89,6 @@ class PhotographerCard {
     }
 
     titleContactForm($wrapper) {
-        $wrapper.innerHTML = `Contactez-moi <br> ${this._photographer.name}`
+        $wrapper.innerHTML = `Contactez-moi <br> <span lang="en">${this._photographer.name}</span>`
     }
 }
