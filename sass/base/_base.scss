@@ -41,8 +41,7 @@ button {
   cursor: pointer;
 }
 
-:focus {
+.key-navigation :focus {
   outline: 3px solid yellowgreen;
-  box-shadow: 0 0 8px #54800D;
-  padding: 3px;
+  box-shadow: 0 0 10px #54800D;
 }

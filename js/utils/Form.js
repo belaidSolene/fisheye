@@ -1,6 +1,9 @@
 class Form {
     constructor(idForm) {
         this._idForm = idForm;
+        this._isOpen = false;
+        this._handleOutsideClick = this._handleOutsideClick.bind(this);
+        this._closeForm = this._closeForm.bind(this);
     }
 
     generateFields(formFields) {
@@ -141,12 +144,41 @@ class Form {
 
         return formData;
     }
+
+    toggleForm(openerElement) {
+        this._openerElement = openerElement;
+
+        this._isOpen ? this._closeForm() : this._openForm();
+    }
+
+    _closeForm() {
+        document.querySelector("#modal-section").classList.remove("active");
+        document.querySelector("#contact-form").classList.remove("active");
+        this._isOpen = false;
+        document.removeEventListener('click', this._handleOutsideClick);
+        document.querySelector(".container").inert = false;
+        this._openerElement.focus();
+    }
+    
+    _openForm() {
+        document.querySelector("#modal-section").classList.add("active");
+        document.querySelector("#contact-form").classList.add("active");
+        this._isOpen = true;
+        document.addEventListener('click', this._handleOutsideClick);
+        document.querySelector(".container").inert = true;
+        this._$wrapperForm.focus();
+    }
+
+    _handleOutsideClick() {
+       // À implémenter dans la classe enfant
+    }
 }
 
 class ContactForm extends Form {
     constructor(idForm, $wrapperForm) {
         super(idForm);
         this._$wrapperForm = $wrapperForm;
+
 
         this._formFields = [
             {
@@ -163,7 +195,7 @@ class ContactForm extends Form {
                 name: "lastName",
                 type: "text",
                 attributs: {
-                  //  required: true,
+                    //  required: true,
                     minlength: 2,
                 },
             },
@@ -172,7 +204,7 @@ class ContactForm extends Form {
                 name: "email",
                 type: "email",
                 attributs: {
-                  //  required: true,
+                    //  required: true,
                 },
             },
             {
@@ -180,7 +212,7 @@ class ContactForm extends Form {
                 name: "message",
                 type: "textarea",
                 attributs: {
-                  //  required: true,
+                    //  required: true,
                 },
             },
         ];
@@ -211,6 +243,7 @@ class ContactForm extends Form {
 
         // Ajout du formulaire au conteneur
         this._$wrapperForm.appendChild(this._form);
+        this._addEventListener();
     }
 
     validation() {
@@ -220,8 +253,8 @@ class ContactForm extends Form {
 
             console.log(`Formulaire Validé`);
             console.log(response);
-            
-            toggleForm();
+
+            this.toggleForm();
             this._form.reset();
         }
     }
@@ -238,19 +271,26 @@ class ContactForm extends Form {
 
         return response;
     }
-}
 
-//ajouter variable isOpen
-function closeForm() {
-    document.querySelector(".container").inert = false;
-    document.querySelector("#modal-section").classList.remove("active");
-    document.querySelector("#contact-form").classList.remove("active");
-}
+    _addEventListener() {
+        this._$wrapperForm.addEventListener('keydown', (event) => {
+            const key = event.key;
 
-function openForm() {
-    document.querySelector("#modal-section").classList.add("active");
-    document.querySelector("#contact-form").classList.add("active");
-    document.querySelector(".container").inert = true;
+            if (key === 'Escape') {
+                this.toggleForm();
+            }
+        })
+
+        const closeBtn = this._$wrapperForm.querySelector('#btn-close-form');
+        closeBtn.addEventListener('click', this._closeForm);
+    }
+
+    _handleOutsideClick(event) {
+        if (this._isOpen && !this._$wrapperForm.contains(event.target)) {
+            this.toggleForm();
+            // ajouter focus bouton "contactez-moi"
+        }
+    }
 }
 
 

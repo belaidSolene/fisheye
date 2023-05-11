@@ -50,13 +50,6 @@ class ListBox {
     });
 
     this._addEventListenersListboxItems();
-
-    document.addEventListener('click', (event) => {
-      if (this._isOpen && !this._listbox.contains(event.target)) {
-        this._closeListBox();
-        this._listboxButton.focus();
-      }
-    });
   }
 
   _addEventListenersListboxItems() {
@@ -136,12 +129,21 @@ class ListBox {
     this._listbox.classList.add('show');
     this._listboxButton.setAttribute("aria-expanded", "true");
     this._listboxButton.querySelector('.fa-chevron-down').classList.add('rotated');
+    document.addEventListener('click', this._handleOutsideClick);
   }
 
   _closeListBox() {
     this._isOpen = false;
     this._listbox.classList.remove('show');
     this._listboxButton.setAttribute("aria-expanded", "false");
-    this._listboxButton.querySelector('.fa-chevron-down').classList.remove('rotated')
+    this._listboxButton.querySelector('.fa-chevron-down').classList.remove('rotated');
+    document.removeEventListener('click', this._handleOutsideClick);
+  }
+
+  _handleOutsideClick = (event) => {
+    if (this._isOpen && !this._listbox.contains(event.target)) {
+      this._closeListBox();
+      this._listboxButton.focus();
+    }
   }
 }

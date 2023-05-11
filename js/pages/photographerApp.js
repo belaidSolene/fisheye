@@ -10,7 +10,8 @@ class PhotographerApp {
         this.$mediaWrapper = document.querySelector('.medias-section')
         this.$wrapperInsertLikesAndPrice = document.querySelector('.insertLikesAndPrice')
         this.$wrapperContactTitle = document.querySelector('#contact-title')
-        this.$wrapperContactForm = document.querySelector('#contact-form')
+
+        this._addStyleFocus();
     }
 
     async main() {
@@ -40,17 +41,19 @@ class PhotographerApp {
             const displayMedia = new DisplayMedia(medias, this.$mediaWrapper, this.mediaListbox);
             displayMedia.render();
 
-
-            //formulaire
-            const contactForm = new ContactForm("contact-photographer", this.$wrapperContactForm);
-            contactForm.generate();
-
-            const response = contactForm.response();
-          //  console.log(`depuis photographerApp : ${response}`);
-
         } catch (error) {
             console.log(error);
         }
+    }
+
+    _addStyleFocus() {
+        document.addEventListener('keydown', () => {
+            document.body.classList.add('key-navigation');
+        })
+
+        document.addEventListener('mousedown', () => {
+            document.body.classList.remove('key-navigaton');
+        })
     }
 
     _getTotalLikes(medias) {

@@ -3,6 +3,8 @@ class App {
     constructor() {
         this.$photographersWrapper = document.querySelector('.photographer-section')
         this.photographersApi = new PhotographersApi('/data/photographers-data.json')
+
+        this._addStyleFocus();
     }
 
     async main() {
@@ -16,6 +18,16 @@ class App {
                 template.createPhotographerCard()
             )
         });
+    }
+
+    _addStyleFocus() {
+        document.addEventListener('keydown', () => {
+            document.body.classList.add('key-navigation');
+        })
+
+        document.addEventListener('mousedown', () => {
+            document.body.classList.remove('key-navigaton');
+        })
     }
 }
 

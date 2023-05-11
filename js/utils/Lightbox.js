@@ -13,7 +13,7 @@ class Lightbox {
     }
 
     _addEventListener() {
-        // use keyboard
+        // keyboard use
         this._lightbox.addEventListener('keydown', (event) => {
             const key = event.key;
 
@@ -51,22 +51,17 @@ class Lightbox {
         this._lightboxNextBtn.addEventListener('click', () => {
             this.showNext();
         });
-
-        document.addEventListener('click', (event) => {
-            if (this._isOpen && !this._lightbox.contains(event.target)) {
-                this.closeLightbox();
-            }
-        })
     }
 
     showLightbox() {
         this._lightbox.classList.add('active');
         this._modalSection.classList.add('active');
-        document.querySelector(".container").inert = true;
-        this._lightbox.focus();  
-        
-        this.showMedia();
         this._isOpen = true;
+        document.querySelector(".container").inert = true;
+        document.addEventListener('click', this._handleOutsideClick);
+        this._lightbox.focus();
+
+        this.showMedia();
     }
 
     closeLightbox() {
@@ -74,7 +69,14 @@ class Lightbox {
         this._modalSection.classList.remove('active');
         this._isOpen = false;
         document.querySelector(".container").inert = false;
+        document.removeEventListener('click', this._handleOutsideClick);
         this._lastMedia().focus();
+    }
+
+    _handleOutsideClick = (event) => {
+        if (this._isOpen && !this._lightbox.contains(event.target)) {
+            this.closeLightbox();
+        }
     }
 
     showMedia() {

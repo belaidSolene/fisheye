@@ -56,12 +56,27 @@ class PhotographerCard {
                 </div>
             </div>
 
-            <button class="btn btn--hover" onclick="openForm()">Contactez-moi</button>
+            <button class="btn btn--hover">Contactez-moi</button>
             
             <img tabindex="0" src="${this._photographer.portrait}" alt="${this._photographer.name}" class="photographer-header__pp round">
         `
 
         $wrapper.innerHTML = content;
+        this._template = $wrapper;
+        this._addListenerFormButton();
+    }
+
+    _addListenerFormButton() {
+        const btn = this._template.querySelector('button');
+        const $wrapperContactForm = document.querySelector('#contact-form')
+
+        const contactForm = new ContactForm("contact-photographer", $wrapperContactForm);
+        contactForm.generate();
+
+       btn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        contactForm.toggleForm(event.currentTarget);
+       })
     }
 
     insertLikesAndPrice($wrapper, likes) {
@@ -73,7 +88,7 @@ class PhotographerCard {
         $wrapper.innerHTML = content;
     }
 
-    titleContactForm($wrapper) { //Passer dans PhotographerCard
+    titleContactForm($wrapper) {
         $wrapper.innerHTML = `Contactez-moi <br> ${this._photographer.name}`
     }
 }
