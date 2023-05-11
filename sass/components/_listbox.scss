@@ -34,7 +34,6 @@
       border-radius: 0 0 $border-radius-btn $border-radius-btn;
       overflow: hidden;
       background-color: $color-primary;
-      padding: 0 0.7em;
 
       position: absolute;
       z-index: 2;
@@ -42,20 +41,28 @@
 
     &__item {
       height: 61px;
-
+      line-height: 61px;
       font-size: 1.13em;
       font-weight: inherit;
       letter-spacing: 2px;
-
       background-color: $color-primary;
       color: $white;
-      border-top: 1px solid $white;
-
-      padding: 1em;
+    
       cursor: inherit;
 
       position: relative;
       z-index: 1;
+
+      .txt{
+        padding-left: 18px;
+      }
+
+      .separator {
+        width: 85%;
+        height: 1px;
+        background-color: $white;
+        margin: 0 auto;
+      }
 
       &:hover,
       &:focus {
