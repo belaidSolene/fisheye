@@ -459,8 +459,7 @@ header h1 {
 .contact form .formData textarea {
   height: 170px;
 }
-.contact form .formData[data-error]::after {
-  content: attr(data-error);
+.contact form .formData .error-msg {
   font-size: 1.5em;
   color: #FFFFFF;
   display: block;
@@ -470,7 +469,7 @@ header h1 {
   opacity: 0;
   transition: 0.3s;
 }
-.contact form .formData[data-error-visible=true]::after {
+.contact form .formData[data-error-visible=true] label.error-msg {
   opacity: 1;
 }
 .contact form .formData[data-error-visible=true] input {

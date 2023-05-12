@@ -1,6 +1,7 @@
 class Form {
-    constructor(idForm) {
+    constructor(idForm, $wrapperForm) {
         this._idForm = idForm;
+        this._$wrapperForm = $wrapperForm;
         this._isOpen = false;
         this._handleOutsideClick = this._handleOutsideClick.bind(this);
         this._closeForm = this._closeForm.bind(this);
@@ -11,12 +12,64 @@ class Form {
         const form = document.createElement("form");
         form.id = this._idForm;
 
+        // Function to generate elements
+        const generateLabel = ({ label, name }) => {
+            const fieldLabel = document.createElement("label");
+            fieldLabel.setAttribute('for', name);
+            fieldLabel.textContent = label;
+            return fieldLabel;
+        };
+
+        const generateInput = ({ name, type, options, attributs }) => {
+            let fieldInput;
+            if (type === "textarea") {
+                fieldInput = document.createElement("textarea");
+            } else if (type === "select") {
+                fieldInput = document.createElement("select");
+                options.forEach((option) => {
+                    const selectOption = document.createElement("option");
+                    selectOption.value = option;
+                    selectOption.textContent = option;
+                    fieldInput.appendChild(selectOption);
+                });
+            } else {
+                fieldInput = document.createElement("input");
+                fieldInput.type = type;
+            }
+
+            fieldInput.id = name;
+            fieldInput.name = name;
+
+            // Add custom attributes
+            if (attributs) {
+                for (const [attr, value] of Object.entries(attributs)) {
+                    fieldInput.setAttribute(attr, value);
+                }
+            }
+
+            return fieldInput;
+        };
+
+        const generateFormFeedback = () => {
+            const $wrapperFeedback = document.createElement("div");
+            $wrapperFeedback.classList.add('form-feedback');
+            $wrapperFeedback.setAttribute('aria-live', 'assertive');
+
+            this._$feedbackWrited = document.createElement('p');
+            this._$hintKeyEvent = document.createElement('p');
+
+            $wrapperFeedback.appendChild(this._$feedbackWrited);
+            $wrapperFeedback.appendChild(this._$hintKeyEvent);
+
+            return $wrapperFeedback;
+        }
+
         // Boucle pour créer les champs du formulaire
         formFields.forEach((field) => {
             const { label, name, type, options, attributs } = field;
 
-            const fieldLabel = this._generateLabel({ label, name })
-            const fieldInput = this._generateInput({ name, type, options, attributs })
+            const fieldLabel = generateLabel({ label, name });
+            const fieldInput = generateInput({ name, type, options, attributs });
 
             const $wrapper = document.createElement('div');
             $wrapper.classList.add('formData');
@@ -26,52 +79,41 @@ class Form {
             form.appendChild($wrapper);
         });
 
+        form.appendChild(generateFormFeedback());
         return form;
     }
 
-    _generateLabel({ label, name }) {
-        // Création de l'élément de label
-        const fieldLabel = document.createElement("label");
-        fieldLabel.for = name;
-        fieldLabel.textContent = label;
+    _validationForm() {
+        const nbError = this._validationFields(this._validators);
+        const getToFirstInvalidField = (event) => {
+            const key = event.key;
 
-        return fieldLabel;
-    }
-
-    _generateInput({ name, type, options, attributs }) {
-        // Création de l'élément de champ
-        let fieldInput;
-        if (type === "textarea") {
-            fieldInput = document.createElement("textarea");
-        } else if (type === "select") {
-            fieldInput = document.createElement("select");
-            // Boucle pour créer les options du menu déroulant
-            options.forEach((option) => {
-                const selectOption = document.createElement("option");
-                selectOption.value = option;
-                selectOption.textContent = option;
-                fieldInput.appendChild(selectOption);
-            });
-        } else {
-            fieldInput = document.createElement("input");
-            fieldInput.type = type;
-        }
-
-        fieldInput.id = name;
-        fieldInput.name = name;
-
-        // Ajout des attributs personnalisés
-        if (attributs) {
-            for (const [attr, value] of Object.entries(attributs)) {
-                fieldInput.setAttribute(attr, value);
+            if (key === 'ArrowUp' || key === 'ArrowRight') {
+                event.preventDefault();
+                const wrongFields = this._form.querySelectorAll('[aria-invalid="true"]');
+                wrongFields[0].focus();
             }
         }
 
-        return fieldInput;
-    }
+        this._$feedbackWrited.innerHTML = "";
+        this._$hintKeyEvent.innerHTML = "";
 
-    validation() {
-        // À implémenter dans la classe enfant
+        if (nbError === 0) {
+            const $allErrorMsg = this._form.querySelectorAll('.error-msg');
+            $allErrorMsg.forEach(($errDiv) => {
+                $errDiv.innerHTML = "";
+            })
+
+            this._form.removeEventListener('keydown', getToFirstInvalidField);
+        } else {
+            const accord = nbError > 1 ? 'champs sont erronés' : 'champ est erroné';
+            this._$feedbackWrited.innerHTML = `Le formulaire ne peut être envoyé : ${nbError} ${accord}.`;
+
+            this._$hintKeyEvent.classList.add('sr-only');
+            this._$hintKeyEvent.innerHTML = `Avec le raccourci clavier [flèche haute] ou [flèche droite], vous pouvez accéder au premier champ erroné.`
+
+            this._form.addEventListener('keydown', getToFirstInvalidField);
+        }
     }
 
     _validationFields(validators) {
@@ -79,7 +121,7 @@ class Form {
 
         validators.forEach((fcts, key) => {
             const field = document.getElementById(key);
-            if (field.required) {
+            if (field.hasAttribute('aria-required')) {
                 const msgErreur = [];
 
                 fcts.forEach((fct) => {
@@ -92,10 +134,10 @@ class Form {
 
 
                 if (msgErreur.length >= 1) {
-                    this._setDataError(field.parentNode, msgErreur[0]);
+                    this._setDataError(field, msgErreur[0]);
                     errors++;
                 } else {
-                    this._deleteDataError(field.parentNode);
+                    this._deleteDataError(field);
                 }
             }
         });
@@ -124,13 +166,39 @@ class Form {
         return regexField[0].test(field.value) ? false : regexField[1];
     }
 
-    _setDataError(div, message) {
-        div.setAttribute('data-error', message);
-        div.setAttribute('data-error-visible', true);
+    _setDataError(field, message) {
+        const div = field.parentNode;
+        const idError = `err-${field.id}`;
+
+        const oldError = div.querySelector(`#${idError}`);
+
+        if (oldError) {
+            oldError.remove();
+        } else {
+            div.setAttribute('data-error-visible', true);
+
+        }
+
+        const errDiv = document.createElement('label');
+        errDiv.setAttribute('for', field.id);
+        errDiv.classList.add('error-msg');
+        errDiv.id = idError
+        field.setAttribute('aria-invalid', 'true');
+        field.setAttribute('aria-errormessage', idError);
+        errDiv.innerHTML = message;
+        div.appendChild(errDiv);
     }
 
-    _deleteDataError(div) {
+    _deleteDataError(field) {
+        const div = field.parentNode;
         div.setAttribute('data-error-visible', false);
+
+        if (field.hasAttribute('aria-invalid')) {
+            field.setAttribute('aria-invalid', 'false');
+            const $errDiv = div.querySelector(`#err-${field.id}`);
+            $errDiv.classList.add('sr-only');
+            $errDiv.innerHTML = 'Ce champ est validé';
+        }
     }
 
     _getFormData() {
@@ -155,30 +223,39 @@ class Form {
         document.querySelector("#modal-section").classList.remove("active");
         document.querySelector("#contact-form").classList.remove("active");
         this._isOpen = false;
-        document.removeEventListener('click', this._handleOutsideClick);
         document.querySelector(".container").inert = false;
+        document.removeEventListener('click', this._handleOutsideClick);
+        document.removeEventListener('wheel', this._handleOutsideWheel, { passive: false });
+        this._form.reset();
+
         this._openerElement.focus();
     }
-    
+
     _openForm() {
         document.querySelector("#modal-section").classList.add("active");
         document.querySelector("#contact-form").classList.add("active");
         this._isOpen = true;
-        document.addEventListener('click', this._handleOutsideClick);
         document.querySelector(".container").inert = true;
+        document.addEventListener('click', this._handleOutsideClick);
+        document.addEventListener('wheel', this._handleOutsideWheel, { passive: false });
+
         this._$wrapperForm.focus();
     }
 
-    _handleOutsideClick() {
-       // À implémenter dans la classe enfant
+    _handleOutsideClick(event) {
+        if (this._isOpen && !this._$wrapperForm.contains(event.target)) {
+            this._closeForm();
+        }
+    }
+
+    _handleOutsideWheel(event) {
+        event.preventDefault();
     }
 }
 
 class ContactForm extends Form {
     constructor(idForm, $wrapperForm) {
-        super(idForm);
-        this._$wrapperForm = $wrapperForm;
-
+        super(idForm, $wrapperForm);
 
         this._formFields = [
             {
@@ -186,8 +263,9 @@ class ContactForm extends Form {
                 name: "firstName",
                 type: "text",
                 attributs: {
-                    required: true,
+                    'aria-required': true,
                     minlength: 2,
+                    autocomplete: 'off',
                 }
             },
             {
@@ -195,8 +273,9 @@ class ContactForm extends Form {
                 name: "lastName",
                 type: "text",
                 attributs: {
-                    //  required: true,
+                    'aria-required': true,
                     minlength: 2,
+                    autocomplete: 'off',
                 },
             },
             {
@@ -204,7 +283,8 @@ class ContactForm extends Form {
                 name: "email",
                 type: "email",
                 attributs: {
-                    //  required: true,
+                    //  'aria-required': true,
+                    autocomplete: 'off',
                 },
             },
             {
@@ -212,7 +292,8 @@ class ContactForm extends Form {
                 name: "message",
                 type: "textarea",
                 attributs: {
-                    //  required: true,
+                    //  'aria-required': true,
+                    autocomplete: 'off',
                 },
             },
         ];
@@ -247,7 +328,10 @@ class ContactForm extends Form {
     }
 
     validation() {
-        if (this._validationFields(this._validators) === 0) {
+        const nbError = this._validationFields(this._validators);
+        this._validationForm();
+        if (5 === 0) {
+
 
             const response = this.response();
 
@@ -283,13 +367,6 @@ class ContactForm extends Form {
 
         const closeBtn = this._$wrapperForm.querySelector('#btn-close-form');
         closeBtn.addEventListener('click', this._closeForm);
-    }
-
-    _handleOutsideClick(event) {
-        if (this._isOpen && !this._$wrapperForm.contains(event.target)) {
-            this.toggleForm();
-            // ajouter focus bouton "contactez-moi"
-        }
     }
 }
 

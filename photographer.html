@@ -13,10 +13,10 @@
 <body>
   <section id="modal-section" class="modal-section">
 
-    <div id="contact-form" tabindex="0" class="contact" role="dialog" aria-labelledby="contact-title">
+    <div id="contact-form" tabindex="0" class="contact" role="dialog" aria-modal="true" aria-labelledby="contact-title">
       <header class="contact__header">
         <h2 id="contact-title" class="contact__header__photographer"></h2>
-        <button id="btn-close-form" class="contact__btn-close">
+        <button aria-label="Fermer" id="btn-close-form" class="contact__btn-close">
           <img src="/public/assets/icons/close.svg" />
         </button>
       </header>
@@ -24,18 +24,18 @@
       <!-- Form add with JS -->
     </div>
 
-    <div id="lightbox" tabindex="0" class="lightbox" role="dialog" aria-label="image en grand">
+    <div id="lightbox" tabindex="0" class="lightbox" role="dialog" aria-modal="true" aria-label="Média en grand">
       <article class="lightbox__media-container"></article>
 
-      <button class="lightbox__btn lightbox__btn__nav lightbox__btn__nav--prev">
+      <button type="button" aria-label="Afficher média précédent" class="lightbox__btn lightbox__btn__nav lightbox__btn__nav--prev">
         <i class="fa-solid fa-chevron-left"></i>
       </button>
 
-      <button class="lightbox__btn lightbox__btn__nav lightbox__btn__nav--next">
+      <button type="button" aria-label="Afficher média suivant" class="lightbox__btn lightbox__btn__nav lightbox__btn__nav--next">
         <i class="fa-solid fa-chevron-right"></i>
       </button>
 
-      <button class="lightbox__btn lightbox__btn--close">
+      <button aria-label="Fermer" class="lightbox__btn lightbox__btn--close">
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
@@ -54,12 +54,12 @@
       <div tabindex="0" class="insertLikesAndPrice"></div>
 
       <div class="mediaListbox">
-        <label id="listbox-label"><span class="sr-only">Galerie </span> Trier par</label>
+        <label aria-hidden="true">Trier par</label>
 
         <div class="listbox">
-          <button class="btn btn--hover listbox__btn" aria-haspopup="listbox" aria-expanded="false"
-            aria-controls="sort-options" aria-describedby="listbox-label listbox-choice">
-            <span id="listbox-choice" class="listbox__label">Popularité</span>
+          <button id="listbox-btn" aria-label="Trier galerie par " aria-labelledby="listbox-btn listbox-choice" role="combobox" class="btn btn--hover listbox__btn" aria-haspopup="listbox" aria-expanded="false"
+            aria-controls="sort-options">
+            <span id="listbox-choice" aria-hidden="true">Popularité</span>
             <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
           </button>
 
@@ -108,8 +108,6 @@
   <script src="/js/templates/DisplayMedia.js"></script>
 
   <!-- Entry point -->
-  <script src="/lab/lab.js"></script>
-
   <script src="/js/pages/photographerApp.js"></script>
 </body>
 

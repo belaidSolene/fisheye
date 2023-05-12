@@ -8,15 +8,15 @@ class MediaCard {
         $wrapper.classList.add('media-card')
 
         const media = this._media.type === 'image' ?
-            `<img tabindex="0" id="${this._media.id}" class="media-card__media" src="${this._media.image}" alt="">` :
-            `<video tabindex="0" id="${this._media.id}" class="media-card__media" src="${this._media.video}" alt=""></video>`;
+            `<img tabindex="0" id="${this._media.id}" class="media-card__media" src="${this._media.image}" alt="${this._media.title}">` :
+            `<video tabindex="0" id="${this._media.id}" class="media-card__media" src="${this._media.video}" alt="${this._media.title}"></video>`;
 
         const mediaCard = `
             ${media}
     
             <div class="media-card__description">
             <p tabindex="0" class="media-card__description__title" lang="en">${this._media.title}</p>
-            <button class="btn-likes">${this._media.likes} <i class="fa-solid fa-heart"></i></button>
+            <button class="btn-likes">${this._media.likes} <i  aria-hidden="true" class="fa-solid fa-heart"></i> <span class="sr-only">j'aime, </span></i></button>
           </div>            
         `;
 
@@ -34,13 +34,13 @@ class MediaCard {
 
     createLightBoxMedia() {
         const media = this._media.type === 'image' ?
-            `<img tabindex="0" class="lightbox__media-container__content" src="${this._media.image}" alt="">` :
-            `<video class="lightbox__media-container__content video" src="${this._media.video}" alt="" controls loop></video>`;
+            `<img tabindex="0" class="lightbox__media-container__content" src="${this._media.image}" alt="${this._media.title}">` :
+            `<video class="lightbox__media-container__content video" src="${this._media.video}" alt="${this._media.title}" controls loop></video>`;
 
         const lightboxMedia = `
         ${media}
 
-        <h3 tabindex="0" lang="en">${this._media.title}</h3>
+        <h3 lang="en">${this._media.title}</h3>
         `;
 
         return lightboxMedia;

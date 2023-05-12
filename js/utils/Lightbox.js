@@ -17,6 +17,14 @@ class Lightbox {
         this._lightbox.addEventListener('keydown', (event) => {
             const key = event.key;
 
+            // Vérifier si NVDA est actif
+            const isNVDAActive = /NVDA/.test(navigator.userAgent);
+
+            // Ignorer les touches fléchées si NVDA est actif
+            if (isNVDAActive && (key === 'ArrowUp' || key === 'ArrowDown')) {
+                return;
+            }
+
             switch (key) {
                 case 'Escape':
                     event.preventDefault();
@@ -59,6 +67,7 @@ class Lightbox {
         this._isOpen = true;
         document.querySelector(".container").inert = true;
         document.addEventListener('click', this._handleOutsideClick);
+        document.addEventListener('wheel', this._handleOutsideWheel, { passive: false });
         this._lightbox.focus();
 
         this.showMedia();
@@ -70,6 +79,7 @@ class Lightbox {
         this._isOpen = false;
         document.querySelector(".container").inert = false;
         document.removeEventListener('click', this._handleOutsideClick);
+        document.removeEventListener('wheel', this._handleOutsideWheel, { passive: false });
         this._lastMedia().focus();
     }
 
@@ -77,6 +87,10 @@ class Lightbox {
         if (this._isOpen && !this._lightbox.contains(event.target)) {
             this.closeLightbox();
         }
+    }
+
+    _handleOutsideWheel(event) {
+        event.preventDefault();
     }
 
     showMedia() {

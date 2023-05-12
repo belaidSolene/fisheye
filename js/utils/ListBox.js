@@ -24,9 +24,10 @@ class ListBox {
         case 'Enter':
         case 'Space':
           event.preventDefault();
-          this._toggleListBox();
           const indexFocus = this._currentIndex > 0 ? 0 : 1;
           this._focusItem(indexFocus);
+          this._toggleListBox();
+
           break;
 
         case 'ArrowDown':
@@ -60,7 +61,7 @@ class ListBox {
         // update attributs currentItem
         this._currentItem = item;
         this._currentItem.setAttribute('aria-selected', 'true');
-        this._listboxButton.querySelector('.listbox__label').textContent = this._currentItem.textContent;
+        this._listboxButton.querySelector('#listbox-choice').textContent = this._currentItem.textContent;
         this._currentIndex = Array.from(this._listboxItems).indexOf(this._currentItem);
         this._closeListBox();
       };

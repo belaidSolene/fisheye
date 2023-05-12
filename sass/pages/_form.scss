@@ -54,8 +54,7 @@
                 height: 170px;
             }
 
-            &[data-error]::after {
-                content: attr(data-error);
+            .error-msg {
                 font-size: 1.5em;
                 color: $white;
                 display: block;
@@ -66,7 +65,7 @@
                 transition: 0.3s;
               }
               
-             &[data-error-visible="true"]::after {
+             &[data-error-visible="true"] label.error-msg {
                 opacity: 1;
               }
               
@@ -74,6 +73,7 @@
                 border: 2x solid #e54858;
               }
         }
+
     }
 }
 
