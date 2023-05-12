@@ -475,6 +475,10 @@ header h1 {
 .contact form .formData[data-error-visible=true] input {
   border: 2x solid #e54858;
 }
+.contact form .form-feedback {
+  font-size: 1.7em;
+  color: #FFFFFF;
+}
 
 .active {
   display: block;
