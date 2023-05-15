@@ -1,13 +1,11 @@
-class Lightbox {
+class Lightbox extends Modal{
     constructor(lightboxId) {
-        this._modalSection = document.querySelector('#modal-section');
-
+        super ();
         this._lightbox = document.querySelector(`#${lightboxId}`);
         this._lightboxCloseBtn = this._lightbox.querySelector('.lightbox__btn--close');
         this._lightboxPrevBtn = this._lightbox.querySelector('.lightbox__btn__nav--prev');
         this._lightboxNextBtn = this._lightbox.querySelector('.lightbox__btn__nav--next');
         this._lightboxContent = this._lightbox.querySelector('.lightbox__media-container');
-        this._isOpen = false;
 
         this._addEventListener();
     }
@@ -62,11 +60,8 @@ class Lightbox {
     }
 
     showLightbox() {
+        super._openModal();
         this._lightbox.classList.add('active');
-        this._modalSection.classList.add('active');
-        this._isOpen = true;
-        document.querySelector(".container").inert = true;
-        document.addEventListener('click', this._handleOutsideClick);
         document.addEventListener('wheel', this._handleOutsideWheel, { passive: false });
         this._lightbox.focus();
 
@@ -74,11 +69,8 @@ class Lightbox {
     }
 
     closeLightbox() {
+        super._closeModal();
         this._lightbox.classList.remove('active');
-        this._modalSection.classList.remove('active');
-        this._isOpen = false;
-        document.querySelector(".container").inert = false;
-        document.removeEventListener('click', this._handleOutsideClick);
         document.removeEventListener('wheel', this._handleOutsideWheel, { passive: false });
         this._lastMedia().focus();
     }

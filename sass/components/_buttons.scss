@@ -53,5 +53,8 @@
     @include doNotLookLikeABtn;
 
     background-color: transparent;
-    align-self: flex-start;
+  //  align-self: flex-start;
+  position: absolute;
+  top: 40px;
+  right: 40px;
 }

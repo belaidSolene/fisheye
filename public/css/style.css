@@ -43,7 +43,7 @@ button {
 }
 
 .key-navigation :focus {
-  outline: 3px solid yellowgreen;
+  outline: 5px solid yellowgreen;
   box-shadow: 0 0 10px #54800D;
 }
 
@@ -115,7 +115,9 @@ body {
   color: #901C1C;
   border: none;
   background-color: transparent;
-  align-self: flex-start;
+  position: absolute;
+  top: 40px;
+  right: 40px;
 }
 
 .insertLikesAndPrice {
@@ -389,10 +391,19 @@ header h1 {
   position: relative;
   z-index: 1;
 }
-.medias-section .media-card__media {
+.medias-section .media-card__content {
+  overflow: hidden;
   width: 100%;
   height: 300px;
+}
+.medias-section .media-card__content__media {
+  width: 100%;
+  height: 100%;
   cursor: pointer;
+  transition: transform 250ms;
+}
+.medias-section .media-card__content__media:hover {
+  transform: scale(1.2);
 }
 .medias-section .media-card__button {
   border: none;
@@ -459,9 +470,10 @@ header h1 {
 .contact form .formData textarea {
   height: 170px;
 }
-.contact form .formData .error-msg {
+.contact form .formData[data-error]::after {
+  content: attr(data-error);
   font-size: 1.5em;
-  color: #FFFFFF;
+  color: #000000;
   display: block;
   margin: 2px 0 17px;
   text-align: left;
@@ -469,15 +481,15 @@ header h1 {
   opacity: 0;
   transition: 0.3s;
 }
-.contact form .formData[data-error-visible=true] label.error-msg {
+.contact form .formData[data-error-visible=true]::after {
   opacity: 1;
 }
 .contact form .formData[data-error-visible=true] input {
-  border: 2x solid #e54858;
+  border: 3px solid #23321A;
 }
 .contact form .form-feedback {
   font-size: 1.7em;
-  color: #FFFFFF;
+  color: #000000;
 }
 
 .active {

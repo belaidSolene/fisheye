@@ -1,6 +1,7 @@
 
-class PhotographerApp {
+class PhotographerApp extends App {
     constructor() {
+        super()
         this.URLparams = new URLSearchParams(window.location.search);
         this.photographersApi = new PhotographersApi('/data/photographers-data.json')
 
@@ -44,16 +45,6 @@ class PhotographerApp {
         } catch (error) {
             console.log(error);
         }
-    }
-
-    _addStyleFocus() {
-        document.addEventListener('keydown', () => {
-            document.body.classList.add('key-navigation');
-        })
-
-        document.addEventListener('mousedown', () => {
-            document.body.classList.remove('key-navigation');
-        })
     }
 
     _getTotalLikes(medias) {

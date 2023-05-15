@@ -54,9 +54,10 @@
                 height: 170px;
             }
 
-            .error-msg {
+            &[data-error]::after {
+                content: attr(data-error);
                 font-size: 1.5em;
-                color: $white;
+                color: $black;
                 display: block;
                 margin: 2px 0 17px;
                 text-align: left;
@@ -65,18 +66,18 @@
                 transition: 0.3s;
               }
               
-             &[data-error-visible="true"] label.error-msg {
+             &[data-error-visible="true"]::after {
                 opacity: 1;
               }
               
               &[data-error-visible="true"] input {
-                border: 2x solid #e54858;
+                border: 3px solid #23321A;
               }
         }
 
         .form-feedback {
             font-size: 1.7em;
-            color: $white;
+            color: $black;
         }
     }
 }

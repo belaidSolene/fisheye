@@ -15,10 +15,7 @@
 
     <div id="contact-form" tabindex="0" class="contact" role="dialog" aria-modal="true" aria-labelledby="contact-title">
       <header class="contact__header">
-        <h2 id="contact-title" class="contact__header__photographer"></h2>
-        <button aria-label="Fermer" id="btn-close-form" class="contact__btn-close">
-          <img src="/public/assets/icons/close.svg" />
-        </button>
+        <h2 id="contact-title" aria-hidden="true" class="contact__header__photographer"></h2>
       </header>
 
       <!-- Form add with JS -->
@@ -98,8 +95,9 @@
   <!-- Utils -->
   <script src="/js/utils/ListBox.js"></script>
   <script src="/js/utils/Sort.js"></script>
-  <script src="/js/utils/Lightbox.js"></script>
   <script src="/js/utils/UpdateLike.js"></script>
+  <script src="/js/utils/Modal.js"></script>
+  <script src="/js/utils/Lightbox.js"></script>
   <script src="/js/utils/Form.js"></script>
 
   <!-- Templates -->
@@ -108,6 +106,7 @@
   <script src="/js/templates/DisplayMedia.js"></script>
 
   <!-- Entry point -->
+  <script src="/js/pages/app.js"></script>
   <script src="/js/pages/photographerApp.js"></script>
 </body>
 

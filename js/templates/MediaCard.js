@@ -8,11 +8,13 @@ class MediaCard {
         $wrapper.classList.add('media-card')
 
         const media = this._media.type === 'image' ?
-            `<img tabindex="0" id="${this._media.id}" class="media-card__media" src="${this._media.image}" alt="${this._media.title}">` :
-            `<video tabindex="0" id="${this._media.id}" class="media-card__media" src="${this._media.video}" alt="${this._media.title}"></video>`;
+            `<img id="${this._media.id}" class="media-card__content__media" src="${this._media.image}" alt="${this._media.title}">` :
+            `<video id="${this._media.id}" class="media-card__content__media" src="${this._media.video}" alt="${this._media.title}"></video>`;
 
         const mediaCard = `
+            <div class="media-card__content" tabindex="0">
             ${media}
+            </div>
     
             <div class="media-card__description">
             <p tabindex="0" class="media-card__description__title" lang="en">${this._media.title}</p>
@@ -34,7 +36,7 @@ class MediaCard {
 
     createLightBoxMedia() {
         const media = this._media.type === 'image' ?
-            `<img tabindex="0" class="lightbox__media-container__content" src="${this._media.image}" alt="${this._media.title}">` :
+            `<img tabindex="0" class="lightbox__media-container__content" src="${this._media.image}" alt="${this._media.title}"/>` :
             `<video class="lightbox__media-container__content video" src="${this._media.video}" alt="${this._media.title}" controls loop></video>`;
 
         const lightboxMedia = `
@@ -54,7 +56,7 @@ class MediaCard {
         }
 
         // Ajouter l'écouteur pour l'ouverture de la lightbox
-        const media = this._template.querySelector('.media-card__media');
+        const media = this._template.querySelector('.media-card__content');
 
         media.addEventListener('click', (event) => {
             event.stopPropagation();
@@ -67,7 +69,7 @@ class MediaCard {
             if (key === 'Enter' || key === 'Space') {
                 openLightbox();
             }
-        })
+        }) 
 
         // Ajouter l'écouteur pour la mise à jour des likes
         const btnLike = this._template.querySelector('.btn-likes');
