@@ -1,6 +1,5 @@
 class Modal {
-    constructor(wrapper) {
-        this._initWrapper(wrapper);
+    constructor() {
         this._isOpen = false;
 
         this._modalSection = document.querySelector('#modal-section');
@@ -13,9 +12,9 @@ class Modal {
         }
 
         if (typeof wrapper === 'string') {
-            this._$wrapper = document.querySelector(`#${wrapper}`);
+            return document.querySelector(`#${wrapper}`);
         } else if (isHTMLElement(wrapper)) {
-            this._$wrapper = wrapper;
+            return wrapper;
         } else {
             throw new Error("The 'wrapper' argument must be either a string representing the element's ID or an HTMLElement object.")
         }
@@ -26,10 +25,9 @@ class Modal {
         this._isOpen = true;
         this._modalSection.classList.add('active');
         this._container.inert = true;
-        this._$wrapper.focus();
 
+        document.addEventListener('keydown', this._trapFocus.bind(this));       
         document.addEventListener('click', this._handleOutsideClick.bind(this));
-        document.addEventListener('keydown', this._trapFocus.bind(this));
     }
 
     _closeModal() {
@@ -38,14 +36,13 @@ class Modal {
         this._modalSection.classList.remove('active');
         this._container.inert = false;
 
-        document.removeEventListener('click', this._handleOutsideClick.bind(this))
         document.removeEventListener('keydown', this._trapFocus.bind(this));
+        document.removeEventListener('click', this._handleOutsideClick.bind(this))
     }
 
     _handleOutsideClick(event) {
-        if (this._isOpen && !this._$wrapper._container(event.target)) {
-            this._close();
-        }
+        // Abstract method - No default implementation
+        throw new Error("The _handleOutsideClick method must be implemented by the subclass.");
     }
 
     _close() {
@@ -57,7 +54,6 @@ class Modal {
         const focusableElements = this._modalSection.querySelectorAll(
             '[role="dialog"].active, [role="dialog"].active a[href], [role="dialog"].active button, [role="dialog"].active textarea, [role="dialog"].active input, [role="dialog"].active select, [role="dialog"].active [tabindex]:not([tabindex=\'-1\'])'
         );
-        console.log(document.activeElement);
 
         const firstFocusableElement = focusableElements[0];
         const lastFocusableElement = focusableElements[focusableElements.length - 1];

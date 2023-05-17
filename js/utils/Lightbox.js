@@ -1,13 +1,11 @@
 class Lightbox extends Modal{
     constructor(lightboxId) {
-        super (lightboxId);
-        this._lightbox = this._$wrapper;
+        super ();
+        this._lightbox = this._initWrapper(lightboxId);
         this._lightboxCloseBtn = this._lightbox.querySelector('.lightbox__btn--close');
         this._lightboxPrevBtn = this._lightbox.querySelector('.lightbox__btn__nav--prev');
         this._lightboxNextBtn = this._lightbox.querySelector('.lightbox__btn__nav--next');
         this._lightboxContent = this._lightbox.querySelector('.lightbox__media-container');
-
-        this._addEventListener();
     }
 
     _addEventListener() {
@@ -60,13 +58,13 @@ class Lightbox extends Modal{
     }
 
     showLightbox() {
-        this._lightbox.classList.add('active');
         super._openModal(this._lightbox);
+        this._lightbox.classList.add('active');
 
+        this._addEventListener();
         document.addEventListener('wheel', this._handleOutsideWheel, { passive: false });
-        this._lightbox.focus();
-
         this.showMedia();
+        this._lightbox.focus();
     }
 
     _close() {

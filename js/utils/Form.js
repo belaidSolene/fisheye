@@ -1,8 +1,8 @@
 class Form extends Modal {
     constructor(idForm, $wrapperForm) {
-        super($wrapperForm)
+        super()
         this._idForm = idForm;
-        this._$wrapperForm = this._$wrapper;
+        this._$wrapperForm = this._initWrapper($wrapperForm);
         this._close = this._close.bind(this);
     }
 
@@ -242,8 +242,6 @@ class Form extends Modal {
 
     _close() {
         super._closeModal();
-        console.log(`appel close form`);
-        console.log(`une seule fois`);
         this._$wrapperForm.classList.remove("active");
         this._resetForm();
         this._openerElement.focus();
@@ -251,10 +249,10 @@ class Form extends Modal {
     }
 
     _open() {
-        this._$wrapperForm.classList.add("active");
         super._openModal();
-    
+        this._$wrapperForm.classList.add("active");
         document.addEventListener('wheel', this._handleOutsideWheel, { passive: false });
+        this._$wrapperForm.focus();
     }
 
     _handleOutsideClick(event) {

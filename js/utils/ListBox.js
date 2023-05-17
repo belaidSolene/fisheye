@@ -61,11 +61,20 @@ class ListBox {
         // update attributs currentItem
         this._currentItem = item;
         this._currentItem.setAttribute('aria-selected', 'true');
-        const textButton = this._currentItem.textContent;
-        this._listboxButton.querySelector('#listbox-choice').textContent = textButton;
-        this._listboxButton.querySelector('.btn__text').setAttribute('data-text', textButton);
         this._currentIndex = Array.from(this._listboxItems).indexOf(this._currentItem);
+        updateTextButton();
+
         this._closeListBox();
+      };
+
+      const updateTextButton = () => {
+        const textButton = this._currentItem.querySelector('.listbox__item__txt').textContent;
+        
+        const $wrapperTxtBtn = this._listboxButton.querySelector('#listbox-choice');
+        $wrapperTxtBtn.textContent = textButton;
+        $wrapperTxtBtn.setAttribute('data-text', textButton);
+
+        this._listboxButton.querySelector('#listbox-choice-sr').textContent = textButton;
       };
 
       item.addEventListener('keydown', (event) => {

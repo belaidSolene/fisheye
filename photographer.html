@@ -56,22 +56,25 @@
         <div class="listbox">
           <button id="listbox-btn" aria-label="Trier galerie par " aria-labelledby="listbox-btn listbox-choice" role="combobox" class="btn btn--hover listbox__btn" aria-haspopup="listbox" aria-expanded="false"
             aria-controls="sort-options">
-            <span id="listbox-choice" data-text="Popularité" class="btn--hover__text" aria-hidden="true">Popularité</span>
+            <span id="listbox-choice" aria-hidden="true" class="btn--hover__text">Popularité</span>
             <i class="fa-solid fa-chevron-down chevron-down" aria-hidden="true"></i>
           </button>
 
           <ul id="sort-options" class="listbox__list" role="listbox">
             <li class="listbox__item" tabindex="-1" role="option" aria-selected="true" data-sort-by="likes">
               <div class="separator"></div>
-              <span class="listbox__item__txt" data-text="Popularité">Popularité</span>
+              <span aria-hidden="true" class="listbox__item__txt" data-text="Popularité">Popularité</span>
+              <span class="sr-only">Popularité</span>
             </li>
             <li class="listbox__item" tabindex="-1" role="option" aria-selected="false" data-sort-by="date">
               <div class="separator"></div>
-              <span class="listbox__item__txt" data-text="Date">Date</span>
+              <span aria-hidden="true" class="listbox__item__txt" data-text="Date">Date</span>
+              <span class="sr-only">Date</span>
             </li>
             <li class="listbox__item" tabindex="-1" role="option" aria-selected="false" data-sort-by="title">
               <div class="separator"></div>
-              <span class="listbox__item__txt" data-text="Titre">Titre</span>
+              <span aria-hidden="true" class="listbox__item__txt" data-text="Titre">Titre</span>
+              <span class="sr-only">Titre</span>
             </li>
           </ul>
         </div>

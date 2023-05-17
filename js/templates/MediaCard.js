@@ -8,13 +8,13 @@ class MediaCard {
         $wrapper.classList.add('media-card')
 
         const media = this._media.type === 'image' ?
-            `<img id="${this._media.id}" class="media-card__content__media" src="${this._media.image}" alt="${this._media.title}">` :
-            `<video id="${this._media.id}" class="media-card__content__media" src="${this._media.video}" alt="${this._media.title}"></video>`;
+            `<img  class="media-card__content__media" src="${this._media.image}" alt="${this._media.title}">` :
+            `<video class="media-card__content__media" src="${this._media.video}" alt="${this._media.title}"></video>`;
 
         const likeMsg = this._media.type === 'image' ? 'Aimer ce cliché' : 'Aimer cette vidéo';
 
         const mediaCard = `
-            <div class="media-card__content" tabindex="0">
+            <div id="${this._media.id}" class="media-card__content" tabindex="0">
             ${media}
             </div>
     
