@@ -11,8 +11,6 @@ class PhotographerApp extends App {
         this.$mediaWrapper = document.querySelector('.medias-section')
         this.$wrapperInsertLikesAndPrice = document.querySelector('.insertLikesAndPrice')
         this.$wrapperContactTitle = document.querySelector('#contact-title')
-
-        this._addStyleFocus();
     }
 
     async main() {

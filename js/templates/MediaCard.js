@@ -11,6 +11,8 @@ class MediaCard {
             `<img id="${this._media.id}" class="media-card__content__media" src="${this._media.image}" alt="${this._media.title}">` :
             `<video id="${this._media.id}" class="media-card__content__media" src="${this._media.video}" alt="${this._media.title}"></video>`;
 
+        const likeMsg = this._media.type === 'image' ? 'Aimer ce cliché' : 'Aimer cette vidéo';
+
         const mediaCard = `
             <div class="media-card__content" tabindex="0">
             ${media}
@@ -18,7 +20,7 @@ class MediaCard {
     
             <div class="media-card__description">
             <p tabindex="0" class="media-card__description__title" lang="en">${this._media.title}</p>
-            <button class="btn-likes">${this._media.likes} <i  aria-hidden="true" class="fa-solid fa-heart"></i> <span class="sr-only">j'aime, </span></i></button>
+            <button class="btn-likes" title="${likeMsg}">${this._media.likes} <i  aria-hidden="true" class="fa-solid fa-heart"></i> <span class="sr-only">j'aime, </span></i></button>
           </div>            
         `;
 

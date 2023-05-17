@@ -1,12 +1,12 @@
 class Form extends Modal {
     constructor(idForm, $wrapperForm) {
-        super()
+        super($wrapperForm)
         this._idForm = idForm;
-        this._$wrapperForm = $wrapperForm;
-        this._closeForm = this._closeForm.bind(this);
+        this._$wrapperForm = this._$wrapper;
+        this._close = this._close.bind(this);
     }
 
-    _generateForm(formFields) {
+    _generateForm(formFields) {        
         // Création du formulaire
         const form = document.createElement("form");
         form.id = this._idForm;
@@ -237,29 +237,29 @@ class Form extends Modal {
     toggleForm(openerElement) {
         this._openerElement = openerElement;
 
-        this._isOpen ? this._closeForm() : this._openForm();
+        this._isOpen ? this._close() : this._open();
     }
 
-    _closeForm() {
+    _close() {
         super._closeModal();
+        console.log(`appel close form`);
+        console.log(`une seule fois`);
         this._$wrapperForm.classList.remove("active");
         this._resetForm();
         this._openerElement.focus();
-
         document.removeEventListener('wheel', this._handleOutsideWheel, { passive: false });
     }
 
-    _openForm() {
-        super._openModal();
+    _open() {
         this._$wrapperForm.classList.add("active");
-        this._$wrapperForm.focus();
+        super._openModal();
     
         document.addEventListener('wheel', this._handleOutsideWheel, { passive: false });
     }
 
     _handleOutsideClick(event) {
         if (this._isOpen && !this._$wrapperForm.contains(event.target)) {
-            this._closeForm();
+            this._close();
         }
     }
 
@@ -362,7 +362,7 @@ class ContactForm extends Form {
             console.log(`Formulaire Validé`);
             console.log(response);
 
-            this._closeForm();
+            this._close();
         }
     }
 
@@ -384,12 +384,12 @@ class ContactForm extends Form {
             const key = event.key;
 
             if (key === 'Escape') {
-                this._closeForm();
+                this._close();
             }
         })
 
         const closeBtn = this._$wrapperForm.querySelector('#form-btn-close');
-        closeBtn.addEventListener('click', this._closeForm);
+        closeBtn.addEventListener('click', this._close);
     }
 }
 

@@ -1,7 +1,7 @@
 class Lightbox extends Modal{
     constructor(lightboxId) {
-        super ();
-        this._lightbox = document.querySelector(`#${lightboxId}`);
+        super (lightboxId);
+        this._lightbox = this._$wrapper;
         this._lightboxCloseBtn = this._lightbox.querySelector('.lightbox__btn--close');
         this._lightboxPrevBtn = this._lightbox.querySelector('.lightbox__btn__nav--prev');
         this._lightboxNextBtn = this._lightbox.querySelector('.lightbox__btn__nav--next');
@@ -26,7 +26,7 @@ class Lightbox extends Modal{
             switch (key) {
                 case 'Escape':
                     event.preventDefault();
-                    this.closeLightbox();
+                    this._close();
                     break;
 
                 case 'ArrowLeft':
@@ -45,7 +45,7 @@ class Lightbox extends Modal{
 
         // close button
         this._lightboxCloseBtn.addEventListener('click', () => {
-            this.closeLightbox();
+            this._close();
         });
 
         // left arrow
@@ -60,24 +60,26 @@ class Lightbox extends Modal{
     }
 
     showLightbox() {
-        super._openModal();
         this._lightbox.classList.add('active');
+        super._openModal(this._lightbox);
+
         document.addEventListener('wheel', this._handleOutsideWheel, { passive: false });
         this._lightbox.focus();
 
         this.showMedia();
     }
 
-    closeLightbox() {
+    _close() {
         super._closeModal();
         this._lightbox.classList.remove('active');
         document.removeEventListener('wheel', this._handleOutsideWheel, { passive: false });
+
         this._lastMedia().focus();
     }
 
     _handleOutsideClick = (event) => {
         if (this._isOpen && !this._lightbox.contains(event.target)) {
-            this.closeLightbox();
+            this._close();
         }
     }
 
@@ -86,19 +88,23 @@ class Lightbox extends Modal{
     }
 
     showMedia() {
-        // À implémenter dans la classe enfant
+        // Abstract method - No default implementation
+        throw new Error("The showMedia method must be implemented by the subclass.");
     }
 
     showPrev() {
-        // À implémenter dans la classe enfant
+        // Abstract method - No default implementation
+        throw new Error("The showPrev method must be implemented by the subclass.");
     }
 
     showNext() {
-        // À implémenter dans la classe enfant
+        // Abstract method - No default implementation
+        throw new Error("The showNext method must be implemented by the subclass.");
     }
 
     _lastMedia() {
-        // À implémenter dans la classe enfant
+        // Abstract method - No default implementation
+        throw new Error("The _lastMedia method must be implemented by the subclass.");
     }
 }
 
@@ -133,6 +139,6 @@ class MediaLightbox extends Lightbox {
     }
 
     _lastMedia() {
-        return document.getElementById(this._medias[this._currentIndex].id)
+        return document.getElementById(this._medias[this._currentIndex].id);
     }
 }

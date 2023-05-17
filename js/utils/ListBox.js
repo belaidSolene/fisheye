@@ -61,7 +61,9 @@ class ListBox {
         // update attributs currentItem
         this._currentItem = item;
         this._currentItem.setAttribute('aria-selected', 'true');
-        this._listboxButton.querySelector('#listbox-choice').textContent = this._currentItem.textContent;
+        const textButton = this._currentItem.textContent;
+        this._listboxButton.querySelector('#listbox-choice').textContent = textButton;
+        this._listboxButton.querySelector('.btn__text').setAttribute('data-text', textButton);
         this._currentIndex = Array.from(this._listboxItems).indexOf(this._currentItem);
         this._closeListBox();
       };
