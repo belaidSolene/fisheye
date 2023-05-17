@@ -60,20 +60,14 @@
 .btn-likes {
     @include doNotLookLikeABtn;
 
-    .fa-heart{
-        transition: transform 250ms ease-in-out;
-    }
-
+    &:hover, 
     &.liked {
         color: $color-secondary;
     }
 
     &:hover {
         color: $color-secondary;
-
-        .fa-heart {
-        transform: scale(1.2);
-        }
+        font-weight: 600;
     }
 }
 

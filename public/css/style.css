@@ -124,17 +124,12 @@ body {
   color: #901C1C;
   border: none;
 }
-.btn-likes .fa-heart {
-  transition: transform 250ms ease-in-out;
-}
-.btn-likes.liked {
+.btn-likes:hover, .btn-likes.liked {
   color: #D3573C;
 }
 .btn-likes:hover {
   color: #D3573C;
-}
-.btn-likes:hover .fa-heart {
-  transform: scale(1.2);
+  font-weight: 600;
 }
 
 .contact__btn-close {
