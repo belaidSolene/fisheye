@@ -1,13 +1,12 @@
-class Form {
+class Form extends Modal {
     constructor(idForm, $wrapperForm) {
+        super()
         this._idForm = idForm;
-        this._$wrapperForm = $wrapperForm;
-        this._isOpen = false;
-        this._handleOutsideClick = this._handleOutsideClick.bind(this);
-        this._closeForm = this._closeForm.bind(this);
+        this._$wrapperForm = this._initWrapper($wrapperForm);
+        this._close = this._close.bind(this);
     }
 
-    generateFields(formFields) {
+    _generateForm(formFields) {        
         // Création du formulaire
         const form = document.createElement("form");
         form.id = this._idForm;
@@ -19,7 +18,6 @@ class Form {
             fieldLabel.textContent = label;
             return fieldLabel;
         };
-
         const generateInput = ({ name, type, options, attributs }) => {
             let fieldInput;
             if (type === "textarea") {
@@ -49,14 +47,21 @@ class Form {
 
             return fieldInput;
         };
-
         const generateFormFeedback = () => {
             const $wrapperFeedback = document.createElement("div");
             $wrapperFeedback.classList.add('form-feedback');
             $wrapperFeedback.setAttribute('aria-live', 'assertive');
 
             this._$feedbackWrited = document.createElement('p');
+            this._$feedbackWrited.setAttribute('role', 'alert');
+            this._$feedbackWrited.setAttribute('aria-atomic', 'true');
+            this._$feedbackWrited.setAttribute('aria-live', 'polite');
+
             this._$hintKeyEvent = document.createElement('p');
+            this._$hintKeyEvent.classList.add('sr-only');
+            this._$hintKeyEvent.setAttribute('role', 'status');
+            this._$hintKeyEvent.setAttribute('aria-atomic', 'true');
+            this._$hintKeyEvent.setAttribute('aria-live', 'polite');
 
             $wrapperFeedback.appendChild(this._$feedbackWrited);
             $wrapperFeedback.appendChild(this._$hintKeyEvent);
@@ -84,6 +89,7 @@ class Form {
     }
 
     _validationForm() {
+        let isValid = false;
         const nbError = this._validationFields(this._validators);
         const getToFirstInvalidField = (event) => {
             const key = event.key;
@@ -99,21 +105,16 @@ class Form {
         this._$hintKeyEvent.innerHTML = "";
 
         if (nbError === 0) {
-            const $allErrorMsg = this._form.querySelectorAll('.error-msg');
-            $allErrorMsg.forEach(($errDiv) => {
-                $errDiv.innerHTML = "";
-            })
-
             this._form.removeEventListener('keydown', getToFirstInvalidField);
+            isValid = true;
         } else {
             const accord = nbError > 1 ? 'champs sont erronés' : 'champ est erroné';
-            this._$feedbackWrited.innerHTML = `Le formulaire ne peut être envoyé : ${nbError} ${accord}.`;
+            this._$feedbackWrited.innerHTML = `Le formulaire ne peut être envoyé : ${nbError} ${accord}. &nbsp;`;
 
-            this._$hintKeyEvent.classList.add('sr-only');
-            this._$hintKeyEvent.innerHTML = `Avec le raccourci clavier [flèche haute] ou [flèche droite], vous pouvez accéder au premier champ erroné.`
-
+            this._$hintKeyEvent.innerHTML = `Avec le raccourci clavier [flèche haute] ou [flèche droite], vous pouvez accéder au premier champ erroné. &nbsp;`
             this._form.addEventListener('keydown', getToFirstInvalidField);
         }
+        return isValid;
     }
 
     _validationFields(validators) {
@@ -121,7 +122,8 @@ class Form {
 
         validators.forEach((fcts, key) => {
             const field = document.getElementById(key);
-            if (field.hasAttribute('aria-required')) {
+
+            if (field.hasAttribute('required')) {
                 const msgErreur = [];
 
                 fcts.forEach((fct) => {
@@ -168,25 +170,26 @@ class Form {
 
     _setDataError(field, message) {
         const div = field.parentNode;
+        div.setAttribute('data-error', message);
+        div.setAttribute('data-error-visible', true);
+
         const idError = `err-${field.id}`;
+        const errDiv = div.querySelector(`#${idError}`);
 
-        const oldError = div.querySelector(`#${idError}`);
-
-        if (oldError) {
-            oldError.remove();
+        if (errDiv) {
+            errDiv.innerHTML = message;
         } else {
             div.setAttribute('data-error-visible', true);
+            field.setAttribute('aria-invalid', 'true');
+            field.setAttribute('aria-errormessage', idError);
 
+            const errDiv = document.createElement('label');
+            errDiv.setAttribute('for', field.id);
+            errDiv.classList.add('sr-only');
+            errDiv.id = idError
+            errDiv.innerHTML = message;
+            div.appendChild(errDiv);
         }
-
-        const errDiv = document.createElement('label');
-        errDiv.setAttribute('for', field.id);
-        errDiv.classList.add('error-msg');
-        errDiv.id = idError
-        field.setAttribute('aria-invalid', 'true');
-        field.setAttribute('aria-errormessage', idError);
-        errDiv.innerHTML = message;
-        div.appendChild(errDiv);
     }
 
     _deleteDataError(field) {
@@ -196,9 +199,27 @@ class Form {
         if (field.hasAttribute('aria-invalid')) {
             field.setAttribute('aria-invalid', 'false');
             const $errDiv = div.querySelector(`#err-${field.id}`);
-            $errDiv.classList.add('sr-only');
             $errDiv.innerHTML = 'Ce champ est validé';
         }
+    }
+
+    _resetForm() {
+        this._form.reset();
+
+        const $formData = this._form.querySelectorAll('.formData');
+        $formData.forEach(div => {
+            if (div.hasAttribute('data-error')) {
+                div.removeAttribute('data-error');
+                div.setAttribute('data-error-visible', 'false');
+            }
+        })
+
+        const $srOnly = this._form.querySelectorAll('.sr-only');
+        $srOnly.forEach(div => {
+            div.innerHTML = "";
+        })
+
+        this._$feedbackWrited.innerHTML = "";
     }
 
     _getFormData() {
@@ -216,41 +237,34 @@ class Form {
     toggleForm(openerElement) {
         this._openerElement = openerElement;
 
-        this._isOpen ? this._closeForm() : this._openForm();
+        this._isOpen ? this._close() : this._open();
     }
 
-    _closeForm() {
-        document.querySelector("#modal-section").classList.remove("active");
-        document.querySelector("#contact-form").classList.remove("active");
-        this._isOpen = false;
-        document.querySelector(".container").inert = false;
-        document.removeEventListener('click', this._handleOutsideClick);
-        document.removeEventListener('wheel', this._handleOutsideWheel, { passive: false });
-        this._form.reset();
-
+    _close() {
+        super._closeModal();
+        this._$wrapperForm.classList.remove("active");
+        this._resetForm();
         this._openerElement.focus();
+        document.removeEventListener('wheel', this._handleOutsideWheel, { passive: false });
     }
 
-    _openForm() {
-        document.querySelector("#modal-section").classList.add("active");
-        document.querySelector("#contact-form").classList.add("active");
-        this._isOpen = true;
-        document.querySelector(".container").inert = true;
-        document.addEventListener('click', this._handleOutsideClick);
+    _open() {
+        super._openModal();
+        this._$wrapperForm.classList.add("active");
         document.addEventListener('wheel', this._handleOutsideWheel, { passive: false });
-
         this._$wrapperForm.focus();
     }
 
     _handleOutsideClick(event) {
         if (this._isOpen && !this._$wrapperForm.contains(event.target)) {
-            this._closeForm();
+            this._close();
         }
     }
 
     _handleOutsideWheel(event) {
         event.preventDefault();
     }
+    
 }
 
 class ContactForm extends Form {
@@ -263,16 +277,18 @@ class ContactForm extends Form {
                 name: "firstName",
                 type: "text",
                 attributs: {
+                    required: 'true',
                     'aria-required': true,
                     minlength: 2,
                     autocomplete: 'off',
-                }
+                },
             },
             {
                 label: "Nom",
                 name: "lastName",
                 type: "text",
                 attributs: {
+                    required: 'true',
                     'aria-required': true,
                     minlength: 2,
                     autocomplete: 'off',
@@ -283,7 +299,8 @@ class ContactForm extends Form {
                 name: "email",
                 type: "email",
                 attributs: {
-                    //  'aria-required': true,
+                    // required: 'true',
+                    'aria-required': true,
                     autocomplete: 'off',
                 },
             },
@@ -292,7 +309,8 @@ class ContactForm extends Form {
                 name: "message",
                 type: "textarea",
                 attributs: {
-                    //  'aria-required': true,
+                    // required: 'true',
+                    'aria-required': true,
                     autocomplete: 'off',
                 },
             },
@@ -306,7 +324,7 @@ class ContactForm extends Form {
     }
 
     generate() {
-        this._form = this.generateFields(this._formFields);
+        this._form = this._generateForm(this._formFields);
         this._form.noValidate = true;
 
         // Création du bouton d'envoi
@@ -324,22 +342,25 @@ class ContactForm extends Form {
 
         // Ajout du formulaire au conteneur
         this._$wrapperForm.appendChild(this._form);
+
+        const closeBtn = document.createElement('button');
+        closeBtn.setAttribute('id', 'form-btn-close')
+        closeBtn.classList.add('contact__btn-close');
+        closeBtn.innerHTML = '<img src="/public/assets/icons/close.svg" />';
+
+        this._$wrapperForm.appendChild(closeBtn);
         this._addEventListener();
     }
 
     validation() {
-        const nbError = this._validationFields(this._validators);
-        this._validationForm();
-        if (5 === 0) {
-
+        if (this._validationForm()) {
 
             const response = this.response();
 
             console.log(`Formulaire Validé`);
             console.log(response);
 
-            this.toggleForm();
-            this._form.reset();
+            this._close();
         }
     }
 
@@ -361,12 +382,12 @@ class ContactForm extends Form {
             const key = event.key;
 
             if (key === 'Escape') {
-                this.toggleForm();
+                this._close();
             }
         })
 
-        const closeBtn = this._$wrapperForm.querySelector('#btn-close-form');
-        closeBtn.addEventListener('click', this._closeForm);
+        const closeBtn = this._$wrapperForm.querySelector('#form-btn-close');
+        closeBtn.addEventListener('click', this._close);
     }
 }
 

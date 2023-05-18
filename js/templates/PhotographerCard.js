@@ -38,6 +38,7 @@ class PhotographerCard {
     }
 
     createPhotographerHeader($wrapper) {
+        const textBtn = 'Contactez-moi';
         const content = `
             <div class="photographer-header__description">
                 <h1 tabindex="0">${this._photographer.name}</h1>
@@ -45,7 +46,7 @@ class PhotographerCard {
                 <div tabindex="0">
                     <h2  class="sr-only">Détails photographe,</h2>
                     <p class="photographer-header__description__localisation" lang="en">
-                        <span class="sr-only"> Localisation :</span>
+                        <span class="sr-only">Localisation :</span>
                         ${this._photographer.localisation}
                         <span class="sr-only">,</span>
                     </p>
@@ -56,7 +57,9 @@ class PhotographerCard {
                 </div>
             </div>
 
-            <button class="btn btn--hover">Contactez-moi</button>
+            <button class="btn btn--hover">
+                <span class="btn--hover__text" data-text="${textBtn}">${textBtn}</span>
+            </button>
             
             <img tabindex="0" src="${this._photographer.portrait}" alt="${this._photographer.name}" class="photographer-header__pp round">
         `
@@ -73,10 +76,10 @@ class PhotographerCard {
         const contactForm = new ContactForm("contact-photographer", $wrapperContactForm);
         contactForm.generate();
 
-       btn.addEventListener('click', (event) => {
-        event.stopPropagation();
-        contactForm.toggleForm(event.currentTarget);
-       })
+        btn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            contactForm.toggleForm(event.currentTarget);
+        })
     }
 
     insertLikesAndPrice($wrapper, likes) {

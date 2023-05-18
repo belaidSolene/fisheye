@@ -1,15 +1,11 @@
-class Lightbox {
+class Lightbox extends Modal{
     constructor(lightboxId) {
-        this._modalSection = document.querySelector('#modal-section');
-
-        this._lightbox = document.querySelector(`#${lightboxId}`);
+        super ();
+        this._lightbox = this._initWrapper(lightboxId);
         this._lightboxCloseBtn = this._lightbox.querySelector('.lightbox__btn--close');
         this._lightboxPrevBtn = this._lightbox.querySelector('.lightbox__btn__nav--prev');
         this._lightboxNextBtn = this._lightbox.querySelector('.lightbox__btn__nav--next');
         this._lightboxContent = this._lightbox.querySelector('.lightbox__media-container');
-        this._isOpen = false;
-
-        this._addEventListener();
     }
 
     _addEventListener() {
@@ -28,7 +24,7 @@ class Lightbox {
             switch (key) {
                 case 'Escape':
                     event.preventDefault();
-                    this.closeLightbox();
+                    this._close();
                     break;
 
                 case 'ArrowLeft':
@@ -47,7 +43,7 @@ class Lightbox {
 
         // close button
         this._lightboxCloseBtn.addEventListener('click', () => {
-            this.closeLightbox();
+            this._close();
         });
 
         // left arrow
@@ -62,30 +58,26 @@ class Lightbox {
     }
 
     showLightbox() {
+        super._openModal(this._lightbox);
         this._lightbox.classList.add('active');
-        this._modalSection.classList.add('active');
-        this._isOpen = true;
-        document.querySelector(".container").inert = true;
-        document.addEventListener('click', this._handleOutsideClick);
-        document.addEventListener('wheel', this._handleOutsideWheel, { passive: false });
-        this._lightbox.focus();
 
+        this._addEventListener();
+        document.addEventListener('wheel', this._handleOutsideWheel, { passive: false });
         this.showMedia();
+        this._lightbox.focus();
     }
 
-    closeLightbox() {
+    _close() {
+        super._closeModal();
         this._lightbox.classList.remove('active');
-        this._modalSection.classList.remove('active');
-        this._isOpen = false;
-        document.querySelector(".container").inert = false;
-        document.removeEventListener('click', this._handleOutsideClick);
         document.removeEventListener('wheel', this._handleOutsideWheel, { passive: false });
+
         this._lastMedia().focus();
     }
 
     _handleOutsideClick = (event) => {
         if (this._isOpen && !this._lightbox.contains(event.target)) {
-            this.closeLightbox();
+            this._close();
         }
     }
 
@@ -94,19 +86,23 @@ class Lightbox {
     }
 
     showMedia() {
-        // À implémenter dans la classe enfant
+        // Abstract method - No default implementation
+        throw new Error("The showMedia method must be implemented by the subclass.");
     }
 
     showPrev() {
-        // À implémenter dans la classe enfant
+        // Abstract method - No default implementation
+        throw new Error("The showPrev method must be implemented by the subclass.");
     }
 
     showNext() {
-        // À implémenter dans la classe enfant
+        // Abstract method - No default implementation
+        throw new Error("The showNext method must be implemented by the subclass.");
     }
 
     _lastMedia() {
-        // À implémenter dans la classe enfant
+        // Abstract method - No default implementation
+        throw new Error("The _lastMedia method must be implemented by the subclass.");
     }
 }
 
@@ -141,6 +137,6 @@ class MediaLightbox extends Lightbox {
     }
 
     _lastMedia() {
-        return document.getElementById(this._medias[this._currentIndex].id)
+        return document.getElementById(this._medias[this._currentIndex].id);
     }
 }
