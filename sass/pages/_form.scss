@@ -3,6 +3,9 @@
     border-radius: 5px;
     background-color: $color-tertiary;
     width: 45%;
+    height: auto;
+    height: 80vh;
+    overflow-y: auto;
     padding: 35px;
     position: fixed;
     top: 50%;

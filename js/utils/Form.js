@@ -245,13 +245,13 @@ class Form extends Modal {
         this._$wrapperForm.classList.remove("active");
         this._resetForm();
         this._openerElement.focus();
-        document.removeEventListener('wheel', this._handleOutsideWheel, { passive: false });
+      //  document.removeEventListener('wheel', this._handleOutsideWheel, { passive: false });
     }
 
     _open() {
         super._openModal();
         this._$wrapperForm.classList.add("active");
-        document.addEventListener('wheel', this._handleOutsideWheel, { passive: false });
+      //  document.addEventListener('wheel', this._handleOutsideWheel, { passive: false });
         this._$wrapperForm.focus();
     }
 
