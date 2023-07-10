@@ -3,7 +3,7 @@ class PhotographerApp extends App {
     constructor() {
         super()
         this.URLparams = new URLSearchParams(window.location.search);
-        this.photographersApi = new PhotographersApi('/data/photographers-data.json')
+        this.photographersApi = new PhotographersApi('../data/photographers-data.json')
 
         this.mediaListbox = document.querySelector('.mediaListbox')
 
