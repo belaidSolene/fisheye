@@ -2,6 +2,7 @@
 class PhotographerApp extends App {
     constructor() {
         super()
+        
         this.URLparams = new URLSearchParams(window.location.search);
         this.photographersApi = new PhotographersApi(window.location.href + 'data/photographers-data.json')
 
