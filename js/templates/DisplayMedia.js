@@ -6,7 +6,6 @@ class DisplayMedia {
 
         this._sortedList = this._sortMediaList()
 
-
         this._addSortEventListener();
     }
 

@@ -75,6 +75,30 @@ class ListBox {
         $wrapperTxtBtn.setAttribute('data-text', textButton);
 
         this._listboxButton.querySelector('#listbox-choice-sr').textContent = textButton;
+
+        /* 
+        HTML :
+        <div class="element">
+          Texte principal
+        </div>
+
+        CSS :
+        .element::after {
+            content: ""; /* Par défaut, le contenu de ::after est vide //
+             /* Autres styles pour ::after //
+        }
+
+        JS :
+        var element = document.querySelector('.element');
+        var textContent = element.textContent;
+        element.style.setProperty('--after-content', "'" + textContent + "'");
+
+        CSS (avec variable) :
+        .element::after {
+          content: var(--after-content);
+          /* Autres styles pour ::after //
+        }
+        */
       };
 
       item.addEventListener('keydown', (event) => {
