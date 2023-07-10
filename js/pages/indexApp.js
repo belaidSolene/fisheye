@@ -2,8 +2,6 @@ class IndexApp extends App {
     constructor() {
         super();
         this.$photographersWrapper = document.querySelector('.photographer-section')
-        console.log(window.location.href);
-        console.log(window.location.href + 'data/photographers-data.json');
         this.photographersApi = new PhotographersApi(window.location.href + 'data/photographers-data.json')
     }
 
