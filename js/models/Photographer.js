@@ -30,6 +30,6 @@ class Photographer {
     }
 
     get portrait() {
-        return `/public/assets/photographers/${this._portrait}`
+        return window.location.href + `public/assets/photographers/${this._portrait}`
     }
 }

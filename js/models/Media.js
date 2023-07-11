@@ -40,7 +40,7 @@ class Image extends Media {
     }
     
     get image() {
-        return `/public/assets/portfolio/${this._photographerId}/${this._image}`
+        return window.location.href + `/public/assets/portfolio/${this._photographerId}/${this._image}`
     }
 
     get type() {
@@ -55,7 +55,7 @@ class Video extends Media {
     }
 
     get video() {
-        return `/public/assets/portfolio/${this._photographerId}/${this._video}`
+        return window.location.href + `public/assets/portfolio/${this._photographerId}/${this._video}`
     }
 
     get type() {
