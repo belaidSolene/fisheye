@@ -1,12 +1,15 @@
+/* Styling for the photographer section in index.html */
 .photographer-section {
     margin-top: 100px;
     width: 100%;
 
+    // Use grid layout for the media cards, 3 photographers by row
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
     gap: 8em;
 
+    /* Styling for each photographer card inside the photographer section */
     .photographer-card {
         width: 80%;
         display: flex;
@@ -14,6 +17,7 @@
         align-items: center;
         text-align: center;
 
+        // Styling for photographer's profile picture
         &__pp {
             width: 60%;
         }
@@ -35,7 +39,7 @@
         }
 
         &__price {
-            color: $color-senary;
+            color: $color-quinary;
             font-size: 0.68em;
         }
     }

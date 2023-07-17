@@ -11,27 +11,43 @@
 </head>
 
 <body>
+  <!-- Modal Section -->
+  <!-- Manages the modal functionality using Modal.js -->
   <section id="modal-section" class="modal-section">
 
+    <!-- Form Section -->
+    <!-- Contains the form for contacting the photographer -->
     <div id="contact-form" tabindex="0" class="contact" role="dialog" aria-modal="true" aria-labelledby="contact-title">
       <header class="contact__header">
+        <!-- Heading dynamically filled by Form.js -->
         <h2 id="contact-title" aria-hidden="true" class="contact__header__photographer"></h2>
       </header>
 
-      <!-- Form add with JS -->
+      <!-- Form dynamically filled by Form.js -->
     </div>
 
+    <!-- Lightbox Section -->
+    <!-- Contains the lightbox for displaying media -->
+    <!-- Manages the lightbox functionality using Lightbox.js -->
     <div id="lightbox" tabindex="0" class="lightbox" role="dialog" aria-modal="true" aria-label="Média en grand">
-      <article class="lightbox__media-container"></article>
+      <!-- Container for the media (image or video) displayed inside the lightbox -->
+      <article class="lightbox__media-container">
+        <!-- Article dynamically filled by Lightbox.js -->
+      </article>
 
-      <button type="button" aria-label="Afficher média précédent" class="lightbox__btn lightbox__btn__nav lightbox__btn__nav--prev">
+      <!-- Button for displaying the previous media in the lightbox -->
+      <button type="button" aria-label="Afficher média précédent"
+        class="lightbox__btn lightbox__btn__nav lightbox__btn__nav--prev">
         <i class="fa-solid fa-chevron-left"></i>
       </button>
 
-      <button type="button" aria-label="Afficher média suivant" class="lightbox__btn lightbox__btn__nav lightbox__btn__nav--next">
+      <!-- Button for displaying the next media in the lightbox -->
+      <button type="button" aria-label="Afficher média suivant"
+        class="lightbox__btn lightbox__btn__nav lightbox__btn__nav--next">
         <i class="fa-solid fa-chevron-right"></i>
       </button>
 
+      <!-- Button for closing the lightbox -->
       <button aria-label="Fermer" class="lightbox__btn lightbox__btn--close">
         <i class="fa-solid fa-xmark"></i>
       </button>
@@ -39,6 +55,9 @@
   </section>
 
   <div class="container">
+
+    <!-- Header section -->
+    <!-- Includes the logo as a link to index.html -->
     <header>
       <a href="index.html">
         <img src="public/assets/icons/logo.png" class="logo" alt="logo">
@@ -46,45 +65,70 @@
     </header>
 
     <main id="main">
-      <section class="photographer-header"></section>
 
+      <!-- Photographer Header -->
+      <section class="photographer-header">
+        <!-- Content dynamically filled by photographerCard.js -->
+      </section>
+
+      <!-- Information Section -->
+      <!-- Indicates the total likes of all the media and the photographer's price -->
+      <!-- Manages in photographerApp.js -->
       <div tabindex="0" class="insertLikesAndPrice"></div>
 
+      <!-- Listbox Section -->
+      <!-- Listbox for sorting the media by likes, date, or alphabetical title -->
+      <!-- Popularity selected by default -->
       <div class="mediaListbox">
         <label aria-hidden="true">Trier par</label>
 
+        <!-- Manages by Listbox.js -->
         <div class="listbox">
-          <button id="listbox-btn" aria-label="Trier galerie par " aria-labelledby="listbox-btn listbox-choice" role="combobox" class="btn btn--hover listbox__btn" aria-haspopup="listbox" aria-expanded="false"
+          <!-- button to display the listbox -->
+          <button id="listbox-btn" aria-label="Trier galerie par " aria-labelledby="listbox-btn listbox-choice"
+            role="combobox" class="btn btn--hover listbox__btn" aria-haspopup="listbox" aria-expanded="false"
             aria-controls="sort-options">
-            <span id="listbox-choice" aria-hidden="true" class="btn--hover__text">Popularité</span>
+            <!-- Does not read directly by screen reader -->
+            <span id="listbox-choice" aria-hidden="true">Popularité</span>
             <i class="fa-solid fa-chevron-down chevron-down" aria-hidden="true"></i>
           </button>
 
+          <!-- Listbox -->
           <ul id="sort-options" class="listbox__list" role="listbox">
+
+            <!-- Options no accessible by tab, only with direction arrows -->
+            <!-- Option to sort by likes -->
             <li class="listbox__item" tabindex="-1" role="option" aria-selected="true" data-sort-by="likes">
               <div class="separator"></div>
-              <span aria-hidden="true" class="listbox__item__txt" data-text="Popularité">Popularité</span>
-              <span class="sr-only">Popularité</span>
+              <span class="listbox__item__txt">Popularité</span>
             </li>
+                        
+            <!-- Option to sort by date -->
             <li class="listbox__item" tabindex="-1" role="option" aria-selected="false" data-sort-by="date">
               <div class="separator"></div>
-              <span aria-hidden="true" class="listbox__item__txt" data-text="Date">Date</span>
-              <span class="sr-only">Date</span>
+              <span class="listbox__item__txt">Date</span>
             </li>
+            
+            <!-- Option to sort by title -->
             <li class="listbox__item" tabindex="-1" role="option" aria-selected="false" data-sort-by="title">
               <div class="separator"></div>
-              <span aria-hidden="true" class="listbox__item__txt" data-text="Titre">Titre</span>
-              <span class="sr-only">Titre</span>
+              <span class="listbox__item__txt">Titre</span>
             </li>
           </ul>
         </div>
       </div>
 
-      <section class="medias-section"></section>
+      <!-- Media Section -->
+      <!-- Displays all the medias from the photographer -->
+      <section class="medias-section">
+        <!-- Media cards dynamically filled by Display.js -->
+      </section>
 
     </main>
   </div>
 
+
+  <!-- JavaScript Files -->
   <!-- Api -->
   <script src="js/api/Api.js"></script>
 

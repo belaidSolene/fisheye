@@ -1,3 +1,4 @@
+/* Styling for the modal */
 .modal-section {
     display: none;
     position: fixed;
@@ -8,5 +9,5 @@
     width: 100%;
     overflow: auto;
 
-    @include background-color($color-senary, 0.3); 
+    @include background-color($color-quaternary, 0.3); 
 }

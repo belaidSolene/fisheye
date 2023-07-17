@@ -1,16 +1,26 @@
 $color-primary: #901C1C;
 $color-secondary: #D3573C;
 $color-tertiary: #DB8876;
-$color-quaternary: #525252;
-$color-senary: #757575;
+
+// Quinary color used the photographer's price in index.html and background modal
+$color-quaternary: #757575;
+
+// Color used for the photographer's tagline in photographer.html
+$color-quinary: #525252;
 
 $white: #FFFFFF;
 $black: #000000;
 
+// Background color for the photographer header
 $color-photographer-header: #FAFAFA;
+// Background color for the contact form
 $color-form: #312E2E;
 
+// Border radius for buttons
 $border-radius-btn : 5px;
 
+// Distance between header and listbox
 $distance-header-listbox: 20px;
+
+// Distance between listbox and media section
 $distance-listbox-medias: $distance-header-listbox + 20px;

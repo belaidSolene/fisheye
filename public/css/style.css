@@ -1,3 +1,5 @@
+/* Importing variables and mixins from utility files */
+/* Base styles */
 @import url("https://fonts.googleapis.com/css?family=DM+Sans&display=swap");
 *,
 *::before,
@@ -42,31 +44,47 @@ button {
   cursor: pointer;
 }
 
+/* Add focus styles for keyboard navigation with an outline and box shadow */
 .key-navigation :focus {
   outline: 4px solid yellowgreen;
   box-shadow: 0 0 10px #54800D;
 }
+.key-navigation :focus .listbox__list__item__txt {
+  border: 2px solid yellowgreen;
+}
 
+/* Font Import */
 body {
   font-family: "DM Sans", sans-serif;
 }
+
+/* Component styles */
+/* Styling for the buttons */
+/* Generic styles for buttons used throughout the application */
 .btn {
   font-size: 1.13em;
   font-weight: 600;
+  letter-spacing: 1px;
+  color: #FFFFFF;
   background-color: #901C1C;
   width: 175px;
   height: 70px;
   padding: 18px;
   border: none;
   border-radius: 5px;
+  overflow: hidden;
   cursor: pointer;
+  /* Hover styles for the button */
 }
 .btn--hover {
   position: relative;
   z-index: 1;
 }
-.btn--hover::after {
-  content: attr(data-text);
+.btn--hover:hover {
+  color: #000000;
+}
+.btn--hover:hover::after {
+  content: "";
   position: absolute;
   top: 0;
   bottom: 0;
@@ -78,73 +96,12 @@ body {
   background-color: #DB8876;
   width: 100%;
   height: 100%;
-  border: none;
-  border-radius: 5px;
 }
-.btn--hover__text {
-  position: relative;
-  z-index: 1;
-  background-color: #FFFFFF;
-  background-clip: padding-box;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.btn--hover__text::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  opacity: 0;
-  z-index: -1;
-  transition: opacity 250ms;
-  background-color: #000000;
-  width: 100%;
-  height: 100%;
-  background-clip: padding-box;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  z-index: 45;
-}
-.btn--hover:hover::after,
-.btn--hover:hover .btn--hover__text::after {
+.btn--hover:hover::after {
   opacity: 1;
 }
-.btn--submit {
-  margin-top: 26px;
-  color: #FFFFFF;
-}
 
-.btn-likes {
-  font-family: "DM Sans", sans-serif;
-  font-weight: 500;
-  font-size: 1em;
-  background-color: #FFFFFF;
-  color: #901C1C;
-  border: none;
-}
-.btn-likes:hover, .btn-likes.liked {
-  color: #D3573C;
-}
-.btn-likes:hover {
-  color: #D3573C;
-  font-weight: 600;
-}
-
-.contact__btn-close {
-  font-family: "DM Sans", sans-serif;
-  font-weight: 500;
-  font-size: 1em;
-  background-color: #FFFFFF;
-  color: #901C1C;
-  border: none;
-  background-color: transparent;
-  position: absolute;
-  top: 40px;
-  right: 40px;
-}
-
+/* Styling for displaying like count and photographer's price */
 .insertLikesAndPrice {
   position: fixed;
   z-index: 2;
@@ -162,6 +119,7 @@ body {
   font-weight: 700;
 }
 
+/* Styling for the media listbox section */
 .mediaListbox {
   margin: 20px 100px 40px 100px;
   display: inline-flex;
@@ -169,6 +127,18 @@ body {
   align-items: baseline;
   font-size: 1.13em;
   font-weight: 700;
+  /* Styling for the listbox container */
+  /* Styling for the media listbox when it's shown (opened) */
+}
+.mediaListbox .listbox {
+  /* 
+   Styling for the listbox button
+
+   The button styles are managed in the "button.scss" file
+   This block applies styles to the listbox button which includes text and an icon
+  */
+  /* Styling for the listbox options container */
+  /* Styling for each listbox item */
 }
 .mediaListbox .listbox__btn {
   height: 61px;
@@ -177,10 +147,6 @@ body {
   align-items: center;
 }
 .mediaListbox .listbox__btn .chevron-down {
-  background-color: #FFFFFF;
-  background-clip: padding-box;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   position: absolute;
   right: 0;
   margin-right: 10px;
@@ -188,28 +154,6 @@ body {
 }
 .mediaListbox .listbox__btn .chevron-down.rotated {
   transform: rotate(180deg);
-}
-.mediaListbox .listbox__btn .chevron-down::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  opacity: 0;
-  z-index: -1;
-  transition: opacity 250ms;
-  background-color: #000000;
-  width: 100%;
-  height: 100%;
-  content: "\f078";
-  z-index: 15;
-  background-clip: padding-box;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.mediaListbox .listbox__btn:hover .chevron-down::after {
-  opacity: 1;
 }
 .mediaListbox .listbox__list {
   display: none;
@@ -223,55 +167,14 @@ body {
 }
 .mediaListbox .listbox__item {
   height: 61px;
-  background-color: #901C1C;
+  background-color: transparent;
   cursor: inherit;
   position: relative;
   z-index: 1;
-}
-.mediaListbox .listbox__item__txt {
-  padding-left: 18px;
-  line-height: 61px;
-  font-size: 1.13em;
-  font-weight: 600;
-  background-color: #FFFFFF;
-  background-clip: padding-box;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.mediaListbox .listbox__item__txt::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  opacity: 0;
-  z-index: -1;
-  transition: opacity 250ms;
-  background-color: #000000;
-  width: 100%;
-  height: 100%;
-  background-clip: padding-box;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  z-index: 45;
-  padding-left: 18px;
-  top: 1px;
-}
-.mediaListbox .listbox__item .separator {
-  width: 85%;
-  height: 1px;
-  background-color: #FFFFFF;
-  margin: 0 auto;
-}
-.mediaListbox .listbox__item:hover::after, .mediaListbox .listbox__item:focus::after {
-  opacity: 1;
-}
-.mediaListbox .listbox__item:hover .listbox__item__txt::after, .mediaListbox .listbox__item:focus .listbox__item__txt::after {
-  opacity: 1;
+  /* For no displaying the selected listbox item */
 }
 .mediaListbox .listbox__item::after {
-  content: attr(data-text);
+  content: "";
   position: absolute;
   top: 0;
   bottom: 0;
@@ -283,7 +186,25 @@ body {
   background-color: #DB8876;
   width: 100%;
   height: 100%;
-  outline: 1px solid transparent;
+}
+.mediaListbox .listbox__item__txt {
+  padding-left: 18px;
+  line-height: 61px;
+  font-size: 1.13em;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+.mediaListbox .listbox__item .separator {
+  width: 85%;
+  height: 1px;
+  background-color: #FFFFFF;
+  margin: 0 auto;
+}
+.mediaListbox .listbox__item:hover::after, .mediaListbox .listbox__item:focus::after {
+  opacity: 1;
+}
+.mediaListbox .listbox__item:hover .listbox__item__txt, .mediaListbox .listbox__item:focus .listbox__item__txt {
+  color: #000000;
 }
 .mediaListbox .listbox__item[aria-selected=true] {
   display: none;
@@ -298,6 +219,8 @@ body {
   display: block;
 }
 
+/* Layout styles */
+/* Styling for the header */
 header {
   width: 100%;
   padding: 0 100px;
@@ -315,6 +238,7 @@ header h1 {
   font-size: 2.25em;
 }
 
+/* Styling for the modal */
 .modal-section {
   display: none;
   position: fixed;
@@ -327,6 +251,12 @@ header h1 {
   background-color: rgba(117, 117, 117, 0.3);
 }
 
+/* 
+    Styling for the lightbox section 
+
+    This section handle the styling of the lightbox, which is hidden by default and displayed
+    as a fixed overlay when activated.
+*/
 .lightbox {
   display: none;
   position: fixed;
@@ -340,6 +270,8 @@ header h1 {
   padding: 20px;
   overflow: hidden;
   z-index: 101;
+  /* Container for the media (image or video) displayed inside the lightbox */
+  /* Styles for the buttons used in the lightbox */
 }
 .lightbox .lightbox__media-container {
   max-width: 100%;
@@ -372,6 +304,9 @@ header h1 {
   color: #901C1C;
   font-size: 3em;
 }
+.lightbox__btn:hover {
+  color: #DB8876;
+}
 .lightbox__btn--close {
   position: absolute;
   top: 0;
@@ -393,6 +328,8 @@ header h1 {
   padding-right: 1em;
 }
 
+/* Page-specific styles */
+/* Styling for the photographer section in index.html */
 .photographer-section {
   margin-top: 100px;
   width: 100%;
@@ -400,6 +337,7 @@ header h1 {
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   gap: 8em;
+  /* Styling for each photographer card inside the photographer section */
 }
 .photographer-section .photographer-card {
   width: 80%;
@@ -425,10 +363,11 @@ header h1 {
   font-size: 0.75em;
 }
 .photographer-section .photographer-card__price {
-  color: #757575;
+  color: #525252;
   font-size: 0.68em;
 }
 
+/* Styling for the photographer header section in photographer.html */
 .photographer-header {
   background-color: #FAFAFA;
   height: 300px;
@@ -450,13 +389,14 @@ header h1 {
   font-size: 1.5em;
 }
 .photographer-header__description__tagline {
-  color: #525252;
+  color: #757575;
   font-size: 1.13em;
 }
 .photographer-header__pp {
   height: 80%;
 }
 
+/* Styling for the medias section */
 .medias-section {
   margin: 0 100px;
   display: grid;
@@ -464,6 +404,7 @@ header h1 {
   gap: 95px;
   position: relative;
   z-index: 1;
+  /* Styling for each media card inside the medias section */
 }
 .medias-section .media-card__content {
   overflow: hidden;
@@ -479,10 +420,6 @@ header h1 {
 .medias-section .media-card__content__media:hover {
   transform: scale(1.2);
 }
-.medias-section .media-card__button {
-  border: none;
-  background: transparent;
-}
 .medias-section .media-card__description {
   color: #901C1C;
   font-size: 1.5em;
@@ -493,7 +430,28 @@ header h1 {
 .medias-section .media-card__description__title {
   width: 70%;
 }
+.medias-section .media-card__description .btn-likes {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  font-size: 1em;
+  background-color: #FFFFFF;
+  color: #901C1C;
+  border: none;
+}
+.medias-section .media-card__description .btn-likes:hover, .medias-section .media-card__description .btn-likes.liked {
+  color: #D3573C;
+}
+.medias-section .media-card__description .btn-likes:hover {
+  color: #D3573C;
+  font-weight: 600;
+}
 
+/*
+    Styling for the contact section
+
+    This section handles the styling of the contact form, which is hidden by default and displayed as a 
+    fixed overlay when activated. 
+*/
 .contact {
   display: none;
   border-radius: 5px;
@@ -508,6 +466,7 @@ header h1 {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 101;
+  /* Styling for the form */
 }
 .contact__header {
   padding: 0;
@@ -524,10 +483,17 @@ header h1 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  /* 
+      Styling for the submit button
+
+      The button styles are managed in the "button.scss" file
+      Additional styles for the submit button
+  */
 }
 .contact form .formData {
   width: 100%;
   margin-bottom: 12px;
+  /* Styling for the errors messages */
 }
 .contact form .formData label {
   color: #312E2E;
@@ -552,7 +518,7 @@ header h1 {
   font-size: 1.5em;
   color: #000000;
   display: block;
-  margin: 2px 0 17px;
+  margin: 6px 0 17px;
   text-align: left;
   line-height: 0.3;
   opacity: 0;
@@ -562,36 +528,32 @@ header h1 {
   opacity: 1;
 }
 .contact form .formData[data-error-visible=true] input {
+  margin-top: 3px;
   border: 3px solid #23321A;
+  outline: 3px solid #FFFFFF;
 }
 .contact form .form-feedback {
   font-size: 1.7em;
   color: #000000;
 }
+.contact form .btn--submit {
+  margin-top: 26px;
+}
+.contact__btn-close {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  font-size: 1em;
+  background-color: #FFFFFF;
+  color: #901C1C;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+}
 
 .active {
   display: block;
-}
-
-.sr-only {
-  position: absolute !important;
-  clip: rect(1px, 1px, 1px, 1px);
-  padding: 0 !important;
-  border: 0 !important;
-  height: 1px !important;
-  width: 1px !important;
-  overflow: hidden;
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-  clip: rect(0 0 0 0);
-  overflow: hidden;
 }
 
 /*# sourceMappingURL=style.css.map */

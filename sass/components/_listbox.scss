@@ -1,3 +1,4 @@
+/* Styling for the media listbox section */
 .mediaListbox {
   margin: $distance-header-listbox 100px $distance-listbox-medias 100px;
 
@@ -8,7 +9,15 @@
   font-size: 1.13em;
   font-weight: 700;
 
+  /* Styling for the listbox container */
   .listbox {
+
+    /* 
+     Styling for the listbox button
+     
+     The button styles are managed in the "button.scss" file
+     This block applies styles to the listbox button which includes text and an icon
+    */
     &__btn {
       height: 61px;
       text-align: left;
@@ -16,37 +25,20 @@
       align-items: center;
 
       .chevron-down {
-        background-color: $white;
-        background-clip: padding-box;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-
         position: absolute;
         right: 0;
         margin-right: 10px;
         transition: transform 250ms ease-in-out;
 
+        // Styling for the rotated chevron (when listbox is open)
         &.rotated {
           transform: rotate(180deg);
         }
-
-        &::after {
-          @include afterDefaultBtn($black);
-          content: "\f078";
-          z-index: 15;
-          background-clip: padding-box;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
       }
 
-      &:hover {
-        .chevron-down::after {
-          opacity: 1;
-        }
-      }
     }
 
+    /* Styling for the listbox options container */
     &__list {
       display: none;
       list-style: none;
@@ -59,37 +51,30 @@
       z-index: 2;
     }
 
+    /* Styling for each listbox item */
     &__item {
       height: 61px;
-      background-color: $color-primary;
+      background-color: transparent;
 
       cursor: inherit;
 
       position: relative;
       z-index: 1;
 
+      &::after {
+        @include afterDefault;
+      }
+
+      // Styling for the text inside each listbox item
       &__txt {
         padding-left: 18px;
         line-height: 61px;
         font-size: 1.13em;
         font-weight: 600;
-        background-color: $white;
-        background-clip: padding-box;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-
-
-        &::after {
-          @include afterDefaultBtn($black);
-          background-clip: padding-box;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          z-index: 45;
-          padding-left: 18px;
-          top: 1px;
-        }
+        color: $white;
       }
 
+      // Styling for the separator line between listbox items
       .separator {
         width: 85%;
         height: 1px;
@@ -103,23 +88,19 @@
           opacity: 1;
         }
 
-        .listbox__item__txt::after {
-          opacity: 1;
+        .listbox__item__txt {
+          color: $black;
         }
       }
 
-      &::after {
-        @include afterDefaultBtn;
-        outline: 1px solid transparent;
-      
-      }
-
+      /* For no displaying the selected listbox item */
       &[aria-selected="true"] {
         display: none;
       }
     }
   }
 
+  /* Styling for the media listbox when it's shown (opened) */
   &.show {
     display: inline-flex;
 

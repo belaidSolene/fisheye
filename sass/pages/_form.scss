@@ -1,3 +1,9 @@
+/*
+    Styling for the contact section
+    
+    This section handles the styling of the contact form, which is hidden by default and displayed as a 
+    fixed overlay when activated. 
+*/
 .contact {
     display: none;
     border-radius: 5px;
@@ -13,6 +19,7 @@
     transform: translate(-50%, -50%);
     z-index: 101;
 
+    // Styling for the header section
     &__header {
         padding: 0;
         width: 100%;
@@ -24,6 +31,7 @@
         }
     }
 
+    /* Styling for the form */
     form {
         width: 100%;
         margin-top: 19px;
@@ -39,7 +47,7 @@
                 color: $color-form;
                 font-size: 2.25em;
             }
-    
+
             input,
             textarea {
                 width: 100%;
@@ -47,41 +55,66 @@
                 border-radius: 5px;
                 font-size: 2.25em;
             }
-    
+
             input {
                 height: 68px;
                 margin-bottom: 10px;
             }
-    
+
             textarea {
                 height: 170px;
             }
 
+            /* Styling for the errors messages */
             &[data-error]::after {
                 content: attr(data-error);
                 font-size: 1.5em;
                 color: $black;
                 display: block;
-                margin: 2px 0 17px;
+                margin: 6px 0 17px;
                 text-align: left;
                 line-height: 0.3;
                 opacity: 0;
                 transition: 0.3s;
-              }
-              
-             &[data-error-visible="true"]::after {
+            }
+
+            &[data-error-visible="true"]::after {
                 opacity: 1;
-              }
-              
-              &[data-error-visible="true"] input {
+            }
+
+            &[data-error-visible="true"] input {
+                margin-top: 3px;
                 border: 3px solid #23321A;
-              }
+                outline: 3px solid $white;
+
+            }
         }
 
+        // Styling for the feedback message
         .form-feedback {
             font-size: 1.7em;
             color: $black;
         }
+
+        /* 
+            Styling for the submit button
+     
+            The button styles are managed in the "button.scss" file
+            Additional styles for the submit button
+        */
+        .btn--submit {
+            margin-top: 26px;
+        }
+    }
+
+    // STyliing for the close button
+    &__btn-close {
+        @include doNotLookLikeABtn;
+    
+        background-color: transparent;
+        position: absolute;
+        top: 40px;
+        right: 40px;
     }
 }
 

@@ -1,11 +1,8 @@
+/* Font Import */
 @import url('https://fonts.googleapis.com/css?family=DM+Sans&display=swap');
 
-$police: "DM Sans", sans-serif;
+$font: "DM Sans", sans-serif;
 
 body{
-    font-family: $police;
-
-    button {
-       // font-family: $police;
-    }
+    font-family: $font;
 }

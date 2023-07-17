@@ -1,6 +1,8 @@
+/* Styling for the medias section */
 .medias-section {
     margin: 0 100px;
 
+    // Use grid layout for the media cards, 3 medias by row
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 95px;
@@ -8,6 +10,7 @@
 
     z-index: 1;
 
+    /* Styling for each media card inside the medias section */
     .media-card {
 
         &__content {
@@ -15,23 +18,21 @@
             width: 100%;
             height: 300px;
 
+            // Styling for the media (image or video) inside the media card
             &__media {
                 width: 100%;
                 height: 100%;
                 cursor: pointer;
                 transition: transform 350ms ease-in-out;
 
+                // Create a zoom effect on hover
                 &:hover {
                     transform: scale(1.2);
                 }
             }
         }
 
-        &__button {
-            border: none;
-            background: transparent;
-        }
-
+        // Styling for the description section inside the media card
         &__description {
             color: $color-primary;
             font-size: 1.5em;
@@ -42,6 +43,21 @@
 
             &__title {
                 width: 70%;
+            }
+
+            // Styling for the likes button used for liking media 
+            .btn-likes {
+                @include doNotLookLikeABtn;
+
+                &:hover,
+                &.liked {
+                    color: $color-secondary;
+                }
+
+                &:hover {
+                    color: $color-secondary;
+                    font-weight: 600;
+                }
             }
         }
     }

@@ -1,25 +1,35 @@
+/* Importing variables and mixins from utility files */
 @import "./utils/variables";
 @import "./utils/mixins";
 
 
+/* Base styles */
 @import "./base/base";
 @import "./base/typography";
 
 
+/* Component styles */
 @import "./components/buttons";
+
+// Specific for the photographer.html page
 @import "./components/insertLikesAndPrice";
 @import "./components/listbox";
 
 
+/* Layout styles */
 @import "./layout/header";
 @import "./layout/modal";
 @import "./layout/lightbox";
 
 
+/* Page-specific styles */
+
+// Styles for the index.html page
 @import "./pages/photographers-section";
+
+// Styles for the photographer.html page
 @import "./pages/photographer-header";
 @import "./pages/medias-section";
 @import "./pages/form";
-@import "./pages/aria";
 
 

@@ -1,3 +1,4 @@
+/* Styling for the photographer header section in photographer.html */
 .photographer-header {
     background-color: $color-photographer-header;
         height: 300px;
@@ -8,6 +9,7 @@
         justify-content: space-between;
         align-items: center;
 
+    // Styling for photographer's description
     &__description {
 
         h1 {
@@ -30,6 +32,7 @@
         }
     }
 
+    // Styling for photographer's profile picture
     &__pp {
         height: 80%;
     }

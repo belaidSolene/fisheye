@@ -1,3 +1,9 @@
+/* 
+    Styling for the lightbox section 
+
+    This section handle the styling of the lightbox, which is hidden by default and displayed
+    as a fixed overlay when activated.
+*/
 .lightbox {
     display: none;
     position: fixed;
@@ -12,6 +18,7 @@
     overflow: hidden;
     z-index: 101;
 
+    /* Container for the media (image or video) displayed inside the lightbox */
     .lightbox__media-container {
         max-width: 100%;
         height: 75vh;
@@ -21,6 +28,7 @@
         transform: translate(-50%, -50%);
         margin-bottom: 20px;
 
+        //  The media (image or video) displayed inside the media container 
         &__content {
             width: 100%;
             height: 90%;
@@ -37,11 +45,17 @@
     }
 
 
+    /* Styles for the buttons used in the lightbox */
     &__btn {
         @include doNotLookLikeABtn;
         color: $color-primary;
         font-size: 3em;
 
+        &:hover {
+            color: $color-tertiary;
+        }
+
+        // Styling for positioning the close button
         &--close {
             position: absolute;
             top: 0;
@@ -49,6 +63,7 @@
             margin: 15px;
         }
 
+        // Styling for positioning the navigation buttons
         &__nav {
             padding: 3em;
             position: absolute;
