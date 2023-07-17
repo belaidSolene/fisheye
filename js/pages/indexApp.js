@@ -3,7 +3,7 @@ class IndexApp extends App {
         super();
         
         this.$photographersWrapper = document.querySelector('.photographer-section')
-        this.photographersApi = new PhotographersApi('data/photographers-data.json')
+        this.photographersApi = new PhotographersApi('./data/photographers-data.json')
     }
 
     async main() {
