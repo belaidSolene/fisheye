@@ -1,11 +1,17 @@
+// The MediaCard class represents a media item and provides methods to create and manage the media card elements.
 class MediaCard {
     constructor(media) {
         this._media = media;
     }
 
+    /**
+     * Create the HTML structure for the media card.
+     * @param {Array<Media>} sortedList - The sorted list of media items. This is needed for launching the lightbox and navigating through the media items.
+     * @returns {HTMLElement} - The article element containing the media card content.
+     */
     createMediaCard(sortedList) {
-        const $wrapper = document.createElement('article')
-        $wrapper.classList.add('media-card')
+        const $wrapper = document.createElement('article');
+        $wrapper.classList.add('media-card');
 
         const media = this._media.type === 'image' ?
             `<img  class="media-card__content__media" src="${this._media.image}" alt="${this._media.title}">` :
@@ -26,16 +32,54 @@ class MediaCard {
 
         $wrapper.innerHTML = mediaCard;
 
-        // Stocker la référence de l'élément dans une propriété pour une utilisation future
+        // Store the reference of the element for future use.
         this._template = $wrapper;
 
-        // Ajouter les écouteurs d'événements
-        this._addEventListeners(sortedList);
+        // Add event listeners to the media card.
+        this._addMediaCardEventListeners(sortedList);
 
-        // Retourner l'élément
         return $wrapper;
     }
+    
+    /**
+     * Add event listeners to the media card.
+     * @param {Array<Media>} sortedList - The sorted list of media items. This is needed for launching the lightbox and navigating through the media items.
+     * @private
+     */
+    _addMediaCardEventListeners(sortedList) {
+        // Add event listener for opening the lightbox on click or key press.
+        const media = this._template.querySelector('.media-card__content');
+        const openLightbox = () => {
+            const lightbox = new MediaLightbox(sortedList, this._media.id, 'lightbox');
+            lightbox.showLightbox();
+        };
 
+        media.addEventListener('click', (event) => {
+            event.stopPropagation();
+            openLightbox();
+        });
+        media.addEventListener('keydown', (event) => {
+            const key = event.key;
+
+            if (key === 'Enter' || key === 'Space') {
+                openLightbox();
+            }
+        });
+
+        // Add event listener for updating likes on button click.
+        const btnLike = this._template.querySelector('.btn-likes');
+        const updateLike = new UpdateLike();
+        
+        btnLike.addEventListener('click', (event) => {
+            event.preventDefault();
+            updateLike.update(btnLike);
+        });
+    }
+
+    /**
+     * Create the HTML structure for the media item inside the lightbox.
+     * @returns {string} - The HTML content for the media item inside the lightbox.
+     */
     createLightBoxMedia() {
         const media = this._media.type === 'image' ?
             `<img tabindex="0" class="lightbox__media-container__content" src="${this._media.image}" alt="${this._media.title}"/>` :
@@ -48,37 +92,5 @@ class MediaCard {
         `;
 
         return lightboxMedia;
-    }
-
-    // Méthode privée qui se charge d'ajouter les écouteurs d'événements
-    _addEventListeners(sortedList) {
-        const openLightbox = () => {
-            const lightbox = new MediaLightbox(sortedList, this._media.id, 'lightbox');
-            lightbox.showLightbox();
-        }
-
-        // Ajouter l'écouteur pour l'ouverture de la lightbox
-        const media = this._template.querySelector('.media-card__content');
-
-        media.addEventListener('click', (event) => {
-            event.stopPropagation();
-            openLightbox();
-        });
-
-        media.addEventListener('keydown', (event) => {
-            const key = event.key;
-
-            if (key === 'Enter' || key === 'Space') {
-                openLightbox();
-            }
-        }) 
-
-        // Ajouter l'écouteur pour la mise à jour des likes
-        const btnLike = this._template.querySelector('.btn-likes');
-        const updateLike = new UpdateLike();
-        btnLike.addEventListener('click', (event) => {
-            event.preventDefault();
-            updateLike.update(btnLike);
-        });
     }
 }

@@ -1,9 +1,13 @@
+// The IndexApp class is responsible for managing all the JavaScript logic for the index.js page.
+// It handles the dynamic creation and display of photographer cards on the webpage.
 class IndexApp extends App {
     constructor() {
         super();
-        
-        this.$photographersWrapper = document.querySelector('.photographer-section')
-        this.photographersApi = new PhotographersApi('./data/photographers-data.json')
+
+        // The data file 'photographers-data.json' will be used as the data source.
+        this.photographersApi = new PhotographersApi('./data/photographers-data.json');
+
+        this.$photographersWrapper = document.querySelector('.photographer-section');
     }
 
     async main() {
@@ -20,5 +24,5 @@ class IndexApp extends App {
     }
 }
 
-const indexApp = new IndexApp()
-indexApp.main()
+const indexApp = new IndexApp();
+indexApp.main();

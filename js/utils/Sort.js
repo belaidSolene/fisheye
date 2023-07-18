@@ -1,4 +1,11 @@
+// The Sort class provides static methods to sort media items based on different criteria.
 class Sort {
+  /**
+  * Sorts the media items in the given media list based on the specified sorting criteria.
+  * @param {Array<Media>} mediaList - The list of media items to be sorted.
+  * @param {string} sortBy - The sorting criteria (options: 'likes', 'date', 'title').
+  * @returns {Map} - A Map object with media items sorted by their IDs.
+  */
   sortMedias(mediaList, sortBy) {
     switch (sortBy) {
       case 'likes':

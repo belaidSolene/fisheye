@@ -1,4 +1,8 @@
+// The ListBox class represents a custom dropdown listbox with keyboard accessibility and focus management.
 class ListBox {
+  /**
+  * @param {HTMLElement} listbox - The element representing the listbox container.
+  */
   constructor(listbox) {
     this._listbox = listbox;
     this._listboxButton = this._listbox.querySelector('.listbox__btn');
@@ -11,12 +15,18 @@ class ListBox {
     this._addEventListenersListboxItems();
   }
 
+  /**
+  * Add event listeners to the listbox button for opening and navigating the listbox.
+  * @private
+  */
   _addEventListenersListboxButton() {
+    // Click event listener for opening the listbox
     this._listboxButton.addEventListener('click', (event) => {
       event.stopPropagation();
       this._toggleListBox();
     });
 
+    // Keyboard event listener for handling listbox navigation and open/close actions
     this._listboxButton.addEventListener('keydown', (event) => {
       const key = event.code;
 
@@ -27,7 +37,6 @@ class ListBox {
           const indexFocus = this._currentIndex > 0 ? 0 : 1;
           this._focusItem(indexFocus);
           this._toggleListBox();
-
           break;
 
         case 'ArrowDown':
@@ -52,13 +61,16 @@ class ListBox {
     });
   }
 
+  /**
+  * Add event listeners to the listbox items for keyboard navigation and selection.
+  * @private
+  */
   _addEventListenersListboxItems() {
     this._listboxItems.forEach(item => {
+      // Function to select the item and update the listbox button text
       const selectItem = () => {
-        //old item can be selected again
         this._currentItem.setAttribute('aria-selected', 'false');
 
-        // update attributs currentItem
         this._currentItem = item;
         this._currentItem.setAttribute('aria-selected', 'true');
         this._currentIndex = Array.from(this._listboxItems).indexOf(this._currentItem);
@@ -67,40 +79,15 @@ class ListBox {
         this._closeListBox();
       };
 
+      // Function to update the text on the listbox button with the selected item text
       const updateTextButton = () => {
         const textButton = this._currentItem.querySelector('.listbox__item__txt').textContent;
-        
         const $wrapperTxtBtn = this._listboxButton.querySelector('#listbox-choice');
         $wrapperTxtBtn.textContent = textButton;
         $wrapperTxtBtn.setAttribute('data-text', textButton);
-
-        this._listboxButton.querySelector('#listbox-choice-sr').textContent = textButton;
-
-        /* 
-        HTML :
-        <div class="element">
-          Texte principal
-        </div>
-
-        CSS :
-        .element::after {
-            content: ""; /* Par défaut, le contenu de ::after est vide //
-             /* Autres styles pour ::after //
-        }
-
-        JS :
-        var element = document.querySelector('.element');
-        var textContent = element.textContent;
-        element.style.setProperty('--after-content', "'" + textContent + "'");
-
-        CSS (avec variable) :
-        .element::after {
-          content: var(--after-content);
-          /* Autres styles pour ::after //
-        }
-        */
       };
 
+      // Keyboard event listener for item navigation and selection
       item.addEventListener('keydown', (event) => {
         const key = event.code;
 
@@ -138,26 +125,48 @@ class ListBox {
 
       });
 
+      // Click event listener for item selection
       item.addEventListener('click', selectItem);
     });
   }
 
+  /**
+  * Set focus on the specified item in the listbox.
+  * @param {number} index - The index of the item to focus.
+  * @private
+  */
   _focusItem(index) {
     this._listboxItems[index].focus();
   };
 
+  /**
+  * Get the value of the currently selected option in the listbox.
+  * @returns {string} - The value of the currently selected option.
+  */
   getSelectedOption() {
     return this._currentItem.dataset.sortBy;
   }
 
+  /**
+  * Get the list of listbox options.
+  * @returns {NodeList} - The list of listbox items (options).
+  */
   get options() {
     return this._listboxItems;
   }
 
+  /**
+  * Toggle the visibility of the listbox.
+  * @private
+  */ 
   _toggleListBox() {
     this._isOpen ? this._closeListBox() : this._openListBox();
   }
 
+  /**
+  * Open the listbox and make it visible.
+  * @private
+  */
   _openListBox() {
     this._isOpen = true;
     this._listbox.classList.add('show');
@@ -166,6 +175,10 @@ class ListBox {
     document.addEventListener('click', this._handleOutsideClick);
   }
 
+  /**
+  * Close the listbox and make hide it.
+  * @private
+  */
   _closeListBox() {
     this._isOpen = false;
     this._listbox.classList.remove('show');
@@ -174,6 +187,11 @@ class ListBox {
     document.removeEventListener('click', this._handleOutsideClick);
   }
 
+  /**
+  * Event handler to close the listbox when clicking outside of it.
+  * @param {Event} event - The click event.
+  * @private
+  */
   _handleOutsideClick = (event) => {
     if (this._isOpen && !this._listbox.contains(event.target)) {
       this._closeListBox();

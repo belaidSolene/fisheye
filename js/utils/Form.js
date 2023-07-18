@@ -1,11 +1,29 @@
+/**
+ * The Form class represents a customizable form modal that extends the Modal class.
+ * It provides methods to generate and validate forms with various input types and validation rules.
+ */
 class Form extends Modal {
+    /**
+     * Creates an instance of the Form class.
+     * @param {string} idForm - The unique ID for the form.
+     * @param {HTMLElement} $wrapperForm - The HTML wrapper element or the ID of the wrapper element for the form.
+     */
     constructor(idForm, $wrapperForm) {
         super()
         this._idForm = idForm;
         this._$wrapperForm = this._initWrapper($wrapperForm);
+        
+        // Bind the '_close' method to the current instance of the Form class
+        // This ensures that '_close' always refers to the correct 'this' context
         this._close = this._close.bind(this);
     }
 
+    /**
+    * Helper method to generate the HTML form based on the provided form fields.
+    * @param {Array} formFields - An array of objects representing form field properties.
+    * @returns {HTMLElement} - The HTML form element with the specified form fields.
+    * @private
+    */
     _generateForm(formFields) {        
         // Création du formulaire
         const form = document.createElement("form");
@@ -88,6 +106,11 @@ class Form extends Modal {
         return form;
     }
 
+    /**
+    * Method to validate the form fields and display appropriate feedback.
+    * @returns {boolean} - A boolean value indicating if the form is valid (true) or not (false).
+    * @private
+    */
     _validationForm() {
         let isValid = false;
         const nbError = this._validationFields(this._validators);
@@ -111,12 +134,18 @@ class Form extends Modal {
             const accord = nbError > 1 ? 'champs sont erronés' : 'champ est erroné';
             this._$feedbackWrited.innerHTML = `Le formulaire ne peut être envoyé : ${nbError} ${accord}. &nbsp;`;
 
-            this._$hintKeyEvent.innerHTML = `Avec le raccourci clavier [flèche haute] ou [flèche droite], vous pouvez accéder au premier champ erroné. &nbsp;`
+            this._$hintKeyEvent.innerHTML = `Avec le raccourci clavier [flèche haute] ou [flèche droite], vous pouvez accéder au premier champ erroné. &nbsp`;
             this._form.addEventListener('keydown', getToFirstInvalidField);
         }
         return isValid;
     }
 
+   /**
+    * Helper method to validate individual form fields using predefined validators.
+    * @param {Map} validators - A Map object containing field IDs and associated validation functions.
+    * @returns {number} - The number of errors found during form field validation.
+    * @private
+    */
     _validationFields(validators) {
         let errors = 0;
 
@@ -147,10 +176,20 @@ class Form extends Modal {
         return (errors);
     }
 
+    /**
+    * Validation function to check if a field is empty (required).
+    * @param {HTMLElement} field - The input field to validate.
+    * @returns {string|false} - The error message if the field is empty, or false if it is valid.
+    */
     isEmpty(field) {
         return field.validity.valueMissing ? "Ce champ est obligatoire" : false;
     }
 
+    /**
+    * Validation function to check if a field's value matches a specific pattern using regular expressions.
+    * @param {HTMLElement} field - The input field to validate.
+    * @returns {string|false} - The error message if the pattern is not matched, or false if it is valid.
+    */
     isPatternRespected(field) {
         const regexByField = new Map([
             // key : id of the field
@@ -168,6 +207,12 @@ class Form extends Modal {
         return regexField[0].test(field.value) ? false : regexField[1];
     }
 
+    /**
+    * Helper method to set the data-error attribute on a field's parent element and display the error message.
+    * @param {HTMLElement} field - The input field to display the error message for.
+    * @param {string} message - The error message to be displayed.
+    * @private
+    */
     _setDataError(field, message) {
         const div = field.parentNode;
         div.setAttribute('data-error', message);
@@ -186,12 +231,17 @@ class Form extends Modal {
             const errDiv = document.createElement('label');
             errDiv.setAttribute('for', field.id);
             errDiv.classList.add('sr-only');
-            errDiv.id = idError
+            errDiv.id = idError;
             errDiv.innerHTML = message;
             div.appendChild(errDiv);
         }
     }
 
+    /**
+    * Helper method to remove the data-error attribute on a field's parent element and hide the error message.
+    * @param {HTMLElement} field - The input field to remove the error message for.
+    * @private
+    */
     _deleteDataError(field) {
         const div = field.parentNode;
         div.setAttribute('data-error-visible', false);
@@ -203,6 +253,10 @@ class Form extends Modal {
         }
     }
 
+    /**
+    * Method to reset the form by clearing input fields and removing validation messages.
+    * @private
+    */
     _resetForm() {
         this._form.reset();
 
@@ -222,6 +276,11 @@ class Form extends Modal {
         this._$feedbackWrited.innerHTML = "";
     }
 
+    /**
+    * Method to get form data from input fields and return it as an object.
+    * @returns {Object} - An object containing form data with field names as keys and input values as values.
+    * @private
+    */
     _getFormData() {
         const formData = {};
         const inputs = document.querySelectorAll(`#${this._idForm} input, #${this._idForm} textarea`);
@@ -234,12 +293,20 @@ class Form extends Modal {
         return formData;
     }
 
+    /**
+    * Method to toggle the visibility of the form modal and handle its open and close actions.
+    * @param {HTMLElement} openerElement - The element that triggered the form's visibility.
+    */
     toggleForm(openerElement) {
         this._openerElement = openerElement;
 
         this._isOpen ? this._close() : this._open();
     }
 
+    /**
+    * Method to close the form modal and reset the form to its initial state.
+    * @private
+    */
     _close() {
         super._closeModal();
         this._$wrapperForm.classList.remove("active");
@@ -248,6 +315,10 @@ class Form extends Modal {
       //  document.removeEventListener('wheel', this._handleOutsideWheel, { passive: false });
     }
 
+    /**
+    * Method to open the form modal and set focus to the form container.
+    * @private
+    */
     _open() {
         super._openModal();
         this._$wrapperForm.classList.add("active");
@@ -255,12 +326,22 @@ class Form extends Modal {
         this._$wrapperForm.focus();
     }
 
+    /**
+    * Event handler for handling clicks outside the form modal to close it.
+    * @param {Event} event - The click event.
+    * @private
+    */
     _handleOutsideClick(event) {
         if (this._isOpen && !this._$wrapperForm.contains(event.target)) {
             this._close();
         }
     }
 
+    /**
+    * Event handler for handling wheel events outside the form modal.
+    * @param {Event} event - The wheel event.
+    * @private
+    */
     _handleOutsideWheel(event) {
         event.preventDefault();
     }
@@ -323,6 +404,9 @@ class ContactForm extends Form {
         ]);
     }
 
+    /**
+    * Method to generate the form based on the predefined form fields and add event listeners to it.
+    */
     generate() {
         this._form = this._generateForm(this._formFields);
         this._form.noValidate = true;
@@ -331,8 +415,8 @@ class ContactForm extends Form {
         const submitButton = document.createElement("button");
         submitButton.type = "submit";
         submitButton.textContent = "Envoyer";
-        submitButton.classList.add('btn')
-        submitButton.classList.add('btn--submit')
+        submitButton.classList.add('btn');
+        submitButton.classList.add('btn--submit');
         this._form.appendChild(submitButton);
 
         this._form.addEventListener("submit", (event) => {
@@ -344,14 +428,17 @@ class ContactForm extends Form {
         this._$wrapperForm.appendChild(this._form);
 
         const closeBtn = document.createElement('button');
-        closeBtn.setAttribute('id', 'form-btn-close')
+        closeBtn.setAttribute('id', 'form-btn-close');
         closeBtn.classList.add('contact__btn-close');
-        closeBtn.innerHTML = '<img src="/public/assets/icons/close.svg" />';
+        closeBtn.innerHTML = '<img src="./public/assets/icons/close.svg" />';
 
         this._$wrapperForm.appendChild(closeBtn);
         this._addEventListener();
     }
 
+    /**
+    * Method to trigger form validation and process the form data if it is valid.
+    */
     validation() {
         if (this._validationForm()) {
 
@@ -364,6 +451,10 @@ class ContactForm extends Form {
         }
     }
 
+    /**
+    * Method to retrieve the form data after validation.
+    * @returns {Object} - An object containing the form data with field names as keys and input values as values.
+    */
     response() {
         const formData = this._getFormData();
         const response = {
@@ -377,6 +468,10 @@ class ContactForm extends Form {
         return response;
     }
 
+    /**
+    * Private method to add event listeners for keyboard navigation and buttons in the form modal.
+    * @private
+    */
     _addEventListener() {
         this._$wrapperForm.addEventListener('keydown', (event) => {
             const key = event.key;
