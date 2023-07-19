@@ -545,8 +545,9 @@ header h1 {
 .contact form .formData[data-error-visible=true]::after {
   opacity: 1;
 }
-.contact form .formData[data-error-visible=true] input {
+.contact form .formData[data-error-visible=true] input, .contact form .formData[data-error-visible=true] textarea {
   margin-top: 3px;
+  padding: 5px;
   border: 3px solid #23321A;
   outline: 3px solid #FFFFFF;
 }

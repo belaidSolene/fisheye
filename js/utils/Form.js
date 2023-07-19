@@ -277,14 +277,17 @@ class Form extends Modal {
     }
 
     /**
-    * Method to get form data from input fields and return it as an object.
-    * @returns {Object} - An object containing form data with field names as keys and input values as values.
+    * Method to get the form data and return it as an object.
+    * @returns {Object} - An object containing the form data with field names as keys and input values as values.
     * @private
     */
     _getFormData() {
         const formData = {};
-        const inputs = document.querySelectorAll(`#${this._idForm} input, #${this._idForm} textarea`);
         formData.idForm = this._idForm;
+        formData.photographer = this._$wrapperForm.querySelector(`h2 > span`).textContent;
+        const inputs = this._$wrapperForm.querySelectorAll(`#${this._idForm} input, #${this._idForm} textarea`);
+
+        console.log(formData.photographer);
 
         inputs.forEach((input) => {
             formData[input.id] = input.value;
@@ -380,7 +383,7 @@ class ContactForm extends Form {
                 name: "email",
                 type: "email",
                 attributs: {
-                    // required: 'true',
+                     required: 'true',
                     'aria-required': true,
                     autocomplete: 'off',
                 },
@@ -390,7 +393,7 @@ class ContactForm extends Form {
                 name: "message",
                 type: "textarea",
                 attributs: {
-                    // required: 'true',
+                     required: 'true',
                     'aria-required': true,
                     autocomplete: 'off',
                 },
@@ -459,6 +462,7 @@ class ContactForm extends Form {
         const formData = this._getFormData();
         const response = {
             idForm: formData.idForm,
+            photographer: formData.photographer,
             firstName: formData.firstName,
             lastName: formData.lastName,
             email: formData.email,
