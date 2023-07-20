@@ -284,10 +284,7 @@ class Form extends Modal {
     _getFormData() {
         const formData = {};
         formData.idForm = this._idForm;
-        formData.photographer = this._$wrapperForm.querySelector(`h2 > span`).textContent;
         const inputs = this._$wrapperForm.querySelectorAll(`#${this._idForm} input, #${this._idForm} textarea`);
-
-        console.log(formData.photographer);
 
         inputs.forEach((input) => {
             formData[input.id] = input.value;
@@ -462,7 +459,7 @@ class ContactForm extends Form {
         const formData = this._getFormData();
         const response = {
             idForm: formData.idForm,
-            photographer: formData.photographer,
+            photographer: this._$wrapperForm.querySelector(`h2 > span`).textContent,
             firstName: formData.firstName,
             lastName: formData.lastName,
             email: formData.email,
