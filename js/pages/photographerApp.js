@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 
 // The PhotographerApp class is responsible for managing the JavaScript logic for the photographer.html page.
 // It handles data retrieval and dynamically creates the photographer's header, media section, and contact form.

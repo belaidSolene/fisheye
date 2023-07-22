@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // The IndexApp class is responsible for managing all the JavaScript logic for the index.js page.
 // It handles the dynamic creation and display of photographer cards on the webpage.
 class IndexApp extends App {

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // The Photographer class represents a photographer with their associated data.
 class Photographer {
     constructor(data) {

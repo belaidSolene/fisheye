@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // The Api class is a base class for making HTTP requests to a specified URL and fetching data.
 class Api {
     /**

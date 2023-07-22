@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 //  The UpdateLike class handles updating the like count for media items and the total likes display on the hotographer.html page.
 class UpdateLike {
     constructor() {

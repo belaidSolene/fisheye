@@ -4,7 +4,7 @@
   "description": "Rien à installer ici, il suffit d'ouvrir le fichier `index.html`.",
   "main": "index.js",
   "scripts": {
-    "sass" : "sass --watch ./sass/main.scss:./public/css/style.css"
+    "sass": "sass --watch ./sass/main.scss:./public/css/style.css"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/belaidSolene/fisheye/issues"
   },
-  "homepage": "https://github.com/belaidSolene/fisheye#readme"
+  "homepage": "https://github.com/belaidSolene/fisheye#readme",
+  "devDependencies": {
+    "eslint": "^8.45.0"
+  }
 }

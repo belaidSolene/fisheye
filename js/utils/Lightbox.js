@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 /**
  * The Lightbox class represents a lightbox modal window for displaying media content, such as images and videos.
  * It extends the Modal class and provides methods to show and navigate media items.

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // The Media class represents a generic media item, which can be an image or a video.
 class Media {
     constructor(data) {

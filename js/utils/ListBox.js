@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // The ListBox class represents a custom dropdown listbox with keyboard accessibility and focus management.
 class ListBox {
   /**
@@ -34,8 +35,10 @@ class ListBox {
         case 'Enter':
         case 'Space':
           event.preventDefault();
+          console.log(this._currentIndex);
           const indexFocus = this._currentIndex > 0 ? 0 : 1;
           this._focusItem(indexFocus);
+          console.log(this._currentIndex);
           this._toggleListBox();
           break;
 
@@ -137,7 +140,7 @@ class ListBox {
   */
   _focusItem(index) {
     this._listboxItems[index].focus();
-  };
+  }
 
   /**
   * Get the value of the currently selected option in the listbox.

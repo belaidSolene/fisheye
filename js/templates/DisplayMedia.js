@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 /**
  * The DisplayMedia class is responsible for rendering and managing the display of media items on the page.
  * @param {Array<Media>} medias - The array of media items to be displayed.

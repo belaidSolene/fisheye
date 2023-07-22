@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 /**
  * The Form class represents a customizable form modal that extends the Modal class.
  * It provides methods to generate and validate forms with various input types and validation rules.
@@ -194,9 +196,9 @@ class Form extends Modal {
         const regexByField = new Map([
             // key : id of the field
             // value: an array with first --> regex, second --> error message
-            ['firstName', [/^[A-Za-zÀ-ÖØ-öø-ÿ\-\'\ ]{2,}$/, "Il faut renseigner 2 caractères minimum"]],
-            ['lastName', [/^[A-Za-zÀ-ÖØ-öø-ÿ\-\'\ ]{2,}$/, "Il faut renseigner 2 caractères minimum"]],
-            ['email', [/\b[\w\.-]+@[\w\.-]+\.\w{2,}\b/i, "Email non valide"]],
+            ['firstName', [/^[A-Za-zÀ-ÖØ-öø-ÿ\-' ]{2,}$/, "Il faut renseigner 2 caractères minimum"]],
+            ['lastName', [/^[A-Za-zÀ-ÖØ-öø-ÿ\-' ]{2,}$/, "Il faut renseigner 2 caractères minimum"]],
+            ['email', [/\b[\w.-]+@[\w.-]+\.\w{2,}\b/i, "Email non valide"]],
         ]);
 
         const regexField = regexByField.get(field.id);
@@ -312,7 +314,6 @@ class Form extends Modal {
         this._$wrapperForm.classList.remove("active");
         this._resetForm();
         this._openerElement.focus();
-      //  document.removeEventListener('wheel', this._handleOutsideWheel, { passive: false });
     }
 
     /**
@@ -322,7 +323,6 @@ class Form extends Modal {
     _open() {
         super._openModal();
         this._$wrapperForm.classList.add("active");
-      //  document.addEventListener('wheel', this._handleOutsideWheel, { passive: false });
         this._$wrapperForm.focus();
     }
 

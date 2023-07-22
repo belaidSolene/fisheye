@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 // The PhotographerCard represents a photographer item and provides methods to display and manage the photographer informations.
 class PhotographerCard {
     constructor(photographer) {

@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 // The MediaCard class represents a media item and provides methods to create and manage the media card elements.
 class MediaCard {
     constructor(media) {

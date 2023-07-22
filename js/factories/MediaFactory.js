@@ -1,3 +1,6 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable no-unused-vars */
 // The MediasFactory class is a factory for creating media objects (Image or Video) based on the provided data.
 class MediasFactory {
     /**

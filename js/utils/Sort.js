@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // The Sort class provides static methods to sort media items based on different criteria.
 class Sort {
   /**

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // The Modal class represents a modal window and provides functionality to open and close it. 
 class Modal {
     constructor() {
