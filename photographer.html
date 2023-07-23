@@ -17,10 +17,10 @@
 
     <!-- Form Section -->
     <!-- Contains the form for contacting the photographer -->
-    <div id="contact-form" tabindex="0" class="contact" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+    <div id="contact-form" aria-label="Formulaire de contact" tabindex="0" class="contact" role="dialog" aria-modal="true">
       <header class="contact__header">
         <!-- Heading dynamically filled by Form.js -->
-        <h2 id="contact-title" aria-hidden="true" class="contact__header__photographer"></h2>
+        <h2 id="contact-title" tabindex=0 class="contact__header__photographer"></h2>
       </header>
 
       <!-- Form dynamically filled by Form.js -->
@@ -29,7 +29,7 @@
     <!-- Lightbox Section -->
     <!-- Contains the lightbox for displaying media -->
     <!-- Manages the lightbox functionality using Lightbox.js -->
-    <div id="lightbox" tabindex="0" class="lightbox" role="dialog" aria-modal="true" aria-label="Média en grand">
+    <div id="lightbox" tabindex="0" class="lightbox" role="dialog" aria-modal="true" aria-label="Média en vue rapprochée">
       <!-- Container for the media (image or video) displayed inside the lightbox -->
       <article class="lightbox__media-container">
         <!-- Article dynamically filled by Lightbox.js -->
@@ -48,7 +48,7 @@
       </button>
 
       <!-- Button for closing the lightbox -->
-      <button aria-label="Fermer" class="lightbox__btn lightbox__btn--close">
+      <button aria-label="Fermer la vue rapprochée" class="lightbox__btn lightbox__btn--close">
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
@@ -156,5 +156,4 @@
   <script src="./js/pages/app.js"></script>
   <script src="./js/pages/photographerApp.js"></script>
 </body>
-
 </html>

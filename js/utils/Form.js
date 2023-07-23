@@ -77,15 +77,7 @@ class Form extends Modal {
             this._$feedbackWrited.setAttribute('aria-atomic', 'true');
             this._$feedbackWrited.setAttribute('aria-live', 'polite');
 
-            this._$hintKeyEvent = document.createElement('p');
-            this._$hintKeyEvent.classList.add('sr-only');
-            this._$hintKeyEvent.setAttribute('role', 'status');
-            this._$hintKeyEvent.setAttribute('aria-atomic', 'true');
-            this._$hintKeyEvent.setAttribute('aria-live', 'polite');
-
             $wrapperFeedback.appendChild(this._$feedbackWrited);
-            $wrapperFeedback.appendChild(this._$hintKeyEvent);
-
             return $wrapperFeedback;
         }
 
@@ -127,16 +119,17 @@ class Form extends Modal {
         }
 
         this._$feedbackWrited.innerHTML = "";
-        this._$hintKeyEvent.innerHTML = "";
 
         if (nbError === 0) {
             this._form.removeEventListener('keydown', getToFirstInvalidField);
             isValid = true;
         } else {
             const accord = nbError > 1 ? 'champs sont erronés' : 'champ est erroné';
-            this._$feedbackWrited.innerHTML = `Le formulaire ne peut être envoyé : ${nbError} ${accord}. &nbsp;`;
+            this._$feedbackWrited.innerHTML = `
+                Le formulaire ne peut être envoyé : ${nbError} ${accord}. &nbsp; 
+                <span class="sr-only">Avec le raccourci clavier [flèche haute] ou [flèche droite], vous pouvez accéder au premier champ erroné. &nbsp </span>                            
+            `;
 
-            this._$hintKeyEvent.innerHTML = `Avec le raccourci clavier [flèche haute] ou [flèche droite], vous pouvez accéder au premier champ erroné. &nbsp`;
             this._form.addEventListener('keydown', getToFirstInvalidField);
         }
         return isValid;
@@ -267,6 +260,13 @@ class Form extends Modal {
             if (div.hasAttribute('data-error')) {
                 div.removeAttribute('data-error');
                 div.setAttribute('data-error-visible', 'false');
+                div.removeChild(div.querySelector('label.sr-only'));
+                
+                const input = div.querySelector('input, textarea');
+                console.log(input);
+                input.setAttribute('aria-invalid', 'false');
+                input.removeAttribute('aria-errormessage');
+
             }
         })
 
@@ -305,7 +305,7 @@ class Form extends Modal {
         this._isOpen ? this._close() : this._open();
     }
 
-    /**
+    /** 
     * Method to close the form modal and reset the form to its initial state.
     * @private
     */
@@ -430,7 +430,7 @@ class ContactForm extends Form {
         const closeBtn = document.createElement('button');
         closeBtn.setAttribute('id', 'form-btn-close');
         closeBtn.classList.add('contact__btn-close');
-        closeBtn.innerHTML = '<img src="./public/assets/icons/close.svg" />';
+        closeBtn.innerHTML = '<img src="./public/assets/icons/close.svg" alt="Fermer le formulaire de contact">';
 
         this._$wrapperForm.appendChild(closeBtn);
         this._addEventListener();

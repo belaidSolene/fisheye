@@ -20,14 +20,15 @@ class MediaCard {
             `<video class="media-card__content__media" src="${this._media.video}" alt="${this._media.title}"></video>`;
 
         const likeMsg = this._media.type === 'image' ? 'Aimer ce cliché' : 'Aimer cette vidéo';
+        const typeMedia = this._media.type === 'image' ? 'Cliché' : 'Vidéo';
 
         const mediaCard = `
-            <div id="${this._media.id}" class="media-card__content" tabindex="0">
+            <div id="${this._media.id}" class="media-card__content" tabindex="0" aria-label="${typeMedia} ${this._media.title}, lien : vue approchée">
             ${media}
             </div>
     
             <div class="media-card__description">
-            <p tabindex="0" class="media-card__description__title" lang="en">${this._media.title}</p>
+            <p tabindex="0" id="title-${this._media.id}" class="media-card__description__title" lang="en">${this._media.title}</p>
             <button class="btn-likes" title="${likeMsg}">${this._media.likes} <i  aria-hidden="true" class="fa-solid fa-heart"></i> <span class="sr-only">"j'aime", </span></i></button>
           </div>            
         `;
@@ -90,7 +91,7 @@ class MediaCard {
         const lightboxMedia = `
         ${media}
 
-        <h3 lang="en">${this._media.title}</h3>
+        <h3 lang="en" tabindex=0>${this._media.title}</h3>
         `;
 
         return lightboxMedia;
