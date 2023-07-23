@@ -35,18 +35,14 @@ class ListBox {
         case 'Enter':
         case 'Space':
           event.preventDefault();
-          console.log(this._currentIndex);
-          const indexFocus = this._currentIndex > 0 ? 0 : 1;
-          this._focusItem(indexFocus);
-          console.log(this._currentIndex);
+          this._focusItem(this._currentIndex > 0 ? 0 : 1);
           this._toggleListBox();
           break;
 
         case 'ArrowDown':
           event.preventDefault();
           if (this._isOpen) {
-            const indexFocus = this._currentIndex > 0 ? 0 : 1;
-            this._focusItem(indexFocus);
+            this._focusItem(this._currentIndex > 0 ? 0 : 1);
           } else {
             this._openListBox();
           }

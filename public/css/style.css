@@ -22,13 +22,13 @@ a {
   text-decoration: none;
 }
 
-h1, h2 {
+h1,
+h2 {
   font-weight: 400;
 }
 
 img {
   object-fit: cover;
-  overflow-clip-margin: unset;
 }
 
 video {
@@ -36,21 +36,12 @@ video {
 }
 
 .round {
-  aspect-ratio: 1;
+  aspect-ratio: 1/1;
   border-radius: 50%;
 }
 
 button {
   cursor: pointer;
-}
-
-/* Add focus styles for keyboard navigation with an outline and box shadow */
-.key-navigation :focus {
-  outline: 4px solid yellowgreen;
-  box-shadow: 0 0 10px #54800D;
-}
-.key-navigation :focus .listbox__list__item__txt {
-  border: 2px solid yellowgreen;
 }
 
 /* Font Import */
@@ -344,6 +335,31 @@ header h1 {
 .lightbox__btn__nav--next {
   right: 0;
   padding-right: 1em;
+}
+
+/* Add focus styles for keyboard navigation with an outline and box shadow */
+.key-navigation :focus {
+  outline: 4px solid yellowgreen;
+  box-shadow: 0 0 10px #54800D;
+}
+.key-navigation .mediaListbox {
+  /* Specific rules for the button when it is focus and the list is display  */
+  /* Specific rules for the listbox item */
+}
+.key-navigation .mediaListbox button[aria-expanded=true]:focus {
+  outline: none;
+  border: 4px solid yellowgreen;
+}
+.key-navigation .mediaListbox .listbox__item:focus {
+  outline: none;
+}
+.key-navigation .mediaListbox .listbox__item:focus .listbox__item__txt {
+  border: 4px solid yellowgreen;
+  padding: 0.75rem;
+  padding-right: 64%;
+}
+.key-navigation .mediaListbox .listbox__item:focus[data-sort-by=likes] .listbox__item__txt {
+  padding-right: 34%;
 }
 
 /* Page-specific styles */

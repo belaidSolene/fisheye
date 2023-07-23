@@ -28,7 +28,7 @@ class MediaCard {
     
             <div class="media-card__description">
             <p tabindex="0" class="media-card__description__title" lang="en">${this._media.title}</p>
-            <button class="btn-likes" title="${likeMsg}">${this._media.likes} <i  aria-hidden="true" class="fa-solid fa-heart"></i> <span class="sr-only">j'aime, </span></i></button>
+            <button class="btn-likes" title="${likeMsg}">${this._media.likes} <i  aria-hidden="true" class="fa-solid fa-heart"></i> <span class="sr-only">"j'aime", </span></i></button>
           </div>            
         `;
 

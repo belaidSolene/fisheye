@@ -60,14 +60,14 @@
     <!-- Includes the logo as a link to index.html -->
     <header>
       <a href="index.html">
-        <img src="./public/assets/icons/logo.png" class="logo" alt="logo">
+        <img src="./public/assets/icons/logo.png" class="logo" alt="Fisheye Page d'Accueil">
       </a>
     </header>
 
     <main id="main">
 
       <!-- Photographer Header -->
-      <div class="photographer-header">
+      <div class="photographer-header" role="region">
         <!-- Content dynamically filled by photographerCard.js -->
       </div>
 
@@ -80,16 +80,16 @@
       <!-- Listbox for sorting the media by likes, date, or alphabetical title -->
       <!-- Popularity selected by default -->
       <div class="mediaListbox">
-        <label aria-hidden="true">Trier par</label>
+        <label id="listbox-title">Trier par</label>
 
         <!-- Manages by Listbox.js -->
         <div class="listbox">
           <!-- button to display the listbox -->
-          <button id="listbox-btn" aria-label="Trier galerie par " aria-labelledby="listbox-btn listbox-choice"
-            role="combobox" class="btn btn--hover listbox__btn" aria-haspopup="listbox" aria-expanded="false"
-            aria-controls="sort-options">
+          <button role="combobox" aria-haspopup="listbox" aria-expanded="false" id="listbox-btn" 
+            class="btn btn--hover listbox__btn" aria-controls="sort-options">
             <!-- Does not read directly by screen reader -->
-            <span id="listbox-choice" aria-hidden="true">Popularité</span>
+            <span class="sr-only">Trier les médias par : </span>
+            <span id="listbox-choice">Popularité</span>
             <i class="fa-solid fa-chevron-down chevron-down" aria-hidden="true"></i>
           </button>
 
@@ -120,7 +120,7 @@
 
       <!-- Media Section -->
       <!-- Displays all the medias from the photographer -->
-      <div class="medias-section">
+      <div class="medias-section" role="region">
         <!-- Media cards dynamically filled by Display.js -->
       </div>
 

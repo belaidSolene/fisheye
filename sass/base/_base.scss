@@ -7,7 +7,7 @@
 }
 
 body {
- margin: 0 auto;
+  margin: 0 auto;
 }
 
 .container {
@@ -19,7 +19,8 @@ a {
   text-decoration: none;
 }
 
-h1, h2 {
+h1,
+h2 {
   font-weight: 400;
 }
 
@@ -38,14 +39,4 @@ video {
 
 button {
   cursor: pointer;
-}
-
-/* Add focus styles for keyboard navigation with an outline and box shadow */
-.key-navigation :focus {
-  outline: 4px solid yellowgreen;
-  box-shadow: 0 0 10px #54800D;
-
-  .listbox__list__item__txt {
-    border: 2px solid yellowgreen;
-  }
 }

@@ -25,21 +25,24 @@ class PhotographerCard {
                 <h2 lang="en">${this._photographer.name}</h2>
             </a>
 
-            <div class="photographer-card__details" tabindex="0" aria-label="Détails photographe,">
-                <p class="photographer-card__localisation" lang="en">
-                    <span class="sr-only"> Localisation :</span>
-                    ${this._photographer.localisation}
-                    <span class="sr-only">,</span>
-                </p>
-                <p class="photographer-card__tagline">
-                    <span class="sr-only">Citation :</span>
-                    ${this._photographer.tagline}
-                    <span class="sr-only">,</span>
-                </p>
-                <p class="photographer-card__price">
-                    <span class="sr-only">Prix :</span>
-                    ${this._photographer.price}
-                </p>
+            <div class="photographer-card__details" tabindex="0" aria-labelledby="details-label-${this._photographer.id} details-${this._photographer.id}">
+                <p id="details-label-${this._photographer.id}" class="sr-only">Détails photographe,</p>    
+                <div id="details-${this._photographer.id}">
+                    <p class="photographer-card__localisation" lang="en">
+                        <span class="sr-only"> Localisation :</span>
+                        ${this._photographer.localisation}
+                        <span class="sr-only">,</span>
+                    </p>
+                    <p class="photographer-card__tagline">
+                        <span class="sr-only">Citation :</span>
+                        ${this._photographer.tagline}
+                        <span class="sr-only">,</span>
+                    </p>
+                    <p class="photographer-card__price">
+                        <span class="sr-only">Forfait :</span>
+                        ${this._photographer.price}
+                    </p>
+                </div>
             </div>
         `;
 
@@ -58,8 +61,8 @@ class PhotographerCard {
 
                 <div tabindex="0">
                     <h2  class="sr-only">Détails photographe,</h2>
+                    <span class="sr-only">Localisation :</span>
                     <p class="photographer-header__description__localisation" lang="en">
-                        <span class="sr-only">Localisation :</span>
                         ${this._photographer.localisation}
                         <span class="sr-only">,</span>
                     </p>
@@ -110,8 +113,8 @@ class PhotographerCard {
     */
     insertLikesAndPrice(likes) {
         return `
-            <p class="total-likes">${likes} <i  aria-hidden="true" class="fa-solid fa-heart"></i> <span class="sr-only">j'aime, </span></p>
-            <p class="price">${this._photographer.price}</p>
+            <p class="total-likes">${likes} <i  aria-hidden="true" class="fa-solid fa-heart"></i> <span class="sr-only"> "j'aime", </span></p>
+            <p class="price"><span class="sr-only">forfait : </span> ${this._photographer.price}</p>
         `;
     }
 }
