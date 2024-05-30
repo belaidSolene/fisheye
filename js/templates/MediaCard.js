@@ -23,7 +23,7 @@ class MediaCard {
         const typeMedia = this._media.type === 'image' ? 'Cliché' : 'Vidéo';
 
         const mediaCard = `
-            <div id="${this._media.id}" class="media-card__content" tabindex="0" aria-label="${typeMedia} ${this._media.title}, lien : vue approchée">
+            <div id="${this._media.id}" class="media-card__content" aria-live="polite" tabindex="0" aria-label="${typeMedia} ${this._media.title}, lien : vue approchée">
             ${media}
             </div>
     
