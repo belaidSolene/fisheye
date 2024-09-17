@@ -2,7 +2,7 @@
 
 ## About This Project
 
-This project is part of a training program for the Front-end development track. It involves creating a functional prototype for FishEye, a website designed to showcase independent photographers' portfolios. The goal was to develop an accessible, modular web application using JavaScript design patterns.
+This project is part of the OpenClassrooms program *'Développeur d'application JavaScript React'*. It involves creating a functional prototype for FishEye, a website designed to showcase independent photographers' portfolios. The goal was to develop an accessible, modular web application using JavaScript design patterns.
 
 The prototype includes a home page and a profile page for each photographer. It was developed to meet FishEye’s design and accessibility requirements, featuring dynamic data display using JSON files, media management (photos and videos) via a **Factory Method Pattern**, and various accessibility integrations to ensure usability with screen readers and keyboard navigation.
 
