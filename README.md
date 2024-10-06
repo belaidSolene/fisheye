@@ -71,12 +71,12 @@ The prototype includes a home page and a profile page for each photographer. It 
 git clone https://github.com/belaidSolene/fisheye.git
 ```
 
-1. Navigate to the project directory:
+2. Navigate to the project directory:
 ```bash
 cd fisheye
 ```
 
-1. Open index.html in your browser to view the homepage.
+3. Open index.html in your browser to view the homepage.
 
 ## Usage
 - On the homepage, users can view a list of photographers.
